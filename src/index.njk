@@ -268,13 +268,14 @@ title: Deanna Bosschert
         <article>
           <h4>weekly nerd</h4>
           <figure>
-            <img src="/assets/img/thumbnails/weekly-nerd.png"
-              alt="screenshot of my website for the weekly nerd ">
+            <img src="/assets/img/thumbnails/weekly-nerd.png" alt="screenshot of my website for the weekly nerd ">
             <figcaption>
-             Click through my sketchnotes during the Weekly Nerd course, followed by my articles.
+              Click through my sketchnotes during the Weekly Nerd course, followed by my articles.
             </figcaption>
           </figure>
-          <p><span>Blogposts and sketchnotes to digitally flip through. </span>Click through my sketchnotes of interesting lectures as if you're flipping over the pages of a real book. Below, there's also a collection of articles that i've written.
+          <p><span>Blogposts and sketchnotes to digitally flip through. </span>Click through my sketchnotes of
+            interesting lectures as if you're flipping over the pages of a real book. Below, there's also a collection
+            of articles that i've written.
           </p>
           <button href="https://github.com/deannabosschert/weekly-nerd-articles-1920">View on GitHub</button>
         </article>
@@ -283,12 +284,19 @@ title: Deanna Bosschert
         <h3>Design</h3>
         <p>Illustrating is cool. I'm by no means a visual designer but I do really enjoy working on illustration/design
           skills.</p>
-          <section>
-            <h4>Just a few</h4>
-            <article>
-              
-            </article>
-          </section>
+        <section>
+          <h4>Just a few</h4>
+          <article>
+              {% for image in collections.random %}
+              <img src="./{{image}}" alt="">
+              {% endfor %}
+
+              {% for image in collections.workplace %}
+              <img src="{{image}}" alt="">
+              {% endfor %}
+            </section>
+          </article>
+        </section>
       </section>
       <section>
         <h3>Photography</h3>
