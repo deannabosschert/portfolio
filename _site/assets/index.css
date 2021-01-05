@@ -268,6 +268,24 @@ aside figure figcaption {
   max-width: 80%;
 }
 
+figure {
+  overflow: hidden;
+}
+figure img {
+  transition: 0.3s;
+  margin-bottom: 0.3rem;
+  max-height: 17rem;
+}
+figure img:hover {
+  transform: scale(1.1);
+}
+figure figcaption {
+  text-align: center;
+  font-size: 1rem;
+  color: grey;
+  padding: 0 0.25rem 0.5rem 0.25rem;
+}
+
 blockquote {
   margin: 0.2rem 0;
 }
