@@ -18,6 +18,7 @@ body {
 
 img {
   max-width: 100%;
+  object-fit: contain;
   max-height: 100%;
 }
 
@@ -48,7 +49,7 @@ figure {
   img {
     transition: 0.3s;
     margin-bottom: 0.3rem;
-    max-height: 17rem;
+    // max-height: 17rem;
   }
 
   img:hover {
@@ -337,7 +338,31 @@ border-radius: 10px;
   }
 
   /* SPECIFICS */
+  main>section>section>article>figure>.img-container {
+    // height: 100%;
+    // overflow: scroll;
+    // background-color: #8EC5FC;
+    // padding: 1rem;
+    max-width: 90%; 
+    overflow: scroll;
+    overflow-x:scroll;     
+    white-space: nowrap;
+    height: 16rem;
 
+    img {
+      object-fit: cover;
+      max-width: 450%;
+      // object-fit: fill;
+      // max-width: fit-content;
+
+
+    &:hover {
+      transform: none;
+    }
+    }
+
+    
+  }
 
   /* STATES */
   button, main>section>section>article>a, main>section>section>article>details>summary {
@@ -432,56 +457,3 @@ border-radius: 10px;
     }
   }
 
-
-  //   .unsplashGallery {
-  //     display: flex;
-  //     flex-wrap: wrap;
-  //     article {
-  //       height: 10rem;
-  //       line-height: 10rem;
-  //       background: #EC985A;
-  //       color: white;
-  //       margin: 0 1rem 1rem 0;
-  //       text-align: center;
-  //       font-family: system-ui;
-  //       font-weight: 900;
-  //       font-size: 2rem;
-  //       flex: 1 0 auto;
-  //     } 
-  //     @for $i from 1 through 36 { 
-  //       article:nth-child(#{$i}) {
-  //         $h: (random(400) + 70) + px;
-  //         width: $h;
-  //       }
-  //     }
-  //   }
-  // }
-
-
-  // voorbeeldje voor eerstejaars
-  // .homepage {
-  //   h1 {
-  //     color: blue;
-  //   }
-
-  //   article {
-  //     border-radius: 5px;
-  //   }
-
-  //   section {
-  //     background-image: url("/src/assets/img/1.png")
-  //   }
-  // }
-
-
-  // .homepage {
-  //   background-image: url("/src/assets/img/1.png")
-  // }
-
-  // .profile {
-  //   background-image: url("/src/assets/img/2.png")
-  // }
-
-  // .menu {
-  //   background-image: url("/src/assets/img/3.png")
-  // }

@@ -253,6 +253,7 @@ body {
 
 img {
   max-width: 100%;
+  object-fit: contain;
   max-height: 100%;
 }
 
@@ -281,7 +282,6 @@ figure div {
 figure img {
   transition: 0.3s;
   margin-bottom: 0.3rem;
-  max-height: 17rem;
 }
 figure img:hover {
   transform: scale(1.1);
@@ -529,6 +529,21 @@ footer ul {
 }
 
 /* SPECIFICS */
+main > section > section > article > figure > .img-container {
+  max-width: 90%;
+  overflow: scroll;
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 16rem;
+}
+main > section > section > article > figure > .img-container img {
+  object-fit: cover;
+  max-width: 450%;
+}
+main > section > section > article > figure > .img-container img:hover {
+  transform: none;
+}
+
 /* STATES */
 button, main > section > section > article > a, main > section > section > article > details > summary {
   background-image: linear-gradient(to right, #8e8efc -10%, #8e8efc 60%, #ece0ec 99%, #b582b5 155%);
