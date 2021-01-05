@@ -4,7 +4,7 @@
   "description": "Showcase of a few projects over the past years. Portfolio of Deanna Bosschert, frontend web developer.",
   "scripts": {
     "predev": "rimraf _site",
-    "dev:css": "sass --watch src/assets/scss:_site/assets/",
+    "dev:css": "sass --watch src/assets/scss:_site/src/assets/",
     "dev:eleventy": "npx @11ty/eleventy --formats=html,njk, gif,jpg,jpeg,png,css --serve --port=3000",
     "dev": "cross-env ELEVENTY_ENV=development run-p dev:*",
     "debug": "DEBUG=* eleventy"

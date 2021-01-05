@@ -1,25 +1,22 @@
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy('src/assets/fonts')
-  eleventyConfig.addPassthroughCopy('src/assets/img')
-  eleventyConfig.addPassthroughCopy('src/assets/img/random')
-
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "src/assets/fonts" })
+  eleventyConfig.addPassthroughCopy({ "src/assets/img": "src/assets/img" })
   // eleventyConfig.addPassthroughCopy('src/index.js')
 
   // src for below code: https://github.com/11ty/eleventy/issues/440
   // Import fast-glob package
-const fg = require('fast-glob')
+  const fg = require('fast-glob')
 
-const randomIllustrations = fg.sync(['**/random/*', '!/_site'])
-const dnataIllustrations = fg.sync(['**/workplace_illustrations/*', '!**/_site'])
+  const randomIllustrations = fg.sync(['**/random/*', '!**/_site'])
+  const dnataIllustrations = fg.sync(['**/workplace_illustrations/*', '!**/_site'])
 
-eleventyConfig.addCollection('random', function(collection) {
-  return randomIllustrations
-})
-
-  eleventyConfig.addCollection('workplace', function(collection) {
-    return dnataIllustrations
+  eleventyConfig.addCollection('random', (collection) => {
+    return randomIllustrations
   })
 
+  eleventyConfig.addCollection('workplace', (collection) => {
+    return dnataIllustrations
+  })
 
 
   return {
