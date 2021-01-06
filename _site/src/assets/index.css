@@ -166,18 +166,19 @@ html {
   font-family: Avenir;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: Avenir Black;
 }
 
 h1 {
-  font-size: 5rem;
-  line-height: 5rem;
+  font-size: 3rem;
+  line-height: 3rem;
 }
 
 h2 {
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
 }
 
 h3 {
@@ -234,6 +235,74 @@ figcaption {
   text-align: right;
 }
 
+@media screen and (min-width: 250px) {
+  h3,
+nav ul li a {
+    font-size: calc(2.25rem * 1.5);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.5);
+    line-height: calc(1.2rem * 2.5);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 2);
+    line-height: calc(1rem * 2.5);
+  }
+}
+@media screen and (min-width: 450px) {
+  h3,
+nav ul li a {
+    font-size: calc(2.25rem * 1.5);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.2);
+    line-height: calc(1.2rem * 2);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 2);
+    line-height: calc(1rem * 2.5);
+  }
+}
+@media screen and (min-width: 730px) {
+  h3,
+nav ul li a {
+    font-size: calc(2.25rem * 1.2);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.1);
+    line-height: calc(1.2rem * 1.5);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 1.5);
+    line-height: calc(1rem * 1.8);
+  }
+}
+@media screen and (min-width: 1024px) {
+  h3,
+nav ul li a {
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+
+  figcaption {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+}
 /* BASE */
 html {
   scroll-behavior: smooth;
@@ -278,6 +347,8 @@ figure {
 }
 figure div {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 figure img {
   transition: 0.3s;
@@ -288,9 +359,9 @@ figure img:hover {
 }
 figure figcaption {
   text-align: center;
-  font-size: 1rem;
   color: grey;
   padding: 0 0.25rem 0.5rem 0.25rem;
+  margin-top: 1rem;
   max-width: 90%;
 }
 
@@ -307,20 +378,20 @@ header {
 header section {
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
   background-color: #8EC5FC;
   background-image: linear-gradient(62deg, #7fb1e2 0%, #c9afe2 100%);
-  background-position: 8px left;
   background-size: cover;
   justify-content: center;
-  height: 14rem;
+  padding: 1rem;
   padding-left: 10%;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 11px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
 }
 header section h1 {
   color: white;
   text-align: left;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   width: 100%;
 }
 header section p {
@@ -330,8 +401,8 @@ header section p {
   width: 65%;
   color: white;
   margin-bottom: 1rem;
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
 }
 header section button {
   width: 7rem;
@@ -346,10 +417,11 @@ header section a {
   top: 0;
   right: 30px;
   min-height: 20px;
-  padding: 0.2rem 3rem;
+  padding: 0.2rem 2.5rem;
 }
 header nav {
   min-width: 100%;
+  margin-bottom: 1rem;
   border-bottom-right-radius: 15px 5px;
   border-bottom-left-radius: 15px 5px;
 }
@@ -414,6 +486,7 @@ main section {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: #fefefe;
@@ -432,8 +505,10 @@ main section p {
   width: 100%;
 }
 main section > p {
-  text-align: center;
+  text-align: left;
   margin-bottom: 0.3rem;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 article {
@@ -447,13 +522,13 @@ article {
   margin: 1rem;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
 }
-article h4 {
+article h3 {
   text-align: center;
   font-weight: bold;
-  background-color: #fc8ec5;
-  box-shadow: 0 1px 3px 0 #fc8ec5;
+  background-color: #24023d;
+  box-shadow: 0 3px 1px 0 #fc8ec5;
   color: white;
-  padding: 0.3rem 0.8rem;
+  padding: 0.5rem 0;
   width: 100%;
   font-variant: small-caps;
   letter-spacing: 1.3px;
@@ -461,19 +536,72 @@ article h4 {
 }
 article p {
   text-align: left;
-  padding: 1rem 2rem 1rem 1.5rem;
+  padding: 0rem 2rem 0.5rem 1.5rem;
 }
 article p span {
   font-weight: bold;
 }
-article button, article a {
+article button,
+article a {
   align-self: center;
   margin-bottom: 1rem;
 }
 
 #tech article {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 0px 0px;
+  grid-template-areas: "title" "figure" "description" "buttons";
   padding-bottom: 1.25rem;
   margin: 1.25rem;
+  align-content: space-between;
+}
+#tech article h3 {
+  grid-area: title;
+  max-width: initial;
+}
+#tech article figure {
+  grid-area: figure;
+  min-height: 30vh;
+  max-height: 90%;
+}
+#tech article p {
+  grid-area: description;
+  max-width: fit-content;
+}
+#tech article > a,
+#tech article summary {
+  margin: 1rem;
+  text-align: center;
+}
+#tech article > details {
+  max-width: max-content;
+  grid-area: buttons;
+  justify-self: start;
+  align-self: start;
+}
+#tech article > details > summary {
+  max-width: max-content;
+  grid-area: buttons;
+  justify-self: start;
+}
+#tech article > a:nth-child(4) {
+  max-width: fit-content;
+  grid-area: buttons;
+  justify-self: start;
+  align-self: start;
+}
+#tech article > a:nth-child(5) {
+  background-image: none;
+  background-color: #293133;
+  max-width: fit-content;
+  grid-area: buttons;
+  justify-self: end;
+  align-self: start;
+}
+#tech article > a:nth-child(5):hover {
+  box-shadow: 4px 4px 0 0 black;
 }
 
 #design {
@@ -487,7 +615,7 @@ article button, article a {
 }
 #design article {
   max-height: 24rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 #design article figure {
   display: flex;
@@ -545,7 +673,9 @@ main > section > section > article > figure > .img-container img:hover {
 }
 
 /* STATES */
-button, main > section > section > article > a, main > section > section > article > details > summary {
+button,
+main > section > section > article > a,
+main > section > section > article > details > summary {
   background-image: linear-gradient(to right, #8e8efc -10%, #8e8efc 60%, #ece0ec 99%, #b582b5 155%);
   color: white;
   border-radius: 5px;
@@ -556,31 +686,39 @@ button, main > section > section > article > a, main > section > section > artic
   vertical-align: middle;
   transition: 0.5s;
   background-size: 200% auto;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   margin: 0.2rem;
 }
-button:hover, main > section > section > article > a:hover, main > section > section > article > details > summary:hover {
+button:hover,
+main > section > section > article > a:hover,
+main > section > section > article > details > summary:hover {
   box-shadow: 0;
   box-shadow: 0 0 0 2px rgba(24, 175, 117, 0.05);
   background-position: right center;
   color: white;
   text-decoration: none;
+  z-index: 2;
 }
-button:active, main > section > section > article > a:active, main > section > section > article > details > summary:active {
+button:active,
+main > section > section > article > a:active,
+main > section > section > article > details > summary:active {
   background-color: blue;
 }
-button:focus, main > section > section > article > a:focus, main > section > section > article > details > summary:focus {
+button:focus,
+main > section > section > article > a:focus,
+main > section > section > article > details > summary:focus {
   background-color: white;
   color: black;
   box-shadow: inset 3px 3px 4px #b582b5, inset -3px -3px 4px #b582b5;
 }
-button:disabled, main > section > section > article > a:disabled, main > section > section > article > details > summary:disabled {
+button:disabled,
+main > section > section > article > a:disabled,
+main > section > section > article > details > summary:disabled {
   background-color: grey;
 }
 
 main > section > section > article > details > a {
-  display: inline-block;
-  padding: 1rem;
+  padding: 1.5rem;
   transition: 0.3s;
   font-weight: bold;
 }
@@ -592,32 +730,56 @@ main > section > section > article > details > a {
   right: 30px;
   background: black;
   color: white;
-  padding: 0.3rem 0.6rem;
+  padding: 1.1rem 1.4rem;
   border-radius: 5px 5px 0 0;
+  min-width: 8rem;
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 450px) {
+@media screen and (min-width: 250px) {
+  main {
+    margin: 0 1vw;
+    max-width: 100%;
+  }
+
+  main article {
+    min-width: 90%;
+  }
+
+  button,
+#tech article > a:nth-child(4), #tech article > a:nth-child(5),
+#tech > article > a,
+#tech > article > details > summary {
+    padding: 1rem 1.2rem;
+    margin: 0 2rem;
+    max-width: none;
+  }
+}
+@media screen and (min-width: 750px) {
   article {
-    width: 80%;
+    min-width: 40%;
+    max-width: 45%;
   }
 }
 @media screen and (min-width: 1024px) {
-  #tech article {
-    max-width: 40%;
-  }
-
-  #design article {
+  article {
+    min-width: 40%;
     max-width: 45%;
   }
 }
 @media screen and (min-width: 1300px) {
   #tech article {
+    min-width: 25%;
     max-width: 30%;
   }
 
   #design article:nth-child(2) {
+    min-width: 50%;
     max-width: 65%;
+  }
+
+  section > p {
+    max-width: 75%;
   }
 }
 

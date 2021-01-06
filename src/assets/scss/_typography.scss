@@ -77,7 +77,8 @@ html {
   font-family: Avenir;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: Avenir Black;
 }
 
@@ -139,8 +140,86 @@ header section a span {
   color: black;
 }
 
- figcaption {
+figcaption {
   font-size: $figcaption;
   font-weight: 300;
   text-align: right;
+}
+
+@media screen and (min-width: 250px) {
+
+  h3,
+  nav ul li a {
+    font-size: calc(2.25rem * 1.5);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.5);
+    line-height: calc(1.2rem * 2.5);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 2);
+    line-height: calc(1rem * 2.5);
+  }
+
+}
+
+@media screen and (min-width: 450px) {
+
+  h3,
+  nav ul li a {
+    font-size: calc(2.25rem * 1.5);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.2);
+    line-height: calc(1.2rem * 2);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 2);
+    line-height: calc(1rem * 2.5);
+  }
+}
+
+@media screen and (min-width: 730px) {
+
+  h3,
+  nav ul li a {
+    font-size: calc(2.25rem * 1.2);
+    line-height: calc(2.25rem * 2);
+  }
+
+  p {
+    font-size: calc(1.2rem * 1.1);
+    line-height: calc(1.2rem * 1.5);
+  }
+
+  figcaption {
+    font-size: calc(1rem * 1.5);
+    line-height: calc(1rem * 1.8);
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+
+  h3,
+  nav ul li a {
+    font-size: $h3;
+    line-height: $h3;
+  }
+
+  p {
+    font-size: $p;
+    line-height: $p;
+  }
+
+  figcaption {
+    font-size: $figcaption;
+    line-height: $figcaption;
+  }
 }
