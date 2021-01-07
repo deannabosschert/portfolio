@@ -445,7 +445,6 @@ main section {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: #fefefe;
@@ -466,23 +465,13 @@ main section p {
 main article {
   background-color: #fefefe;
   border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
   margin: 1rem;
 }
 main article h3 {
   text-align: center;
   font-weight: bold;
-  background-color: #24023d;
-  box-shadow: 0px 3px 1px 0px #fc8ec5;
-  color: white;
   padding: 0.5rem 0;
   width: 100%;
-  font-variant: small-caps;
-  letter-spacing: 1.3px;
   margin-bottom: 0.7rem;
 }
 main article p {
@@ -532,7 +521,7 @@ footer ul li a:nth-of-type(1) {
 #aboutme {
   align-items: center;
   height: 30rem;
-  padding: 2rem 2rem 7rem 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 }
 #aboutme .flip-card {
   width: 17rem;
@@ -561,6 +550,7 @@ footer ul li a:nth-of-type(1) {
   backdrop-filter: blur(4px);
 }
 #aboutme .flip-card .flip-card-inner .flip-card-back {
+  box-shadow: inset 0rem 2.5rem 2.5rem 3rem rgba(41, 49, 51, 0.8);
   background: url(/src/assets/img/another_picture_of_my_face.jpg) 50%/cover border-box padding-box;
   transform: rotateY(180deg);
 }
@@ -578,72 +568,108 @@ footer ul li a:nth-of-type(1) {
   margin-left: 1%;
 }
 #aboutme article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
   padding-bottom: 2rem;
   width: 60%;
 }
 #aboutme article h3 {
+  font-weight: bold;
+  background-color: #24023d;
+  box-shadow: 0px 3px 1px 0px #fc8ec5;
+  color: white;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-variant: small-caps;
+  letter-spacing: 1.3px;
   margin-bottom: 1.5rem;
 }
 #aboutme article p {
   padding: 0.5rem 2.5rem 0.5rem 6rem;
 }
 
+#tech {
+  padding-top: 0;
+  margin-top: 0;
+}
 #tech article {
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  gap: 0px 0px;
-  grid-template-areas: "title" "figure" "description" "buttons";
-  align-content: space-between;
-  padding-bottom: 1.25rem;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto 22.5rem 1fr auto;
+  align-content: start;
+  padding-bottom: 0.5rem;
   margin: 1.25rem;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
+}
+#tech article h3,
+#tech article figure,
+#tech article p {
+  grid-column: 1/span 2;
 }
 #tech article h3 {
-  grid-area: title;
   max-width: initial;
+  font-weight: bold;
+  background-color: #E6E6FA;
+  box-shadow: 0px 3px 1px 0px #b582b5;
+  color: #293133;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-variant: small-caps;
+  letter-spacing: 1.3px;
+  margin-bottom: 0.7rem;
 }
 #tech article figure {
-  grid-area: figure;
   min-height: 30vh;
   max-height: 90%;
 }
 #tech article p {
-  grid-area: description;
+  max-width: fit-content;
+  align-self: start;
+}
+#tech article p:nth-of-type(2) {
   max-width: fit-content;
 }
 #tech article > a,
 #tech article summary {
+  padding: 1rem 1.2rem;
+  min-width: max-content;
   text-align: center;
-  margin: 1rem;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+  height: 1.5rem;
 }
 #tech article > details {
   max-width: max-content;
-  grid-area: buttons;
-  justify-self: start;
-  align-self: start;
+  min-height: max-content;
+  overflow: inherit;
 }
-#tech article > details > summary {
-  max-width: max-content;
-  grid-area: buttons;
-  justify-self: start;
-}
-#tech article > a:nth-child(4) {
+#tech article > details a {
+  margin-left: 1.5rem;
   max-width: fit-content;
-  grid-area: buttons;
-  justify-self: start;
-  align-self: start;
+  font-size: inherit;
+}
+#tech article > details a:nth-child(3) {
+  margin-top: -0.7rem;
+  position: absolute;
+  margin-left: 1rem;
 }
 #tech article > a:nth-child(5) {
+  max-width: max-content;
+  align-self: self-start;
+}
+#tech article > a:nth-child(6) {
   background-image: none;
   background-color: #293133;
-  max-width: fit-content;
-  grid-area: buttons;
-  justify-self: end;
-  align-self: start;
+  min-width: max-content;
+  margin-left: -1.5rem;
+  margin-right: 1.5rem;
+  align-self: self-start;
 }
-#tech article > a:nth-child(5):hover {
+#tech article > a:nth-child(6):hover {
   box-shadow: 4px 4px 0px 0px black;
 }
 
@@ -702,7 +728,9 @@ footer ul li a:nth-of-type(1) {
 
 /* SPECIFICS */
 /* STATES */
-button, #tech a, summary {
+button,
+#tech a,
+summary {
   background-image: linear-gradient(to right, #8e8efc -10%, #8e8efc 60%, #ece0ec 99%, #b582b5 155%);
   color: white;
   border-radius: 5px;
@@ -716,22 +744,30 @@ button, #tech a, summary {
   padding: 0.7rem 1rem;
   margin: 0.2rem;
 }
-button:hover, #tech a:hover, summary:hover {
+button:hover,
+#tech a:hover,
+summary:hover {
   box-shadow: 0px 0px 0px 2px rgba(24, 175, 117, 0.05);
   background-position: right center;
   color: white;
   text-decoration: none;
   z-index: 2;
 }
-button:active, #tech a:active, summary:active {
+button:active,
+#tech a:active,
+summary:active {
   background-color: blue;
 }
-button:focus, #tech a:focus, summary:focus {
+button:focus,
+#tech a:focus,
+summary:focus {
   background-color: white;
   color: black;
   box-shadow: inset 3px 3px 4px #b582b5, inset -3px -3px 4px #b582b5;
 }
-button:disabled, #tech a:disabled, summary:disabled {
+button:disabled,
+#tech a:disabled,
+summary:disabled {
   background-color: grey;
 }
 
@@ -763,16 +799,6 @@ main > section > section > article > details > a {
   #tech article {
     min-width: 90%;
     max-width: 95%;
-  }
-
-  button,
-#tech article > a:nth-child(4),
-#tech article > a:nth-child(5),
-#tech > article > a,
-#tech > article > details > summary {
-    padding: 1rem 1.2rem;
-    margin: 0 2rem;
-    max-width: none;
   }
 }
 @media screen and (min-width: 730px) {

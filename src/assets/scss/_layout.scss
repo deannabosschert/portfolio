@@ -171,7 +171,6 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
     background-color: #fefefe;
@@ -191,28 +190,23 @@ main {
       width: 100%;
     }
   }
-  
+
   article {
     background-color: #fefefe;
     // background-color: white;
     border-radius: $border-radius;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // align-content: flex-start;
     margin: 1rem;
 
     h3 {
       text-align: center;
       font-weight: bold;
-      background-color: $dark-purple;
-      box-shadow: 0px 3px 1px 0px $sweetpink;
-      color: white;
       padding: 0.5rem 0;
       width: 100%;
-      font-variant: small-caps;
-      letter-spacing: 1.3px;
       margin-bottom: 0.7rem;
     }
 
@@ -278,7 +272,7 @@ footer {
   align-items: center;
   height: 30rem;
   // background-color: $sweetpink;
-  padding: 2rem 2rem 7rem 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 
   .flip-card {
     width: 17rem;
@@ -286,8 +280,8 @@ footer {
     // perspective: 1000px;
     margin-right: -4rem;
 
-      border-radius: 5px;
-   
+    border-radius: 5px;
+
 
 
     .flip-card-inner {
@@ -305,21 +299,25 @@ footer {
         border-radius: 5px;
         // padding: 0 1rem;
         transition: transform 2.1s;
-        }
+      }
 
-        .flip-card-front {
-          background: url(/src/assets/img/picture_of_my_face.jpg) 50%/cover border-box padding-box;  
-          // padding: 1rem;
-          &:before {
-            backdrop-filter: blur(4px);
-          }
+      .flip-card-front {
+        background: url(/src/assets/img/picture_of_my_face.jpg) 50%/cover border-box padding-box;
+
+        // padding: 1rem;
+        &:before {
+          backdrop-filter: blur(4px);
         }
-      
+      }
+
 
 
       .flip-card-back {
-        background: url(/src/assets/img/another_picture_of_my_face.jpg) 50%/cover border-box padding-box;  
+        box-shadow: inset 0rem 2.5rem 2.5rem 3rem rgba(41, 49, 51, 0.8);
+
+        background: url(/src/assets/img/another_picture_of_my_face.jpg) 50%/cover border-box padding-box;
         transform: rotateY(180deg);
+
       }
     }
 
@@ -327,7 +325,7 @@ footer {
       transform: rotateY(180deg);
     }
 
-    
+
   }
 
   img {
@@ -347,11 +345,24 @@ footer {
   }
 
   article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .15);
     padding-bottom: 2rem;
     width: 60%;
 
     h3 {
+      font-weight: bold;
+      background-color: $dark-purple;
+      box-shadow: 0px 3px 1px 0px $sweetpink;
+      color: white;
+      padding: 0.5rem 0;
+      width: 100%;
+      font-variant: small-caps;
+      letter-spacing: 1.3px;
       margin-bottom: 1.5rem;
     }
 
@@ -363,43 +374,66 @@ footer {
 }
 
 #tech {
+  padding-top: 0;
+  margin-top: 0;
+
   article {
+    // height: 45rem;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    gap: 0px 0px;
-    grid-template-areas:
-      "title"
-      "figure"
-      "description"
-      "buttons";
-    align-content: space-between;
-    padding-bottom: 1.25rem;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto 22.5rem 1fr auto;
+    // grid-gap: 0.5rem;
+    align-content: start;
+    padding-bottom: 0.5rem;
     margin: 1.25rem;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .15);
+    justify-content: space-between;
+
+    h3,
+    figure,
+    p {
+      grid-column: 1 / span 2;
+    }
+
 
 
     h3 {
-      grid-area: title;
       max-width: initial;
+      font-weight: bold;
+      background-color: $lavender;
+      box-shadow: 0px 3px 1px 0px $lilac;
+      color: $antracite;
+      padding: 0.5rem 0;
+      width: 100%;
+      font-variant: small-caps;
+      letter-spacing: 1.3px;
+      margin-bottom: 0.7rem;
     }
 
     figure {
-      grid-area: figure;
       min-height: 30vh;
       max-height: 90%;
     }
 
     p {
-      grid-area: description;
+      max-width: fit-content;
+      align-self: start;
+    }
+
+    p:nth-of-type(2) {
       max-width: fit-content;
     }
 
     >a,
     summary {
+      padding: 1rem 1.2rem;
+      // margin: 0 2rem;
+      min-width: max-content;
       text-align: center;
-      margin: 1rem;
-    }
+      margin: 1rem 1.5rem 1.5rem 1.5rem;
+      // align-self: end;
+      height: 1.5rem;
+      }
   }
 
 
@@ -407,36 +441,50 @@ footer {
   article>details {
     // background-color: blue;
     max-width: max-content;
-    grid-area: buttons;
-    justify-self: start;
-    align-self: start;
+    // grid-area: buttons;
+    // justify-self: start;
+    // align-self: start;
+    min-height: max-content;
+    overflow: inherit;
 
+
+    a {
+      margin-left: 1.5rem;
+      // position: absolute;
+      max-width: fit-content;
+      font-size: inherit;
+
+      &:nth-child(3) {
+        margin-top: -0.7rem;
+        position: absolute;
+        margin-left: 1rem;
+        
+      }
+    }
   }
 
-  article>details>summary {
-    // background-color: yellow;
-    max-width: max-content;
-    grid-area: buttons;
-    justify-self: start;
-  }
-
-  article>a:nth-child(4) {
-    max-width: fit-content;
-    grid-area: buttons;
-    justify-self: start;
-    align-self: start;
-    // margin: 0 20%;
-    // justify-content: space-between;
-  }
 
   article>a:nth-child(5) {
+    max-width: max-content;
+    // grid-area: buttons;
+    // justify-self: start;
+    // align-self: start;
+    // margin: 0 20%;
+    // justify-content: space-between;
+    align-self: self-start;
+
+  }
+
+  article>a:nth-child(6) {
     background-image: none;
     background-color: $antracite;
-    max-width: fit-content;
-    grid-area: buttons;
-    justify-self: end;
+    min-width: max-content;
+    margin-left: -1.5rem;
+    margin-right: 1.5rem; 
+     // grid-area: buttons;
+    // justify-self: end;
     // justify-content: space-between;
-    align-self: start;
+    align-self: self-start;
     // margin: 0 20%;
 
     &:hover {
@@ -512,7 +560,9 @@ footer {
 
 
 /* STATES */
-button, #tech a, summary {
+button,
+#tech a,
+summary {
   background-image: linear-gradient(to right, $purple -10%, $purple 60%, $pink 99%, $lilac 155%);
   color: white;
   border-radius: $border-radius;
@@ -580,17 +630,6 @@ main>section>section>article>details>a {
     min-width: 90%;
     max-width: 95%;
   }
-
-  button,
-  #tech article>a:nth-child(4),
-  #tech article>a:nth-child(5),
-  #tech>article>a,
-  #tech>article>details>summary {
-    padding: 1rem 1.2rem;
-    margin: 0 2rem;
-    max-width: none;
-  }
-
 
 }
 
