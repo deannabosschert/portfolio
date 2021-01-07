@@ -15,7 +15,8 @@ title: Deanna Bosschert
     <section>
       <a>20<span>21.</span></a>
       <h1>Deanna Bosschert</h1>
-      <p>Web developer. Student. Tech enthusiast. Passionate about Ethical Design.</p>
+      <p>Web developer. Student. Tech enthusiast.<br>
+        Passionate about Ethical Design.</p>
     </section>
     <nav>
       <ul>
@@ -28,18 +29,30 @@ title: Deanna Bosschert
   <main>
     <section id="aboutme">
       <h2>About me</h2>
-    <figure>
-    <figcaption>
-      <img src="/src/assets/img/picture_of_my_face.jpg" alt="picture of myself, shot taken with a digital camera from the shoulders up and with the background blurred. I am smiling, wearing my hair in a ponytail and wearing a yellow hoodie with a brown (fake) leather jacket on top. Subtle make-up and some ear piercings plus tunnels and nose piercing are visible."  width="200" height="300"> 
-      
-    </figcaption>
-    </figure>
+      <div class="flip-card">
+        <figure class="flip-card-inner">
+          <img class="flip-card-front" src="/src/assets/img/picture_of_my_face.jpg"
+            alt="picture of myself, shot taken with a digital camera from the shoulders up and with the background blurred. I am smiling, wearing my hair in a ponytail and wearing a yellow hoodie with a brown (fake) leather jacket on top. Subtle make-up and some ear piercings plus tunnels and nose piercing are visible."
+            width="200" height="300">
+          <img class="flip-card-back" src="/src/assets/img/another_picture_of_my_face.jpg"
+            alt="picture of myself, shot taken with a digital camera from the shoulders up and with the background blurred. I am smiling, wearing my hair in a ponytail and wearing a yellow hoodie with a brown (fake) leather jacket on top. Subtle make-up and some ear piercings plus tunnels and nose piercing are visible."
+            width="200" height="300">
+
+          {# <figcaption> just a picture of my face.
+              </figcaption> #}
+        </figure>
+      </div>
+
       <article>
-      <h3>let me introduce myself.</h3>
-      <p>Hi! 👋🏼 I'm Deanna, digital designer and front-end webdeveloper.</p>
-      <p>Currently in my last year of studying Communication and Multimedia Design at the Amsterdam University of Applied Sciences. During my study, I've chosen to follow all the tech-related courses. My main focus lies on Web Design and Development, using mostly JavaScript. Over the past few years I've been working on quite a few projects, the ones that display my current skills best are showcased below.</p>
-      <p>Or, of course, just visit my <a href="https://github.com/deannabosschert">GitHub</a> directly for some insights of my programming ways.</p>
-      <!-- <p>Because i've been wandering the tech-track of Communication and Multimedia Design, I've worked on lots of
+        <h3>let me introduce myself.</h3>
+        <p>Hi! 👋🏼 I'm Deanna, digital designer and front-end webdeveloper.</p>
+        <p>Currently in my last year of studying Communication and Multimedia Design at the Amsterdam University of
+          Applied Sciences. During my study, I've chosen to follow all the tech-related courses. My main focus lies on
+          Web Design and Development, using mostly JavaScript. Over the past few years I've been working on quite a few
+          projects, the ones that display my current skills best are showcased below.</p>
+        <p>Or, of course, just visit my <a href="https://github.com/deannabosschert">GitHub</a> directly for some
+          insights of my programming ways and a look into my resume.</p>
+        <!-- <p>Because i've been wandering the tech-track of Communication and Multimedia Design, I've worked on lots of
         tech-related projects. Below are a few of those.</p> -->
       </article>
     </section>
@@ -74,7 +87,8 @@ title: Deanna Bosschert
           </figure>
           <p><span>An interactive multi-device prototype for photographers on the go. </span>Travelling photographers
             can view, rate and annotate their pictures using their phone.</p>
-          <p>I've used Flickr's and Unsplash' REST-API for fetching photographs, SCSS for styling and made use of Eleventy to generate a static site.</p>
+          <p>I've used Flickr's and Unsplash' REST-API for fetching photographs, SCSS for styling and made use of
+            Eleventy to generate a static site.</p>
           <a href="https://deannabosschert.gitbook.io/project-web/">Read more</a>
           <a href="https://github.com/deannabosschert/project-web">View on GitHub</a>
         </article>
@@ -179,7 +193,7 @@ title: Deanna Bosschert
           </details>
           <a href="https://github.com/deannabosschert/pointer-project">View on GitHub</a>
         </article>
-{# 
+        {# 
 
         <article>
           <h3>twitter feuds</h3>
@@ -283,7 +297,8 @@ title: Deanna Bosschert
               programme.
             </figcaption>
           </figure>
-          <p><span>Fetch GitHub data with a REST-API in a client-side web app. </span>Keep track of the current participants of the Web
+          <p><span>Fetch GitHub data with a REST-API in a client-side web app. </span>Keep track of the current
+            participants of the Web
             App From Scratch class in the minor Webdevelopment (2020).
           </p>
           <a href="https://github.com/deannabosschert/web-app-from-scratch-1920">View on GitHub</a>
@@ -309,34 +324,69 @@ title: Deanna Bosschert
       </section>
       <section id="design">
         <h3>Illustrations</h3>
-        <p>Illustrating is cool. I'm by no means a visual designer but I do really enjoy working on illustration/design
+        <p>Illustrating is cool. By no means I'm a visual designer but besides writing code, I do really enjoy working
+          on illustration/design
           skills. Here's a few things that I drew in the past year.</p>
-        <article>
-          <h3>random</h3>
-          {% for image in collections.random %}
+        {# <article> #}
+        {# <h3>random</h3> #}
+        {# {% for image in collections.random %} #}
+        <div>
+
           <figure>
-            <img src="./{{image}}"
-              alt="illustration of something that i'll describe later bc 11ty isnt working with me">
-            <!-- <figcaption></figcaption> -->
+            <img src="src/assets/img/illustrations/random/1_canvas-vector.png"
+              alt="illustration of a balloon in canvas-format or vector format. The canvas one is pixelated, whereas the vector one is very sharp and scaleable.">
+            <figcaption>canvas-vector comparison</figcaption>
           </figure>
-          {% endfor %}
-        </article>
-        <article>
-          <h3>'workplace incidents'-icons</h3>
-          {% for image in collections.workplace %}
           <figure>
-            <img src="./{{image}}"
-              alt="illustration of something that i'll describe later bc 11ty isnt working with me">
-            <!-- <figcaption></figcaption> -->
+            <img src="src/assets/img/illustrations/random/2_festival_turtle.png"
+              alt="illustration of a person sitting with the legs crossed on top of a green inflatable turtle..">
+            <figcaption>person sitting cross-legged</figcaption>
           </figure>
-          {% endfor %}
-        </article>
+          <figure>
+            <img src="src/assets/img/illustrations/random/3_turtle.png" alt="illustration of an inflatable turtle.">
+            <figcaption>inflatable turtle</figcaption>
+          </figure>
+          <figure>
+            <img src="src/assets/img/illustrations/random/4_mistletoe.png"
+              alt="illustration of a green mistletoe with red berries in it.">
+            <figcaption>mistletoe</figcaption>
+          </figure>
+          <figure>
+            <img src="src/assets/img/illustrations/random/5_christmas-lights.png"
+              alt="illustration of red-blue-green-yellow colored lights hanging on a rope, in festive styles.">
+            <figcaption>christmas lights</figcaption>
+          </figure>
+          <figure>
+            <img src="src/assets/img/illustrations/random/6_clothing.png"
+              alt="illustration of a about 10 clothing items, sketch style but still a bit detailed.">
+            <figcaption>various clothing items</figcaption>
+          </figure>
+          <figure>
+            <img src="/src/assets/img/thumbnails/shot_on_fire.gif"
+              alt="gif of a shot glass filled with alcohol, being lit on fire and then have the fire erupt into the words 'I'M OK'.">
+            <figcaption>
+              shot being lit on fire
+            </figcaption>
+          </figure>
+        </div>
+        {# {% endfor %} #}
+        {# </article>
+        <article>
+          <h3>'workplace incidents'-icons</h3> #}
+        {% for image in collections.workplace %}
+        <figure>
+          <img src="./{{image}}"
+            alt="illustration of something that i'll describe later bc 11ty isnt working with me in displaying the file names as alt-text">
+          <!-- <figcaption></figcaption> -->
+        </figure>
+        {% endfor %}
+        {# </article> #}
       </section>
     </section>
-    <section>
+    {# <section>
       <h3>Photography</h3>
       <p>Passionate about pictures. Mostly of people. Digital or analog; both are cool.</p>
-    </section>
+    </section> #}
     </section>
     <section id="contact">
       <h2>Contact</h2>
@@ -350,11 +400,9 @@ title: Deanna Bosschert
   </main>
   <footer>
     <ul>
-      <li><a href="https://www.facebook.com/deanna.bosschert"><img src="/src/assets/img/icons/facebook.png"
-            alt="facebook icon"></a></li>
-      <li><a href="https://www.instagram.com/techkech.jpeg/"><img src="/src/assets/img/icons/instagram.png"
-            alt="instagram icon"></a></li>
-      <li><a href="https://twitter.com/tech_kech"><img src="/src/assets/img/icons/twitter.png" alt="twitter icon"></a>
+      <li><a href="https://www.facebook.com/deanna.bosschert">link to Facebook</a></li>
+      <li><a href="https://www.instagram.com/techkech.jpeg/">link to Instagram</a></li>
+      <li><a href="https://twitter.com/tech_kech">link to Twitter</a>
       </li>
     </ul>
     <a class="backToTop" href="#top">Back to top</a>

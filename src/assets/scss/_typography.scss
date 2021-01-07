@@ -151,17 +151,17 @@ figcaption {
   h3,
   nav ul li a {
     font-size: calc(2.25rem * 1.5);
-    line-height: calc(2.25rem * 2);
+    // line-height: calc(2.25rem * 2);
   }
 
   p {
     font-size: calc(1.2rem * 1.5);
-    line-height: calc(1.2rem * 2.5);
+    // line-height: calc(1.2rem * 2.5);
   }
 
   figcaption {
     font-size: calc(1rem * 2);
-    line-height: calc(1rem * 2.5);
+    // line-height: calc(1rem * 2.5);
   }
 
 }
@@ -171,17 +171,17 @@ figcaption {
   h3,
   nav ul li a {
     font-size: calc(2.25rem * 1.5);
-    line-height: calc(2.25rem * 2);
+    // line-height: calc(2.25rem * 2);
   }
 
   p {
     font-size: calc(1.2rem * 1.2);
-    line-height: calc(1.2rem * 2);
+    // line-height: calc(1.2rem * 2);
   }
 
   figcaption {
     font-size: calc(1rem * 2);
-    line-height: calc(1rem * 2.5);
+    // line-height: calc(1rem * 2.5);
   }
 }
 
@@ -190,17 +190,17 @@ figcaption {
   h3,
   nav ul li a {
     font-size: calc(2.25rem * 1.2);
-    line-height: calc(2.25rem * 2);
+    // line-height: calc(2.25rem * 2);
   }
 
   p {
     font-size: calc(1.2rem * 1.1);
-    line-height: calc(1.2rem * 1.5);
+    // line-height: calc(1.2rem * 1.5);
   }
 
   figcaption {
     font-size: calc(1rem * 1.5);
-    line-height: calc(1rem * 1.8);
+    // line-height: calc(1rem * 1.8);
   }
 }
 
@@ -210,16 +210,16 @@ figcaption {
   h3,
   nav ul li a {
     font-size: $h3;
-    line-height: $h3;
+    // line-height: $h3;
   }
 
   p {
     font-size: $p;
-    line-height: $p;
+    // line-height: $p;
   }
 
   figcaption {
     font-size: $figcaption;
-    line-height: $figcaption;
+    // line-height: $figcaption;
   }
 }
