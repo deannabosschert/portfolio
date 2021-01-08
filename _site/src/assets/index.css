@@ -621,7 +621,7 @@ footer ul li:nth-child(3) a {
   margin-bottom: 0.7rem;
 }
 #tech article figure {
-  min-height: 30vh;
+  min-height: max-content;
   max-height: 90%;
 }
 #tech article p {
@@ -743,13 +743,12 @@ footer ul li:nth-child(3) a {
   background-color: rgba(230, 230, 250, 0.5);
   box-shadow: 0px 0px 4px 4px rgba(31, 38, 135, 0.2);
   backdrop-filter: blur(4px);
-  padding: 2.5rem 2.5rem;
+  padding: 2.5rem 4rem;
   margin: 1rem;
   max-width: 90%;
 }
 #contact article address {
   margin-bottom: 2rem;
-  padding-left: 4rem;
   text-align: left;
   font-weight: bold;
   font-size: calc(1.2rem *1.2);
@@ -775,10 +774,9 @@ footer ul li:nth-child(3) a {
   color: #24023d;
 }
 #contact article ul {
-  max-width: 70%;
+  max-width: 60%;
 }
 #contact article ul li {
-  padding-left: 4rem;
   text-align: left;
   margin-bottom: 0.8rem;
 }
@@ -863,16 +861,73 @@ summary:disabled {
     max-width: 95%;
   }
 }
+@media screen and (min-width: 450px) {
+  #tech article {
+    min-width: 80%;
+    width: 85%;
+    max-width: 95%;
+  }
+}
 @media screen and (min-width: 730px) {
+  #aboutme {
+    margin-bottom: 8rem;
+  }
+
   #tech article {
     min-width: 40%;
     max-width: 45%;
   }
+  #tech article figcaption {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+    max-width: 90%;
+  }
+  #tech article > a {
+    padding: 0.8rem;
+  }
+  #tech article summary {
+    max-width: fit-content;
+    padding: 0.8rem;
+  }
+  #tech article details a {
+    font-size: 1rem;
+  }
+  #tech article details a:nth-child(3) {
+    margin-left: 1.5rem;
+    margin-top: 1.25rem;
+  }
+
+  #design div figure {
+    padding: 1.5rem;
+  }
+  #design div figure figcaption {
+    line-height: 1.7rem;
+    width: 120%;
+  }
+
+  #contact article address {
+    margin-bottom: 3rem;
+  }
 }
 @media screen and (min-width: 1024px) {
+  #aboutme {
+    margin-bottom: 2rem;
+  }
+
   #tech article {
     min-width: 40%;
     max-width: 45%;
+  }
+
+  #design div {
+    max-width: 100%;
+  }
+  #design div figure {
+    padding: 1rem 1.5rem;
+  }
+  #design div figure figcaption {
+    line-height: 1.7rem;
+    max-width: 150%;
   }
 }
 @media screen and (min-width: 1300px) {
@@ -884,9 +939,21 @@ summary:disabled {
     max-width: 45rem;
   }
 
-  #tech article {
-    min-width: 25%;
+  #projects {
+    padding: 0.5rem;
+  }
+  #projects #tech {
+    margin: 2rem 0;
+  }
+  #projects #tech article {
+    min-width: 29%;
     max-width: 30%;
+  }
+  #projects #tech article > a, #projects #tech article summary {
+    padding: 1rem 0.5rem;
+  }
+  #projects #design {
+    max-width: 70vw;
   }
 
   section > p {

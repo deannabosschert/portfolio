@@ -390,7 +390,7 @@ footer {
     }
 
     figure {
-      min-height: 30vh;
+      min-height: max-content;
       max-height: 90%;
     }
 
@@ -436,24 +436,24 @@ footer {
     }
 
     a {
-    &:nth-child(5) {
-      max-width: max-content;
-      align-self: self-start;
-    }
+      &:nth-child(5) {
+        max-width: max-content;
+        align-self: self-start;
+      }
 
-    &:nth-child(6) {
-      background-image: none;
-      background-color: $antracite;
-      min-width: max-content;
-      margin-left: -1.5rem;
-      margin-right: 1.5rem;
-      align-self: self-start;
+      &:nth-child(6) {
+        background-image: none;
+        background-color: $antracite;
+        min-width: max-content;
+        margin-left: -1.5rem;
+        margin-right: 1.5rem;
+        align-self: self-start;
 
-      &:hover {
-        box-shadow: 4px 4px 0px 0px black;
+        &:hover {
+          box-shadow: 4px 4px 0px 0px black;
+        }
       }
     }
-  }
   }
 
 
@@ -544,14 +544,13 @@ footer {
     background-color: $lavender-light;
     box-shadow: 0px 0px 4px 4px rgba(31, 38, 135, 0.2);
     backdrop-filter: blur(4.0px);
-    padding: 2.5rem 2.5rem;
+    padding: 2.5rem 4rem;
     margin: 1rem;
     max-width: 90%;
-   
+
 
     address {
       margin-bottom: 2rem;
-      padding-left: 4rem;
       text-align: left;
       font-weight: bold;
       font-size: calc(1.2rem *1.2);
@@ -570,7 +569,7 @@ footer {
         font-weight: inherit;
         font-size: inherit;
         margin: 0.5rem;
-        padding:1rem;
+        padding: 1rem;
         border-radius: 3px;
         background-color: #fefefe;
         box-shadow: inset 0px 0px 1px 1px rgba(31, 38, 135, 0.2);
@@ -583,10 +582,9 @@ footer {
 
     ul {
 
-      max-width: 70%;
+      max-width: 60%;
 
-       li {
-        padding-left: 4rem;
+      li {
         text-align: left;
         margin-bottom: 0.8rem;
 
@@ -602,7 +600,7 @@ footer {
           letter-spacing: 1px;
           font-variant: small-caps;
         }
-       }
+      }
     }
   }
 }
@@ -680,23 +678,104 @@ summary {
 
 }
 
+@media screen and (min-width: 450px) {
+  #tech article {
+    min-width: 80%;
+    width: 85%;
+    max-width: 95%;
+  }
+}
+
 @media screen and (min-width: 730px) {
+
+  #aboutme {
+    margin-bottom: 8rem;
+  }
+
   #tech article {
     min-width: 40%;
     max-width: 45%;
+
+    figcaption {
+      font-size: $p;
+      line-height: 1.7rem;
+      max-width: 90%;
+    }
+
+    >a {
+      padding: 0.8rem;
+    }
+
+    summary {
+      max-width: fit-content;
+      padding: 0.8rem;
+    }
+
+    details { 
+      
+      a {
+
+        font-size: 1rem;
+
+        &:nth-child(3) {
+          margin-left: 1.5rem;
+          margin-top: 1.25rem;
+        }
+      }
+      
+  }
+  }
+
+  #design {
+    div figure {
+      padding: 1.5rem;
+
+      figcaption {
+        line-height: 1.7rem;
+        width: 120%;
+      }
+    }
+  }
+  #contact {
+
+    article {
+    address {
+      margin-bottom: 3rem;
+    }
+  }
   }
 }
 
 @media screen and (min-width: 1024px) {
+#aboutme {
+  margin-bottom: 2rem;
+}
+
   #tech article {
     min-width: 40%;
     max-width: 45%;
   }
 
+  #design {
 
+    div {
+      max-width: 100%;
+
+      figure {
+        padding: 1rem 1.5rem;
+
+        figcaption {
+          line-height: 1.7rem;
+          max-width: 150%;
+        }
+      }
+    }
+
+  }
 }
 
 @media screen and (min-width: 1300px) {
+
   #aboutme {
     width: 80vw;
 
@@ -706,10 +785,31 @@ summary {
     }
   }
 
-  #tech article {
-    min-width: 25%;
-    max-width: 30%;
-  }
+  #projects {
+    padding: 0.5rem;
+
+  #tech {
+    margin: 2rem 0;
+
+  article {
+    min-width: 29%;
+    max-width: 30%; 
+
+
+    >a, summary {
+      // margin: 0
+      padding: 1rem 0.5rem;
+    }
+   
+  } 
+}
+
+ #design {
+   max-width: 70vw;
+ }
+}
+
+
 
   section>p {
     max-width: 75%;
