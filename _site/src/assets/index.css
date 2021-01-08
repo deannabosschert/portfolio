@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
   CSS Reset
   http://meyerweb.com/eric/tools/css/reset/
@@ -158,7 +159,7 @@ body {
   line-height: 1.2rem;
 }
 
-p {
+p, li, address {
   line-height: 1.4;
 }
 
@@ -201,7 +202,7 @@ h6 {
   line-height: 1.4rem;
 }
 
-p {
+p, li, address {
   font-size: 1.2rem;
 }
 
@@ -241,7 +242,7 @@ nav ul li a {
     font-size: calc(2.25rem * 1.5);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.5);
   }
 
@@ -255,7 +256,7 @@ nav ul li a {
     font-size: calc(2.25rem * 1.5);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.2);
   }
 
@@ -269,7 +270,7 @@ nav ul li a {
     font-size: calc(2.25rem * 1.2);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.1);
   }
 
@@ -283,7 +284,7 @@ nav ul li a {
     font-size: 2.25rem;
   }
 
-  p {
+  p, li, address {
     font-size: 1.2rem;
   }
 
@@ -336,10 +337,6 @@ figure figcaption {
   padding: 0 0.25rem 0.5rem 0.25rem;
   margin-top: 1rem;
   max-width: 90%;
-}
-
-blockquote {
-  margin: 0.2rem 0;
 }
 
 /* COMPONENTS */
@@ -494,20 +491,30 @@ footer {
 footer ul {
   display: flex;
   justify-content: space-around;
-  max-height: 2rem;
   width: 25%;
-  margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 footer ul li {
   padding: 0.2rem;
+  width: 2rem;
 }
 footer ul li a {
   padding: 0.1rem;
+  color: rgba(0, 0, 0, 0);
+  min-width: 100%;
+  min-height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
 }
-footer ul li a:nth-of-type(1) {
-  background-color: #8EC5FC;
+footer ul li:nth-child(1) a {
   background-image: url("/src/assets/img/icons/facebook.png");
+}
+footer ul li:nth-child(2) a {
+  background-image: url("/src/assets/img/icons/twitter.png");
+}
+footer ul li:nth-child(3) a {
+  background-image: url("/src/assets/img/icons/instagram.png");
 }
 
 #aboutme {
@@ -552,7 +559,6 @@ footer ul li a:nth-of-type(1) {
 #aboutme img {
   border-radius: 5px;
   box-shadow: inset 0px 0px 18px 2.5rem rgba(41, 49, 51, 0.3);
-  padding-right: 2rem;
   backdrop-filter: blur(10px);
   width: 100%;
   height: 100%;
@@ -639,6 +645,7 @@ footer ul li a:nth-of-type(1) {
   max-width: max-content;
   min-height: max-content;
   overflow: inherit;
+  transition: 0.5s;
 }
 #tech article > details a {
   margin-left: 1.5rem;
@@ -650,11 +657,11 @@ footer ul li a:nth-of-type(1) {
   position: absolute;
   margin-left: 1rem;
 }
-#tech article > a:nth-child(5) {
+#tech article a:nth-child(5) {
   max-width: max-content;
   align-self: self-start;
 }
-#tech article > a:nth-child(6) {
+#tech article a:nth-child(6) {
   background-image: none;
   background-color: #293133;
   min-width: max-content;
@@ -662,7 +669,7 @@ footer ul li a:nth-of-type(1) {
   margin-right: 1.5rem;
   align-self: self-start;
 }
-#tech article > a:nth-child(6):hover {
+#tech article a:nth-child(6):hover {
   box-shadow: 4px 4px 0px 0px black;
 }
 
@@ -719,6 +726,75 @@ footer ul li a:nth-of-type(1) {
   max-width: none;
 }
 
+#contact {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  width: 90%;
+}
+#contact > p {
+  text-align: center;
+  padding: 1rem;
+}
+#contact article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(230, 230, 250, 0.5);
+  box-shadow: 0px 0px 4px 4px rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 2.5rem 2.5rem;
+  margin: 1rem;
+  max-width: 90%;
+}
+#contact article address {
+  margin-bottom: 2rem;
+  padding-left: 4rem;
+  text-align: left;
+  font-weight: bold;
+  font-size: calc(1.2rem *1.2);
+}
+#contact article address:before {
+  content: "✉️";
+  margin-right: 0.5rem;
+}
+#contact article address:after {
+  content: "✉️";
+  margin-left: 0.5rem;
+}
+#contact article address a {
+  font-weight: inherit;
+  font-size: inherit;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 3px;
+  background-color: #fefefe;
+  box-shadow: inset 0px 0px 1px 1px rgba(31, 38, 135, 0.2);
+}
+#contact article address a:visited {
+  color: #24023d;
+}
+#contact article ul {
+  max-width: 70%;
+}
+#contact article ul li {
+  padding-left: 4rem;
+  text-align: left;
+  margin-bottom: 0.8rem;
+}
+#contact article ul li:before {
+  content: "🦄";
+  margin-right: 0.3rem;
+}
+#contact article ul li a {
+  font-size: calc(1.2rem * 1.1);
+  font-weight: 600;
+  color: #fc8ec5;
+  letter-spacing: 1px;
+  font-variant: small-caps;
+}
+
 /* SPECIFICS */
 /* STATES */
 button,
@@ -762,12 +838,6 @@ button:disabled,
 #tech a:disabled,
 summary:disabled {
   background-color: grey;
-}
-
-main > section > section > article > details > a {
-  padding: 1.5rem;
-  transition: 0.3s;
-  font-weight: bold;
 }
 
 /* ATOMS */

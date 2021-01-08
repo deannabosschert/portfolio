@@ -54,7 +54,7 @@ body {
   // padding: $baseline 0;
 }
 
-p {
+p, li, address {
   line-height: 1.4;
   // margin-bottom: $baseline;
 }
@@ -112,7 +112,7 @@ h6 {
   line-height: $h6;
 }
 
-p {
+p, li, address {
   font-size: $p;
 }
 
@@ -154,7 +154,7 @@ figcaption {
     // line-height: calc(2.25rem * 2);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.5);
     // line-height: calc(1.2rem * 2.5);
   }
@@ -174,7 +174,7 @@ figcaption {
     // line-height: calc(2.25rem * 2);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.2);
     // line-height: calc(1.2rem * 2);
   }
@@ -193,7 +193,7 @@ figcaption {
     // line-height: calc(2.25rem * 2);
   }
 
-  p {
+  p, li, address {
     font-size: calc(1.2rem * 1.1);
     // line-height: calc(1.2rem * 1.5);
   }
@@ -213,7 +213,7 @@ figcaption {
     // line-height: $h3;
   }
 
-  p {
+  p, li, address {
     font-size: $p;
     // line-height: $p;
   }
