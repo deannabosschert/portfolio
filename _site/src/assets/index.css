@@ -370,9 +370,8 @@ header section p {
   text-align: left;
   width: 75%;
   color: white;
-  margin-bottom: 1rem;
   font-size: 2.5rem;
-  line-height: 2.5rem;
+  line-height: 3rem;
 }
 header section button {
   width: 7rem;
