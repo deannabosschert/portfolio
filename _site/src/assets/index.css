@@ -221,12 +221,12 @@ nav ul li a {
   text-align: center;
 }
 
-header section a {
+header section aside {
   font-weight: bold;
   text-align: center;
 }
 
-header section a span {
+header section aside span {
   color: black;
 }
 
@@ -333,7 +333,7 @@ figure div {
 }
 figure figcaption {
   text-align: center;
-  color: grey;
+  color: #505050;
   padding: 0 0.25rem 0.5rem 0.25rem;
   margin-top: 1rem;
   max-width: 90%;
@@ -378,7 +378,7 @@ header section button {
   padding: 1rem 0.8rem;
   margin: 1rem 0 0.5rem;
 }
-header section a {
+header section aside {
   background-color: #fc8ec5;
   color: white;
   position: absolute;
@@ -574,7 +574,7 @@ footer ul li:nth-child(3) a {
   padding-bottom: 2rem;
   width: 60%;
 }
-#aboutme article h3 {
+#aboutme article h2 {
   font-weight: bold;
   background-color: #24023d;
   box-shadow: 0px 3px 1px 0px #fc8ec5;
@@ -671,6 +671,9 @@ footer ul li:nth-child(3) a {
 #tech article a:nth-child(6):hover {
   box-shadow: 4px 4px 0px 0px black;
 }
+#tech a > span, #tech summary > span {
+  display: none;
+}
 
 #design {
   display: flex;
@@ -740,7 +743,7 @@ footer ul li:nth-child(3) a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(230, 230, 250, 0.5);
+  background-color: rgba(230, 230, 250, 0.25);
   box-shadow: 0px 0px 4px 4px rgba(31, 38, 135, 0.2);
   backdrop-filter: blur(4px);
   padding: 2.5rem 4rem;
@@ -787,7 +790,7 @@ footer ul li:nth-child(3) a {
 #contact article ul li a {
   font-size: calc(1.2rem * 1.1);
   font-weight: 600;
-  color: #fc8ec5;
+  color: #c9719d;
   letter-spacing: 1px;
   font-variant: small-caps;
 }
