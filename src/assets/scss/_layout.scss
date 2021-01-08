@@ -22,17 +22,8 @@ img {
   max-height: 100%;
 }
 
-aside figure {
-  margin-bottom: 4rem;
-
-  figcaption {
-    text-align: left;
-    padding-left: 3rem;
-    font-size: $p;
-    line-height: $p;
-    margin-top: 0.2rem;
-    max-width: 80%;
-  }
+em {
+  font-style: italic;
 }
 
 figure {
@@ -422,6 +413,7 @@ footer {
 
     p:nth-of-type(2) {
       max-width: fit-content;
+      margin: 1.25rem 0;
     }
 
     >a,
