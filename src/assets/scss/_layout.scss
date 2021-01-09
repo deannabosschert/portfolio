@@ -782,12 +782,13 @@ summary {
         font-size: 1.1rem;
         padding: 1rem 0.2rem;
         margin: 0;
-      }
+      
 
       a {
         &:nth-child(5) {
           margin-left: 0.5rem;
           padding: 1rem 0.6rem;
+          
         }
 
         &:nth-child(6) {
@@ -795,6 +796,17 @@ summary {
         }
       }
 
+    }
+    details {
+      a { 
+        position: absolute;
+        margin: 1rem 0;
+        
+        &:nth-child(3){
+        margin: 4rem 0;
+        }
+      }
+    }
     }
   }
 
@@ -905,7 +917,7 @@ summary {
   }
 }
 
-@media screen and (min-width: 959px) {
+@media screen and (min-width: 955px) {
 
   header nav ul {
     flex-direction: row;
@@ -1004,6 +1016,13 @@ summary {
   }
 }
 
+@media screen and (min-width: 1096px) and (max-width: 1300px) {
+  #tech article details a:nth-child(3) {
+    margin-top: -0.75rem;
+    margin-left: 0.5rem;
+    }
+}
+
 @media screen and (min-width: 1300px) {
 
   #aboutme {
@@ -1045,4 +1064,12 @@ summary {
   section>p {
     max-width: 75%;
   }
+}
+
+
+@media screen and (min-width: 1590px) {
+  #tech article details a:nth-child(3) {
+    margin-top: -0.75rem;
+    margin-left: 0.5rem;
+    }
 }

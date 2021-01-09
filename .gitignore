@@ -10,4 +10,5 @@ _site/assets/style.css.map
 _site/assets/index.css.map
 *.pdf
 
+/_site
 img/large
