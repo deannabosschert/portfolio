@@ -97,7 +97,10 @@ header {
     }
 
     aside {
-      background-color: $sweetpink;
+      // background-color: $sweetpink;
+      background: rgba(246,142,199,1);
+      background: linear-gradient(to right, rgba(246,142,199,1) 46%, rgba(122,73,165,1) 50%, rgba(122,73,165,1) 50%);
+
       color: white;
       position: absolute;
       z-index: 20;
@@ -605,7 +608,7 @@ footer {
         a {
           font-size: calc(1.2rem * 1.1);
           font-weight: 600;
-          color: $dark-sweetpink;
+          color: $darkpink;
           letter-spacing: 1px;
           font-variant: small-caps;
         }

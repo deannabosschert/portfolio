@@ -383,7 +383,8 @@ header section button {
   margin: 1rem 0 0.5rem;
 }
 header section aside {
-  background-color: #fc8ec5;
+  background: #f68ec7;
+  background: linear-gradient(to right, #f68ec7 46%, #7a49a5 50%, #7a49a5 50%);
   color: white;
   position: absolute;
   z-index: 20;
@@ -795,7 +796,7 @@ footer ul li:nth-child(3) a {
 #contact article ul li a {
   font-size: calc(1.2rem * 1.1);
   font-weight: 600;
-  color: #c9719d;
+  color: #78435E;
   letter-spacing: 1px;
   font-variant: small-caps;
 }
