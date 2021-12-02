@@ -523,7 +523,7 @@ footer ul li:nth-child(3) a {
 
 #aboutme {
   align-items: center;
-  height: 30rem;
+  height: 24rem;
   padding: 2rem 2rem 3rem 2rem;
 }
 #aboutme .flip-card {
@@ -1030,7 +1030,7 @@ summary:disabled {
   }
 
   #aboutme {
-    margin-bottom: 24rem;
+    margin-bottom: 10rem;
   }
 
   #tech article {
