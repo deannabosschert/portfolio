@@ -1,0 +1,32 @@
+  .c-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid $brand-transparent;
+
+    .header__title {
+      color: $gray-1;
+      font-size: 22px;
+      font-family: Helvetica Neue;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      text-transform: none;
+      letter-spacing: 0.48;
+      text-decoration: none;
+      text-indent: 0;
+      word-spacing: 0;
+      line-height: unset;
+      margin-right: $desktop-xs;
+
+      a {
+        font-size: inherit;
+        line-height: inherit;
+      }
+    }
+
+    .header__description {
+      font-size: 22px;
+      line-height: unset;
+    }
+  }

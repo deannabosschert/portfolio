@@ -1,30 +1,36 @@
-module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "src/assets/fonts" })
-  eleventyConfig.addPassthroughCopy({ "src/assets/img": "src/assets/img" })
-  // eleventyConfig.addPassthroughCopy('src/index.js')
+const htmlmin = require("html-minifier")
+const fg = require('fast-glob')
 
-  // src for below code: https://github.com/11ty/eleventy/issues/440
-  // Import fast-glob package
-  const fg = require('fast-glob')
+module.exports = (eleventyConfig) => {
+  eleventyConfig.addPassthroughCopy('assets/')
+  eleventyConfig.addPassthroughCopy('./src/favicon.ico')
 
   const randomIllustrations = fg.sync(['**/random/*', '!**/_site'])
-  const dnataIllustrations = fg.sync(['**/workplace_illustrations/*', '!**/_site'])
 
   eleventyConfig.addCollection('random', (collection) => {
     return randomIllustrations
   })
 
-  eleventyConfig.addCollection('workplace', (collection) => {
-    return dnataIllustrations
-  })
 
+  // Minify HTML
+  eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
+    if (outputPath.endsWith(".html") && !outputPath.includes("posts")) { //  only for .html files outside of the `posts` directory
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true
+      })
+      return minified
+    }
+
+    return content
+  })
 
   return {
     dir: {
       input: 'src',
-      output: '_site'
+      data: '_data'
     },
-    templateFormats: ['html', 'njk'],
     htmlTemplateEngine: 'njk',
     passthroughFileCopy: true
   }

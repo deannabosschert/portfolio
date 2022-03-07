@@ -1,0 +1,35 @@
+.c-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 $desktop-s 0 $desktop-m;
+  margin-top: $desktop-s;
+  border-right: 1px solid $gray-3;
+}
+
+.c-sidebar {
+  section {
+    margin-bottom: $desktop-s;
+  }
+
+  h3,
+  h4,
+  li {
+    font-size: 15px;
+    font-weight: normal;
+  }
+
+  .subtoggle {
+    label {
+      margin-left: $desktop-xxxs;
+    }
+
+    ul {
+      margin-left: $desktop-xxs;
+
+      li {
+        font-weight: 300;
+      }
+    }
+  }
+}
