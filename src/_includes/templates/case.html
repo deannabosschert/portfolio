@@ -1,0 +1,26 @@
+<header>
+    <h1>{{casename}}</h1>
+    <p>{{caseDescription}}</p>
+</header>
+<main>
+    <section>
+        <h2>{{heading}}</h2>
+        {% for paragraph in case.description %}
+          <p>{{paragraph}}</p>
+        {% endfor %}
+        <a href="ca"
+    </section>
+    <section>
+        <h2 class="u-text-hidden">Images</h2>
+        <ul>
+            {% for img in caseImg %}
+            <li>
+                <figure>
+                    <img src="{{img.src}}" alt="{{img.alt}}">
+                    <figcaption>{{img.description}}</figcaption>
+                </figure>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
