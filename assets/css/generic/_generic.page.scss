@@ -43,7 +43,19 @@ main {
   min-width: 100%;
   width: 100%;
   max-width: 100%;
- 
+  padding: $desktop-m;
+}
+
+main header {
+  margin-bottom: 2rem;
+}
+
+article {
+  margin-bottom: $desktop-s;
+}
+
+section {
+  margin-bottom: $desktop-m;
 }
 
 article, section, iframe {

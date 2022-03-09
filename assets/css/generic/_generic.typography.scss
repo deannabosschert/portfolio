@@ -46,9 +46,16 @@ h2,
 h3,
 h4,
 h5,
-h6 {}
+h6,
+p,
+a {
+  color: #202020;
+  margin-bottom: 1rem;
+}
 
 h1 {
+  font-size: 42px;
+  font-weight: 500;
   color: $black;
   line-height: 66px;
   letter-spacing: 0.03em;
@@ -56,12 +63,17 @@ h1 {
 }
 
 h2 {
+  font-size: 36px;
+  font-weight: 700;
   color: $gray-1;
 }
 
-h3 {}
+h3 {
+  font-size: 26px;
+}
 
 h4 {
+  font-size: 22px;
   margin-bottom: $mobile-s;
 }
 
