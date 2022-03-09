@@ -12,22 +12,15 @@ pagePath: "{{parent}}/{{pageName}}"
  
 
   {%- from "system/component.njk" import component -%}
-  {{ component("atoms", "_logo", {
-        src: "/assets/img/logos/active-collective_logo_black.svg",
-        alt: "Active Collective in black letters",
-        text: "Home: Code Cookbook",
-        link: "/"
-     })}}
   {{ component('sections', '_header', {
-    title: '🍽️ Code Cookbook',
-    description: 'Guide to the best-practices for building and deploying web applications.'
+    title: 'Deanna Bosschert',
+    description: 'Webdeveloper.'
     }) }}
-  {% include "sections/_sideBar.html" %}
   <main>
     {{ content | safe }}
   </main>
   {% include "sections/_footer.html" %}
-  <script>
+  <!-- <script> a11y widget
     (function(){
         var s    = document.createElement('script');
         var h    = document.querySelector('head') || document.body;
@@ -63,7 +56,7 @@ pagePath: "{{parent}}/{{pageName}}"
         };
         h.appendChild(s);
     })();
-</script>
+</script> -->
 </body>
 
 </html>

@@ -1,0 +1,46 @@
+     <!-- <header> -->
+         <h2>{{params.name}}</h2>
+         <p>{{params.summary}}</p>
+         <blockquote>
+            <p>{{params.challenge}}</p>
+        </blockquote>
+     <!-- </header> -->
+     <article>
+         <!-- parent project info (e.g. dataviz under parent Code Cookbook)-->
+         <h3>{{params.project.name}}</h3>
+         <p>{{params.project.summary}}</p>
+         <p>{{params.project.description}}</p>
+     </article>
+     <article>
+         <h3>Case description</h3>
+         {% for paragraph in params.description %}
+         <p>{{paragraph}}</p>
+         {% endfor %}
+     </article>
+     <div>
+        <a href="{{params.link.repo}}">Link to repository</a>
+        <a href="{{params.link.site}}">{{params.link.text}}</a>
+     </div>
+     <aside>
+         <h3>Evaluation</h3>
+         <p>Wat is er top of matig binnen dit project?</p>
+         {% for evaluation in params.evaluation %}
+         <article>
+             <h3>{{evaluation.name}}</h3>
+             <p>{{evaluation.paragraph}}</p>
+         </article>
+         {% endfor %}
+     </aside>
+     <article>
+         <h3 class="u-text-invisible">Images</h3>
+         <ul>
+             {% for img in params.images %}
+             <li>
+                 <figure>
+                     <img src="{{img.src}}" alt="{{img.alt}}">
+                     <figcaption>{{img.description}}</figcaption>
+                 </figure>
+             </li>
+             {% endfor %}
+         </ul>
+     </article>

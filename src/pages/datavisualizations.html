@@ -1,0 +1,57 @@
+---
+layout: templates/_case.html
+parent: "/"
+pageName: "datavisualizations"
+---
+{%- from "system/component.njk" import component -%}
+<header>
+    <h1>Datavisualizations</h1>
+    <p>In de afgelopen jaren heb ik een aantal datavisualisaties ontwikkeld. Hiervoor is gebruik gemaakt van d3.js of chart.js.</p>
+</header>
+
+    <section>
+    {{ component('sections', '_case', { 
+        name: 'Workflow Datavisualizations',
+        summary: 'Het in kaart brengen van de workflow van een bedrijf.',
+        challenge: 'Hoe kan data bijdragen aan het in kaart brengen van het ontwerpproces binnen een bedrijf?',
+        description: ["Dit project is onderdeel van Code Cookbook, waarbij onderzocht werd hoe de workflow binnen bedrijf
+        verbeterd kon worden, waarbij de efficiëntie van het
+        developmentteam vergroot en de kwaliteit van
+        projecten omhoog gaat.",
+        "Met datasets over de projectsamenstelling vanbedrijfen hun projecturenadministratie zijn een
+        aantal datavisualisaties samengesteld om hen inzicht te bieden in hun huidige workflow. Deze
+        visualisaties fungeerden als aanvulling op een al uitgezet kader van de pijnpunten in hun proces. Ze
+        zijn verder gebruikt als ondersteuning bij het overtuigen vanbedrijfdat hun proces wrijving
+        bevat, en vervolgens bereidheid te creeëren om dit te veranderen"
+        ],
+        link: {
+            text: 'interactieve datavisualisaties hier te bekijken',
+            repo: '',
+            site: ''
+        },
+        images: [{
+                src: '',
+                alt: '',
+                description: ''
+            },   {
+                src: '',
+                alt: '',
+                description: ''
+        }],
+        evaluation: [{
+                name: '',
+                paragraph: ''
+            },   {
+                name: '',
+                paragraph: ''
+         }],
+        project: {
+            name: 'Code Cookbook',
+            summary: 'Guide to the best practices for building and deploying web applications',
+            description: 'Dit project is onderdeel van Code Cookbook, waarbij onderzocht werd hoe de workflow binnen [bedrijf]
+            verbeterd kon worden, waarbij de efficiëntie van het
+            developmentteam vergroot en de kwaliteit van
+            projecten omhoog gaat.'
+        }
+    }) }}
+    </section>
