@@ -1,0 +1,33 @@
+.snippets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 48px 36px;
+    justify-content: space-between;
+    max-width: 90%;
+
+    h2,
+    p {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+    }
+
+    h2 {
+        grid-row: 1;
+    }
+
+    p {
+        grid-row: 2;
+        // grid-row-start: row2-start;
+        // grid-row-end: 1;
+    }
+
+    article {
+        // width: 45%;
+        height: 350px;
+    }
+
+    .cp_embed_wrapper {
+        height: 100%;
+    }
+    
+}
