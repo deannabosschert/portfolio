@@ -1,0 +1,5 @@
+{%- macro ifstatement(content) -%}
+  {%- if content -%}
+  {{ content | safe }}
+  {%- endif -%}
+{%- endmacro -%}
