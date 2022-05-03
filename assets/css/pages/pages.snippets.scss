@@ -1,12 +1,75 @@
 .snippets {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 48px 36px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 90%;
 
     h2,
     p {
+        min-width: 80%;
+        // grid-column-start: 1;
+        // grid-column-end: span 2;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    article {
+        // width: 45%;
+        width: fit-content;
+        min-width: 350px;
+    }
+
+    .cp_embed_wrapper {
+        height: 300px;
+        width: 350px;
+    }
+    
+}
+
+.switch_label {
+    display: flex;
+    text-align: right;
+    width: fit-content;
+    margin-bottom: 24px;
+    gap: 4px;
+
+    .switch_label_grid {
+        display: block
+    }
+
+    .switch_label_row {
+        display: none;
+    }
+}
+
+// when switch is on, show the snippets
+
+.switch_input {
+    display: none;
+}
+
+.switch_input:checked ~ .switch_label {
+    .switch_label_grid {
+        display: none;
+    }
+    .switch_label_row {
+        display: block;
+    }
+}
+
+
+.switch_input:checked ~ .snippets_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 48px 36px;
+    justify-content: space-between;
+    // max-width: 90%;
+
+    h2 ,
+    p {
+        min-width: 100%;
         grid-column-start: 1;
         grid-column-end: span 2;
     }
@@ -22,12 +85,56 @@
     }
 
     article {
-        // width: 45%;
-        height: 350px;
+        width: 100%;
+    }
+}
+
+.snippets_row {
+    min-width: 100vw;
+    margin-left: -40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    gap: 36px;
+    overflow: scroll;
+    background-color: black;
+    padding: 24px 40px;
+
+    p, h3 {
+        color: white;
     }
 
-    .cp_embed_wrapper {
-        height: 100%;
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-    
+}
+
+.carousel-indicator {
+    font-size: 36px;
+    font-weight: 300;
+    color: lightgray;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    position:absolute;
+    right: 16px;
+    align-self: center;
+    animation: carousel-indicator-hover 1s infinite;
+
+}
+
+// hover-animation
+@keyframes carousel-indicator-hover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

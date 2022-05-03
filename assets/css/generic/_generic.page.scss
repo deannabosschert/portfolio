@@ -50,6 +50,17 @@ main header {
   margin-bottom: 2rem;
 }
 
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 32px;
+  max-width: 1275px;
+
+  h1 {
+    grid-column: 1 / span 2;
+  }
+}
+
 article {
   margin-bottom: $desktop-s;
 }

@@ -1,0 +1,33 @@
+#grade_graph {
+    overflow: scroll;
+    position: relative;
+
+    .gradeBubble {
+        stroke-width: 2px;
+        stroke: white;
+    }
+
+    .gradeBubble:hover {
+        stroke: black;
+        cursor: pointer;
+    }
+
+    .gradeLabel {
+        user-select: none;
+    }
+
+    .tooltip {
+        position: absolute;
+        height: fit-content;
+        width: auto;
+        font-style: italic;
+        color: rgba(246, 246, 246, 0.9);
+        user-select: none;
+
+        span,
+        b {
+            font-style: normal;
+            color: white;
+        }
+    }
+}

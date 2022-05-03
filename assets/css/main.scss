@@ -17,7 +17,9 @@
 
 // ELEMENTS
 // @import "elements/elements.page";
+@import "elements/elements.cards";
 @import "elements/elements.forms";
+@import "elements/elements.graphs";
 @import "elements/elements.images";
 @import "elements/elements.icons";
 @import "elements/elements.buttons";
@@ -59,5 +61,6 @@
 // PAGE-SPECIFIC STYLING
 @import "pages/templates/pages.home";
 @import "pages/templates/pages.detail";
+@import "pages/pages.snippets";
 
 @import "elements/elements.mediaqueries";
