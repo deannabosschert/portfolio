@@ -5,6 +5,7 @@ pagination:
   size: 1
   alias: storyblokJsonData
 ---
+
 {%- for item in pagination.items %}
 
     <header>
@@ -12,13 +13,13 @@ pagination:
         <p>{{ item.summary }}</p>
     </header>
     <section>
-        <article>
+        <article class="{{ 'u-hidden' if item.descriptions == "" }}">
             <h2>Description</h2>
             {% for description in item.descriptions %}
                 <p>{{ description }}</p>
             {% endfor %}
         </article>
-        <article>
+        <article class="{{ 'u-hidden' if item.technologies == "" }}">
             <h2>Technologies</h2>
             <p>Used technologies</p>
             <ul>
@@ -31,10 +32,10 @@ pagination:
     <section>
         <h2>Links</h2>
         <ul>
-           <li><a href="{{ item.links.site }}">website</a></li>
-           <li><a href="{{ item.links.detail }}">detail</a></li>
-           <li><a href="{{ item.links.repository }}">repo</a></li>
-           <li><a href="{{ item.links.documentation }}">documentation</a></li>
+           <li><a class="{{ 'u-hidden' if not item.links.site  }}" href="{{ item.links.site }}">site</a></li>
+           {# <li><a class="{{ 'u-hidden' if not item.links.detail  }}" href="{{ item.links.detail }}">detail</a></li> #}
+           <li><a class="{{ 'u-hidden' if not item.links.repository  }}" href="{{ item.links.repository }}">repo</a></li>
+           <li><a class="{{ 'u-hidden' if not item.links.documentation  }}" href="{{ item.links.documentation }}">documentation</a></li>
         </ul>
     </section>
 
