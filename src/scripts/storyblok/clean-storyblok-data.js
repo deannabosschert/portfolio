@@ -1,6 +1,7 @@
 module.exports = function cleanStoryblokData(folder, data) {
     return data.map(item => {
         if (folder == 'projects') {
+           
             return {
                 "id": item.id,
                 "parent_id": item.parent_id,
@@ -9,10 +10,11 @@ module.exports = function cleanStoryblokData(folder, data) {
                 "full_slug": upFolderLevel(item.full_slug),
                 "title": item.content.title,
                 "summary": item.content.summary,
-                "description": mapArray(item.content.description, 'description'),
+                "descriptions": mapArray(item.content.description, 'description'),
                 "technologies": item.content.technologies,
             }
         } else if (folder == "links") {
+            console.log(item.full_slug)
             return {
                 "id": item.id,
                 "parent_id": item.parent_id,
@@ -34,7 +36,7 @@ module.exports = function cleanStoryblokData(folder, data) {
                 "full_slug": upFolderLevel(item.full_slug),
                 "title": item.content.title,
                 "summary": item.content.summary,
-                "description": mapArray(item.content.description, 'description'),
+                "descriptions": mapArray(item.content.description, 'description'),
                 "technologies": item.content.technologies
             }
         } else {

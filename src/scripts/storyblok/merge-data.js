@@ -8,7 +8,7 @@ module.exports = function mergeData(data) {
             if (project.slug === link.slug) {
                 project.links = {
                     "site": link.site.url,
-                    "detail": link.detail.cached_url,
+                    "detail": project.full_slug,
                     "repository": link.repo.url,
                     "documentation": link.documentation.url
                 }
