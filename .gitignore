@@ -16,3 +16,6 @@ img/large
 _site
 /old
 src/_data/codecookbook
+.pem
+localhost-key.pem
+localhost.pem
