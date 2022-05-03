@@ -45,12 +45,9 @@ module.exports = function cleanStoryblokData(folder, data) {
 
 function mapArray(array, key) {
     return array.map(item => item[key])
-    // let cleanDescriptions = descriptions.map(item => {})
-    // console.log(cleanDescriptions)
 }
 
-function upFolderLevel(data) {
-    // remove the first folder from the path
+function upFolderLevel(data) { // remove the first folder from the path
     let path = data.split('/')
     path.shift()
     return path.join('/')
