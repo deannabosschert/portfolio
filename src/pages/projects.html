@@ -1,0 +1,42 @@
+---
+layout: templates/_base.html
+parent: "/"
+pageName: "projects"
+permalink: "/{{pageName}}/"
+---
+<section>
+    <h2>Projects list</h2>
+    <ul>
+        {% for project in storyblok.projectpages %}
+        <li>
+            <a href="/{{project.full_slug}}/">
+                <article>
+                    <h3>{{ project.name }}</h3>
+                    <p>{{project.summary}}</p>
+                </article>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h2>'Boilerplates'</h2>
+    <p>As I explored different technologies and along the way also taught students (in) a certain techstack, I've
+        created a few template projects to base a new project on. Most of them are not boilerplates but more like
+        example projects. They serve the purpose of demonstrating the used tech in a more meaningful environment,
+        providing enough context for a (new) developer to understand how everything works together.
+    </p>
+    <ul>
+        {% for project in storyblok.boilerplates %}
+        <li>
+            <a href="/{{project.full_slug}}/">
+                <article>
+                    <h3>{{ project.name }}</h3>
+                    <p>{{project.summary}}</p>
+                </article>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+</section>
