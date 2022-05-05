@@ -1,7 +1,10 @@
 
 module.exports = function sanitizeString(string) { // ugly solution for now, promise to fix later (pun intended)
+ console.log('sanitizeString:')
+ 
     let withoutDash = replaceSpaceWithDash(string)
-    let kebabCase = camelCaseToKebabCase(withoutDash)
+    let withoutPercentage = removePercentage(withoutDash)
+    let kebabCase = camelCaseToKebabCase(withoutPercentage)
     let convertedNames = convertOddNames(kebabCase)
     let namedElement = nameToElement(convertedNames)
     return namedElement
@@ -10,6 +13,10 @@ module.exports = function sanitizeString(string) { // ugly solution for now, pro
 // scss variable names can't have spaces
 function replaceSpaceWithDash(string) {
     return string.replace(/ /g, '-')
+}
+
+function removePercentage(string) {
+    return string.replace(/%/g, '')
 }
 
 // convert to actual css properties
