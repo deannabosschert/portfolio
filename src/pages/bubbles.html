@@ -1,0 +1,66 @@
+---
+layout: templates/_base.html
+parent: "/"
+pageName: "bubbles"
+permalink: "/{{pageName}}/"
+---
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script> -->
+
+<!-- Load color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<h1>bubbles</h1>
+<!-- Create a div where the graph will take place -->
+<div>
+    <svg id="bubbles_graph" width="900" height="900">
+
+        <!-- <g class="nodes"></g> -->
+    </svg>
+</div>
+
+<script src="/assets/js/charts/bubbles-graph.js"></script>
+
+
+<style>
+
+    body {
+        background-color: lavender;
+    }
+    #bubbles_graph {
+      
+    }
+
+    .circles-all {
+        /* fill: green; */
+    }
+
+    /* .circles-all__bg {
+        width: 100%;
+        height: 100%;
+        fill: rgba(255, 192, 203, 0.3);
+        stroke: red;
+        stroke-width: 3px;
+    }
+
+    .circle-containerbg {
+        width: 100%;
+        height: 100%;
+        fill: rgba(89, 133, 222, 0.3);
+        stroke: rgb(255, 0, 255);
+        stroke-width: 3px;
+        border-radius: 12px;
+        
+    } */
+
+    
+</style>
+
+<!-- <div id="content">
+    <svg width="400" height="300">
+      <g class="links"></g>
+      <g class="nodes"></g>
+    </svg>
+  </div>
+  <script src="/assets/js/charts/linked-bubbles.js"></script> -->
