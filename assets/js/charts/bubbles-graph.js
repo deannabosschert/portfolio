@@ -82,8 +82,8 @@ const circlesAll = svg.append("g") // group for the circleContainers
 const circleContainer = circlesAll
     .append("g") // append a container for each data element
     .attr("class", "circle-container") // class for the group/container
-    .attr("cx", width / 2) // set the x position
-    .attr("cy", height / 2) // set the y position
+    // .attr("cx", width / 2) // set the x position
+    // .attr("cy", height / 2) // set the y position
     .style('cursor', 'pointer') // change pointer to hand to suggest that the circle can be interacted with (dragged)
     .call(d3.drag() // call specific function when circle is dragged
         .on("start", startDrag) // on start of drag gesture
@@ -105,8 +105,8 @@ const circleContainer__text = circleContainer
     .append("text") // append text for each data element
     .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
     .text((d) => d.name) // set the text to the name of the data element
-    .attr('dx', (d) => x(d.group)) // set the x position of the text to the x position of the circleContainer
-    .attr('dy', (d) => height / 2) // set the y position of the text to the center of the circleContainer
+    // .attr('dx', (d) => x(d.group)) // set the x position of the text to the x position of the circleContainer
+    // .attr('dy', (d) => height / 2) // set the y position of the text to the center of the circleContainer
     .attr('font-size', (d) => '24px')
     .attr('fill', (d) => '#595959b3')
     .attr("fill-opacity", 1) // set the opacity
