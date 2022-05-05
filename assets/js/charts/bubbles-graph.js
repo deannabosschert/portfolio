@@ -61,7 +61,7 @@ const x = d3.scaleOrdinal()
 // set the color scale
 const color = d3.scaleOrdinal()
     .domain([1, 2, 3]) // applyto the 3 groups
-    .range(["#9e9effff", "#ca97caff", "#ff9dabff"]) 
+    .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"]) 
 
 // CREATE CONTAINERS AND ELEMENTS
 // create the svg container
@@ -74,8 +74,6 @@ const svg = d3.select("#bubble_graph")
 // append the container group for all circles to the svg
 const circlesAll = svg.append("g") // group for the circleContainers
     .attr("class", "circles-all") // class for the group/container
-    .style("fill", "#202020") // set the color
-    .style("fill-opacity", 0.8) // set the opacity
     .selectAll("circle") // select all circles
     .data(data) // bind the data to the circles
     .enter() // enter the data as elements
@@ -86,6 +84,7 @@ const circleContainer = circlesAll
     .attr("class", "circle-container") // class for the group/container
     .attr("cx", width / 2) // set the x position
     .attr("cy", height / 2) // set the y position
+    .style('cursor', 'pointer') // change pointer to hand to suggest that the circle can be interacted with (dragged)
     .call(d3.drag() // call specific function when circle is dragged
         .on("start", startDrag) // on start of drag gesture
         .on("drag", currentDrag) // while dragging
@@ -110,9 +109,11 @@ const circleContainer__text = circleContainer
     .attr('dy', (d) => height / 2) // set the y position of the text to the center of the circleContainer
     .attr('font-size', (d) => '24px')
     .attr('fill', (d) => '#595959b3')
+    .attr("fill-opacity", 1) // set the opacity
     .attr('text-anchor', (d) => 'middle') // center horizontally
     .attr('alignment-baseline', (d) => 'central') // center vertically
     .attr('font-weight', (d) => 'bold')
+    .style('user-select', 'none') // don't let the text be selectable
 
 
 // CREATE FORCE LAYOUT
@@ -122,7 +123,7 @@ const simulation = d3.forceSimulation() // create the force simulation
     .force("y", d3.forceY().strength(0.1).y(height / 2)) // set force to move circles vertically
     .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // set force to center the circles
     .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
-    .force("collide", d3.forceCollide().strength(.1).radius(32).iterations(1)) // set force to prevent circles from overlapping
+    .force("collide", d3.forceCollide().strength(.1).radius(60).iterations(1)) // set force to prevent circles from overlapping
 
 
 // apply the simulation to the circles, this will make the circles move
@@ -143,6 +144,7 @@ function ticked() {
         .attr("dy", (d) => d.y) // dy is the y position of the text
 }
 
+// CREATE DRAG FUNCTIONALITY
 function startDrag(d) { // when a circle is dragged
     if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
     d.fx = d.x // assign the current x position of the circle to be the fixed x position that we're dragging
