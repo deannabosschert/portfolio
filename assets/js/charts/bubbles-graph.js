@@ -87,9 +87,9 @@ var circleContainer = circlesAll
     .attr("cx", width / 2) // set the x position
     .attr("cy", height / 2) // set the y position
     .call(d3.drag() // call specific function when circle is dragged
-        .on("start", dragstarted) // on start of drag gesture
-        .on("drag", dragged) // while dragging
-        .on("end", dragended)) // on end of drag gesture
+        .on("start", startDrag) // on start of drag gesture
+        .on("drag", currentDrag) // while dragging
+        .on("end", endDrag)) // on end of drag gesture
 
 var circleContainer__circle = circleContainer
     .append("circle") // append a circle for each data element
@@ -186,20 +186,19 @@ function updateNodes() {
 
 
 
-// What happens when a circle is dragged?
-function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03).restart();
-    d.fx = d.x;
-    d.fy = d.y;
+function startDrag(d) { // when a circle is dragged
+    if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
+    d.fx = d.x // assign the current x position of the circle to be the fixed x position that we're dragging
+    d.fy = d.y // assign the current y position of the circle to be the fixed y position that we're dragging
 }
 
-function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
+function currentDrag (d) { // when a circle is dragged
+    d.fx = d3.event.x // set the fixed x position to be wherever the user is dragging the circle
+    d.fy = d3.event.y // set the fixed y position to be wherever the user is dragging the circle
 }
 
-function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03);
-    d.fx = null;
-    d.fy = null;
+function endDrag(d) { // if the circle is no longer being dragged
+    if (!d3.event.active) simulation.alphaTarget(.03)  // if there is an active simulation, stop it
+    d.fx = null // remove the fixed x position
+    d.fy = null // set the node to fixed so that it doesn't move
 }
