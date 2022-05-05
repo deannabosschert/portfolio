@@ -14,53 +14,51 @@ var svg = d3.select("#bubbles_graph")
 
 // create dummy data -> just one element per circle
 var data = [{
-        "name": "A",
+        "name": "HTML",
         "group": 1
     }, {
-        "name": "B",
+        "name": "A11y",
         "group": 1
     }, {
-        "name": "C",
-        "group": 1
-    }, {
-        "name": "D",
-        "group": 1
-    }, {
-        "name": "E",
-        "group": 1
-    }, {
-        "name": "F",
+        "name": "Dingen",
         "group": 1
     },
     {
-        "name": "G",
+        "name": "CSS",
         "group": 2
     }, {
-        "name": "H",
+        "name": "SASS",
         "group": 2
     }, {
-        "name": "I",
+        "name": "SCSS",
         "group": 2
     }, {
-        "name": "J",
-        "group": 2
-    }, {
-        "name": "K",
-        "group": 2
-    }, {
-        "name": "L",
+        "name": "InuitCSS",
         "group": 2
     },
     {
-        "name": "M",
+        "name": "JavaScript",
         "group": 3
     }, {
-        "name": "N",
+        "name": "Node.js",
         "group": 3
     }, {
-        "name": "O",
+        "name": "Eleventy",
+        "group": 3
+    },{
+        "name": "Express",
+        "group": 3
+    }, {
+        "name": "Databases",
+        "group": 3
+    }, {
+        "name": "EJS",
+        "group": 3
+    }, {
+        "name": "Vue.js",
         "group": 3
     }
+
 ]
 
 // A scale that gives a X target position for each group
