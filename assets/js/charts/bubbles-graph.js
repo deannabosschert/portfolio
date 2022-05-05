@@ -6,18 +6,11 @@ var group1 = width / 4
 var group2 = (width / 4) * 2
 var group3 = (width / 4) * 3
 
-// append the svg object to the body of the page
-var svg = d3.select("#bubbles_graph")
-
-// .append("svg")
-// .attr("width", width)
-// .attr("height", height)
-
 // create dummy data -> just one element per circle
 var data = [{
         "name": "HTML",
         "group": 1
-    },  {
+    }, {
         "name": "A11y",
         "group": 1
     }, {
@@ -29,13 +22,13 @@ var data = [{
     }, {
         "name": "SASS",
         "group": 2
-    },  {
+    }, {
         "name": "SCSS",
         "group": 2
     }, {
         "name": "InuitCSS",
         "group": 2
-    },{
+    }, {
         "name": "JavaScript",
         "group": 3
     }, {
@@ -59,6 +52,11 @@ var data = [{
     }
 
 ]
+
+// append the svg object to the body of the page
+var svg = d3.select("#bubbles_graph")
+
+
 
 // A scale that gives a X target position for each group
 var x = d3.scaleOrdinal()
@@ -94,38 +92,24 @@ var circleContainer = circlesAll
 var circleContainer__circle = circleContainer
     .append("circle") // append a circle for each data element
     .attr("r", 50) // set the radius
-    // .attr("cx", width / 2) // set the x position
-    // .attr("cy", height / 2) // set the y position
     .attr("class", "circle-container__circle")
     .style("fill", (d) => color(d.group)) // set the color
     .style("fill-opacity", 0.8) // set the opacity
     .attr("stroke", "#595959b3") // set the outline color
     .style("stroke-width", 1) // set the outline width
 
-
-// var circleContainerbg = circleContainer
-//     .append("rect") // append a container for each data element
-//     .attr("class", "circle-containerbg")
-
 // add the text to the nodes
 var circleContainer__text = circleContainer
     .append("text")
     .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
     .text((d) => d.name)
-    // .attr('cx', (d) => x(d.group))
-    // .attr('cy', (d) => height / 2)
     .attr('dx', (d) => x(d.group))
     .attr('dy', (d) => height / 2)
-    // .attr('dy', (d) => 10)
-    // .attr('dx', (d) => 0)
     .attr('font-size', (d) => '24px')
     .attr('fill', (d) => '#595959b3')
     .attr('text-anchor', (d) => 'middle')
     .attr('alignment-baseline', (d) => 'central')
     .attr('font-weight', (d) => 'bold')
-
-
-
 
 
 // Features of the forces applied to the nodes:
@@ -151,40 +135,7 @@ function ticked() { // this forces the circles to stay in the center of the svg 
     circleContainer__text // select the elements
         .attr("dx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the node in the svg)
         .attr("dy", (d) => d.y) // set the y position to the current y position
-
-    // circleContainer__text // select the elements
-    //     .attr("cx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the node in the svg)
-    //     .attr("cy", (d) => d.y) // set the y position to the current y position
-
-
-    // circles
-    //     .append("text")
-    //     .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
-    //     .text('test')
-
-    // // add text to the nodes
-    // updateNodes();
-
-
 }
-
-function updateNodes() {
-    u = d3.select('.circle-container')
-        .append("text")
-        .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
-        .text((d) => d.name)
-        .attr('cx', function (d) {
-            return d.x
-        })
-        .attr('cy', function (d) {
-            return d.y
-        })
-        .attr('dy', function (d) {
-            return 5
-        });
-}
-
-
 
 function startDrag(d) { // when a circle is dragged
     if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
@@ -192,13 +143,13 @@ function startDrag(d) { // when a circle is dragged
     d.fy = d.y // assign the current y position of the circle to be the fixed y position that we're dragging
 }
 
-function currentDrag (d) { // when a circle is dragged
+function currentDrag(d) { // when a circle is dragged
     d.fx = d3.event.x // set the fixed x position to be wherever the user is dragging the circle
     d.fy = d3.event.y // set the fixed y position to be wherever the user is dragging the circle
 }
 
 function endDrag(d) { // if the circle is no longer being dragged
-    if (!d3.event.active) simulation.alphaTarget(.03)  // if there is an active simulation, stop it
+    if (!d3.event.active) simulation.alphaTarget(.03) // if there is an active simulation, stop it
     d.fx = null // remove the fixed x position
     d.fy = null // set the node to fixed so that it doesn't move
 }
