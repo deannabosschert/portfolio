@@ -1,7 +1,6 @@
 module.exports = function cleanStoryblokData(folder, data) {
     return data.map(item => {
         if (folder == 'projects') {
-           
             return {
                 "id": item.id,
                 "parent_id": item.parent_id,
@@ -11,7 +10,11 @@ module.exports = function cleanStoryblokData(folder, data) {
                 "title": item.content.title,
                 "summary": item.content.summary,
                 "descriptions": mapArray(item.content.description, 'description'),
-                "technologies": item.content.technologies,
+                "technologies": {
+                    "html": item.content.html,
+                    "css": item.content.css,
+                    "js": item.content.js
+                }
             }
         } else if (folder == "links") {
             console.log(item.full_slug)
@@ -37,7 +40,11 @@ module.exports = function cleanStoryblokData(folder, data) {
                 "title": item.content.title,
                 "summary": item.content.summary,
                 "descriptions": mapArray(item.content.description, 'description'),
-                "technologies": item.content.technologies
+                "technologies": {
+                    "html": item.content.html,
+                    "css": item.content.css,
+                    "js": item.content.js
+                }
             }
         } else {
             console.log('leftovers')
