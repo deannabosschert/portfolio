@@ -1,7 +1,5 @@
 
 module.exports = function sanitizeString(string) { // ugly solution for now, promise to fix later (pun intended)
- console.log('sanitizeString:')
- 
     let withoutDash = replaceSpaceWithDash(string)
     let withoutPercentage = removePercentage(withoutDash)
     let kebabCase = camelCaseToKebabCase(withoutPercentage)

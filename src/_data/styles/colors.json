@@ -66,6 +66,11 @@
         }
       }
     },
+    "brand": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#9e9effff"
+    },
     "purple 60%": {
       "description": "",
       "type": "color",
@@ -76,6 +81,11 @@
           "exportKey": "color"
         }
       }
+    },
+    "brand transparent": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#9e9eff99"
     },
     "lavender": {
       "description": "",
@@ -252,6 +262,31 @@
           "exportKey": "color"
         }
       }
+    },
+    "black 20": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#202020ff"
+    },
+    "gray 1": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#313131ff"
+    },
+    "gray 2": {
+      "description": "added manually",
+      "type": "color",
+      "value": " #878a8dff"
+    },
+    "gray 3": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#f6f6f6ff"
+    },
+    "body gray": {
+      "description": "added manually",
+      "type": "color",
+      "value": "#C4C4C4;"
     }
   }
 }
