@@ -57,28 +57,38 @@ const data = [{
 
 // get function projectData from file projects.js
 import projectData from '/assets/js/storyblok/JS/projects.js'
-const techList = projectData.map(project => project.technologies)
+const techData = projectData.map(project => project.technologies)
+const techTypes = [...new Set(techData.map(tech => Object.keys(tech)).flat())]
 
-const techHTML = mapTech(techList, 'html')
-const techCSS = mapTech(techList, 'css')
-const techJS = mapTech(techList, 'js')
+const cleanTechData = forEachType(techTypes, technologiesToObject).flat()
 
+
+function forEachType(array) {
+    let resultArray = []
+    for (let i = 0; i < array.length; i++) {
+        let objectThing = technologiesToObject(array[i], (i + 1)) // create an object for each type, with the group number being the index of the type in the array + 1
+        resultArray.push(objectThing)
+    }
+    return resultArray
+}
+
+
+
+function technologiesToObject(tech, groupNumber) {
+    const techArray = mapTech(techData, tech)
+    const techNames = reduceArray(techArray).filter(item => item)
+    return techToObject(techNames, groupNumber)
+}
 function mapTech(data, tech) {
     return data.map(data => data[tech])
 }
-
-// create a new array with only the names of the technologies, with duplicates removed
-const techHTMLNames = reduceArray(techHTML).filter(item => item)
-const techCSSNames = reduceArray(techCSS).filter(item => item)
-const techJSNames = reduceArray(techJS).filter(item => item)
-
 
 function reduceArray(data) {
     return [...new Set(data.flat())]
 }
 
 function techToObject(array, groupNumber) {
-    array.map(tech => {
+   return array.map(tech => {
         return {
             name: tech,
             group: groupNumber
@@ -86,21 +96,6 @@ function techToObject(array, groupNumber) {
     })
 }
 
-const techHTMLNamesObject = techToObject(techHTMLNames, 1)
-
-
-
-// html is group 1, css is group 2, js is group 3
-const cleanTechArray = [...techHTMLNamesObject, ...techCSSNamesObject, ...techJSNamesObject]
-
-console.log(cleanTechArray)
-
-
-
-
-
-
-// haal de tech uit de projectdata en stop in array om als data te geburiken
 
 // SET SCALES
 // set an ordinal scale and set/divide (in)to 3 groups
