@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 // source: https://d3-graph-gallery.com/graph/circularpacking_group.html
 const width = 900 // set the width of the svg
-const height = 900  // set the height of the svg
+const height = 900 // set the height of the svg
 const htmlG = width / 4 // placement of the first group of circles
 const cssG = (width / 4) * 2 // placement of the second group of circles
 const jsG = (width / 4) * 3 // placement of the third group of circles
@@ -52,6 +55,53 @@ const data = [{
 
 ]
 
+// get function projectData from file projects.js
+import projectData from '/assets/js/storyblok/JS/projects.js'
+const techList = projectData.map(project => project.technologies)
+
+const techHTML = mapTech(techList, 'html')
+const techCSS = mapTech(techList, 'css')
+const techJS = mapTech(techList, 'js')
+
+function mapTech(data, tech) {
+    return data.map(data => data[tech])
+}
+
+// create a new array with only the names of the technologies, with duplicates removed
+const techHTMLNames = reduceArray(techHTML).filter(item => item)
+const techCSSNames = reduceArray(techCSS).filter(item => item)
+const techJSNames = reduceArray(techJS).filter(item => item)
+
+
+function reduceArray(data) {
+    return [...new Set(data.flat())]
+}
+
+function techToObject(array, groupNumber) {
+    array.map(tech => {
+        return {
+            name: tech,
+            group: groupNumber
+        }
+    })
+}
+
+const techHTMLNamesObject = techToObject(techHTMLNames, 1)
+
+
+
+// html is group 1, css is group 2, js is group 3
+const cleanTechArray = [...techHTMLNamesObject, ...techCSSNamesObject, ...techJSNamesObject]
+
+console.log(cleanTechArray)
+
+
+
+
+
+
+// haal de tech uit de projectdata en stop in array om als data te geburiken
+
 // SET SCALES
 // set an ordinal scale and set/divide (in)to 3 groups
 const x = d3.scaleOrdinal()
@@ -61,7 +111,7 @@ const x = d3.scaleOrdinal()
 // set the color scale
 const color = d3.scaleOrdinal()
     .domain([1, 2, 3]) // applyto the 3 groups
-    .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"]) 
+    .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"])
 
 // CREATE CONTAINERS AND ELEMENTS
 // create the svg container
@@ -91,7 +141,7 @@ const circleContainer = circlesAll
         .on("end", endDrag)) // on end of drag gesture
 
 // add the circle to the circleContainer(s)
-const circleContainer__circle = circleContainer 
+const circleContainer__circle = circleContainer
     .append("circle") // append a circle for each data element
     .attr("class", "circle-container__circle")
     .attr("r", 50) // set the radius
@@ -134,7 +184,7 @@ simulation
     .on("tick", ticked);
 
 // this is called each time the simulation ticks (which is at each iteration)
-function ticked() { 
+function ticked() {
     circleContainer__circle // select the elements
         .attr("cx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the circleContainer in the svg)
         .attr("cy", (d) => d.y) // set the y position to the current y position
