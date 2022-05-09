@@ -8,26 +8,16 @@ const htmlG = width / 4 // placement of the first group of circles
 const cssG = (width / 4) * 1.5 // placement of the second group of circles
 const jsG = (width / 4) * 3 // placement of the third group of circles
 
-import {
-    cleanData
-} from './techData.js'
-
-const HTMLData = cleanData.filter(d => {
-    return d.group === 1
-})
+import { cleanData } from './techData.js'
+const HTMLData = cleanData.filter(d => d.group === 1)
 const HTMLCSSData = cleanData.filter(d => d.group === 2)
 const HTMLCSSJSData = cleanData.filter(d => d.group === 3)
 const allData = []
 
-const scrollPosition = [0, 0] // set the scroll position to 0,0
 
-// // if user scrolls, update the simulation
-// window.addEventListener("scroll", () => {
-//     scrollPosition[0] = window.scrollX
-//     scrollPosition[1] = window.scrollY
-//     simulation.alpha(0.5).restart()
-// })
-
+// CREATE CONTAINERS AND ELEMENTS
+// create the svg container
+const svg = d3.select("#bubble_graph")
 
 // SET SCALES
 // set an ordinal scale and set/divide (in)to 3 groups
@@ -41,30 +31,29 @@ const color = d3.scaleOrdinal()
     .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"])
 
 
-// CREATE CONTAINERS AND ELEMENTS
-// create the svg container
-const svg = d3.select("#bubble_graph")
-    .append("svg")
-    .attr("class", "bubble_graph_svg") // give it a class
-    .attr("width", width)
-    .attr("height", height)
+const simulation = d3.forceSimulation() // create the force simulation
 
-let simulation = d3.forceSimulation() // create the force simulation
+function updateData(data) {
+    svg.selectAll(`.group-${data[0].group}`).remove() //  remove all existing groups from the svg
+    allData.push(...data) // add the new data to the allData array
+    return allData
+}
 
 
 function renderGraph(data) {
-    svg.selectAll(`.group-${data[0].group}`).remove() //  remove all existing groups from the svg
+    updateData(data)
 
-    allData.push(...data) // add the new data to the allData array
-
-
+    // CREATE ELEMENTS
     // append the container group for all circles to the svg
     const circlesAll = svg.append("g") // group for the circleContainers
+        .selectAll("circle") // select all circles
         .attr("class", "circles-all") // class for the group/container
         .attr("class", `group-${data[0].group}`) // class for the group/container: type included
-        .selectAll("circle") // select all circles
         .data(data) // bind the data to the circles
-        .enter() // enter the data as elements
+        .enter() // enter the data as elements 
+    
+
+
 
     // add a circle container element for each data element and apply drag behavior
     const circleContainer = circlesAll
@@ -77,11 +66,10 @@ function renderGraph(data) {
             .on("start", startDrag) // on start of drag gesture
             .on("drag", currentDrag) // while dragging
             .on("end", endDrag)) // on end of drag gesture
-
-
+        
 
     // add the circle to the circleContainer(s)
-    const circleContainer__circle = circleContainer
+    circleContainer
         .append("circle") // append a circle for each data element
         .attr("class", "circle-container__circle")
         .attr("r", 55) // set the radius
@@ -91,12 +79,10 @@ function renderGraph(data) {
         .style("fill-opacity", 0.8) // set the opacity
 
     // add the text to the circleContainer(s)
-    const circleContainer__text = circleContainer
+    circleContainer
         .append("text") // append text for each data element
         .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
         .text((d) => d.name) // set the text to the name of the data element
-        // .attr('dx', (d) => x(d.group)) // set the x position of the text to the x position of the circleContainer
-        // .attr('dy', (d) => height / 2) // set the y position of the text to the center of the circleContainer
         .attr('font-size', (d) => '24px')
         .attr('fill', (d) => '#595959b3')
         .attr("fill-opacity", 1) // set the opacity
@@ -105,23 +91,10 @@ function renderGraph(data) {
         .attr('font-weight', (d) => 'bold')
         .style('user-select', 'none') // don't let the text be selectable
 
-
-
-
-    // apply the simulation to the circles, this will make the circles move
-    // the simulation will run for a number of iterations
-    // the simulation will stop when the simulation.alpha() is less than 0.01
-    // set timeout 
-    // setTimeout(() => {
-    //     simulation.nodes(data)
-    //         .on("tick", ticked) // apply the force to the circles
-    //         // .alpha(1) // set the alpha to 1
-    //         // .restart() // restart the simulation
-    // }, 2100)
-
     addSimulation(svg)
-}
 
+    return circleContainer
+}
 
 function addSimulation(svg) {
     const circleContainer__all = svg.selectAll(".circle-container")
@@ -133,22 +106,17 @@ function addSimulation(svg) {
     // CREATE FORCE LAYOUT
     // reset/remove any existing force layout
     simulation.alphaTarget(.03) // if there is an active simulation, stop it (alpha < 1)
+    simulation.alpha(0.5).restart() // set the alpha to 0.5 and restart the simulation
     circleContainer__all.fx = null // remove the fixed x position
     circleContainer__all.fy = null // set the node to fixed so that it doesn't move
 
     // create simulation that will be used to move the circles
     simulation
-        .force("x", d3.forceX().strength(0.5).x((d) => {
-            console.log('group: ')
-            console.log(d.group)
-
-            return x(d.group)
-        })) // set force to move circles horizontally
+        .force("x", d3.forceX().strength(0.2).x((d) => x(d.group))) // set force to move circles horizontally
         .force("y", d3.forceY().strength(0.1).y(height / 2)) // set force to move circles vertically
         .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // set force to center the circles
         .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
-        .force("collide", d3.forceCollide().strength(.1).radius(69).iterations(1)) // set force to prevent circles from overlapping
-
+        .force("collide", d3.forceCollide().strength(.4).radius(69).iterations(1)) // set force to prevent circles from overlapping
 
     simulation
         .nodes(allDataWithoutDuplicates)
@@ -156,7 +124,6 @@ function addSimulation(svg) {
 
 
     function ticked() {
-        // console.log('tick')
         circleContainer__circle_all // select the circles
             .attr("cx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the circleContainer in the svg)
             .attr("cy", (d) => d.y) // set the y position to the current y position
@@ -164,12 +131,7 @@ function addSimulation(svg) {
             .attr("dx", (d) => d.x) // dx is the x position of the text
             .attr("dy", (d) => d.y) // dy is the y position of the text
     }
-
-
 }
-
-
-
 
 // CREATE DRAG FUNCTIONALITY
 function startDrag(d) { // when a circle is dragged
@@ -189,27 +151,25 @@ function endDrag(d) { // if the circle is no longer being dragged
     d.fy = null // set the node to fixed so that it doesn't move
 }
 
+
 renderGraph(HTMLData)
 
 
+// TO REFACTOR INTO A DECENT FUNCTION:
 // if user clicks on button with id addJSData, add JSdata to the graph
-document.getElementById('addCSSData').addEventListener('click', () => {
-    change('css')
-})
-
+document.getElementById('addCSSData').addEventListener('click', () => { change('css')})
 
 // if user clicks on button with id addJSData, add JSdata to the graph
-document.getElementById('addJSData').addEventListener('click', () => {
-    change('js')
-})
+document.getElementById('addJSData').addEventListener('click', () => { change('js')})
 
-function change(value) {
-    console.log(value)
-    if (value == 'html') {
+function change(type) {
+    if (type == 'html') {
         renderGraph(HTMLData)
-    } else if (value == 'css') {
+    } else if (type == 'css') {
         renderGraph(HTMLCSSData)
-    } else if (value == 'js') {
+    } else if (type == 'js') {
         renderGraph(HTMLCSSJSData)
+    } else {
+        console.log('error changing graph')
     }
 }
