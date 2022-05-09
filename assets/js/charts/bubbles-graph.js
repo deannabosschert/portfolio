@@ -7,7 +7,7 @@ const height = 900 // set the height of the svg
 const htmlG = width / 4 // placement of the first group of circles
 const cssG = (width / 4) * 1.5 // placement of the second group of circles
 const jsG = (width / 4) * 3 // placement of the third group of circles
-const margin = 200 // margin between the groups of circles
+// const margin = 200 // margin between the groups of circles
 // const htmlG = margin
 // const cssG = (width / 2)
 // const jsG = (width - margin)
@@ -95,9 +95,18 @@ const simulation = d3.forceSimulation() // create the force simulation
 // apply the simulation to the circles, this will make the circles move
 // the simulation will run for a number of iterations
 // the simulation will stop when the simulation.alpha() is less than 0.01
-simulation
-    .nodes(data)
-    .on("tick", ticked); // this is called each time the simulation ticks (which is at each iteration)
+// set timeout 
+setTimeout(() => {
+    simulation.nodes(data)
+        .on("tick", ticked) // apply the force to the circles
+        // .alpha(1) // set the alpha to 1
+        // .restart() // restart the simulation
+}, 2100)
+
+
+// simulation
+//     .nodes(data)
+//     .on("tick", ticked); // this is called each time the simulation ticks (which is at each iteration)
 
 
 function ticked() {
