@@ -17,6 +17,7 @@ const HTMLData = cleanData.filter(d => {
 })
 const HTMLCSSData = cleanData.filter(d => d.group === 2)
 const HTMLCSSJSData = cleanData.filter(d => d.group === 3)
+const allData = []
 
 const scrollPosition = [0, 0] // set the scroll position to 0,0
 
@@ -36,7 +37,7 @@ const x = d3.scaleOrdinal()
 
 // set the color scale
 const color = d3.scaleOrdinal()
-    .domain([1, 2, 3]) // applyto the 3 groups
+    .domain([1, 2, 3]) // apply to the 3 groups
     .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"])
 
 
@@ -48,9 +49,15 @@ const svg = d3.select("#bubble_graph")
     .attr("width", width)
     .attr("height", height)
 
+let simulation = d3.forceSimulation() // create the force simulation
+
+
 function renderGraph(data) {
     svg.selectAll(`.group-${data[0].group}`).remove() //  remove all existing groups from the svg
-    
+
+    allData.push(...data) // add the new data to the allData array
+
+
     // append the container group for all circles to the svg
     const circlesAll = svg.append("g") // group for the circleContainers
         .attr("class", "circles-all") // class for the group/container
@@ -63,13 +70,15 @@ function renderGraph(data) {
     const circleContainer = circlesAll
         .append("g") // append a container for each data element
         .attr("class", "circle-container") // class for the group/container
-        // .attr("cx", width / 2) // set the x position
-        // .attr("cy", height / 2) // set the y position
+        .attr("cx", width / 2) // set the x position
+        .attr("cy", height / 2) // set the y position
         .style('cursor', 'pointer') // change pointer to hand to suggest that the circle can be interacted with (dragged)
         .call(d3.drag() // call specific function when circle is dragged
             .on("start", startDrag) // on start of drag gesture
             .on("drag", currentDrag) // while dragging
             .on("end", endDrag)) // on end of drag gesture
+
+
 
     // add the circle to the circleContainer(s)
     const circleContainer__circle = circleContainer
@@ -97,14 +106,6 @@ function renderGraph(data) {
         .style('user-select', 'none') // don't let the text be selectable
 
 
-    // CREATE FORCE LAYOUT
-    // create simulation that will be used to move the circles
-    const simulation = d3.forceSimulation() // create the force simulation
-        .force("x", d3.forceX().strength(0.5).x((d) => x(d.group))) // set force to move circles horizontally
-        .force("y", d3.forceY().strength(0.1).y(height / 2)) // set force to move circles vertically
-        .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // set force to center the circles
-        .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
-        .force("collide", d3.forceCollide().strength(.1).radius(69).iterations(1)) // set force to prevent circles from overlapping
 
 
     // apply the simulation to the circles, this will make the circles move
@@ -118,41 +119,75 @@ function renderGraph(data) {
     //         // .restart() // restart the simulation
     // }, 2100)
 
+    addSimulation(svg)
+}
+
+
+function addSimulation(svg) {
+    const circleContainer__all = svg.selectAll(".circle-container")
+    const circleContainer__circle_all = svg.selectAll(".circle-container__circle")
+    const circleContainer__text_all = svg.selectAll(".circle-container__text")
+    const allDataWithoutDuplicates = [...new Set(allData)]
+
+
+    // CREATE FORCE LAYOUT
+    // reset/remove any existing force layout
+    simulation.alphaTarget(.03) // if there is an active simulation, stop it (alpha < 1)
+    circleContainer__all.fx = null // remove the fixed x position
+    circleContainer__all.fy = null // set the node to fixed so that it doesn't move
+
+    // create simulation that will be used to move the circles
+    simulation
+        .force("x", d3.forceX().strength(0.5).x((d) => {
+            console.log('group: ')
+            console.log(d.group)
+
+            return x(d.group)
+        })) // set force to move circles horizontally
+        .force("y", d3.forceY().strength(0.1).y(height / 2)) // set force to move circles vertically
+        .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // set force to center the circles
+        .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
+        .force("collide", d3.forceCollide().strength(.1).radius(69).iterations(1)) // set force to prevent circles from overlapping
+
 
     simulation
-        .nodes(data)
-        .on("tick", ticked); // this is called each time the simulation ticks (which is at each iteration)
+        .nodes(allDataWithoutDuplicates)
+        .on("tick", ticked) // this is called each time the simulation ticks (which is at each iteration)
 
 
     function ticked() {
-        circleContainer__circle // select the elements
+        // console.log('tick')
+        circleContainer__circle_all // select the circles
             .attr("cx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the circleContainer in the svg)
             .attr("cy", (d) => d.y) // set the y position to the current y position
-        circleContainer__text // select text in each circle
+        circleContainer__text_all // select text in each circle
             .attr("dx", (d) => d.x) // dx is the x position of the text
             .attr("dy", (d) => d.y) // dy is the y position of the text
     }
 
 
-    // CREATE DRAG FUNCTIONALITY
-    function startDrag(d) { // when a circle is dragged
-        if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
-        d.fx = d.x // assign the current x position of the circle to be the fixed x position that we're dragging
-        d.fy = d.y // assign the current y position of the circle to be the fixed y position that we're dragging
-    }
-
-    function currentDrag(d) { // when a circle is dragged
-        d.fx = d3.event.x // set the fixed x position to be wherever the user is dragging the circle
-        d.fy = d3.event.y // set the fixed y position to be wherever the user is dragging the circle
-    }
-
-    function endDrag(d) { // if the circle is no longer being dragged
-        if (!d3.event.active) simulation.alphaTarget(.03) // if there is an active simulation, stop it
-        d.fx = null // remove the fixed x position
-        d.fy = null // set the node to fixed so that it doesn't move
-    }
 }
 
+
+
+
+// CREATE DRAG FUNCTIONALITY
+function startDrag(d) { // when a circle is dragged
+    if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
+    d.fx = d.x // assign the current x position of the circle to be the fixed x position that we're dragging
+    d.fy = d.y // assign the current y position of the circle to be the fixed y position that we're dragging
+}
+
+function currentDrag(d) { // when a circle is dragged
+    d.fx = d3.event.x // set the fixed x position to be wherever the user is dragging the circle
+    d.fy = d3.event.y // set the fixed y position to be wherever the user is dragging the circle
+}
+
+function endDrag(d) { // if the circle is no longer being dragged
+    if (!d3.event.active) simulation.alphaTarget(.03) // if there is an active simulation, stop it
+    d.fx = null // remove the fixed x position
+    d.fy = null // set the node to fixed so that it doesn't move
+}
 
 renderGraph(HTMLData)
 
