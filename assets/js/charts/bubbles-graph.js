@@ -5,10 +5,11 @@
 import {
     cleanData
 } from './techData.js'
+
 // create the svg container
 let svg = d3.select("#bubble_graph")
-let svgWidth = svg.node().parentNode.clientWidth // set the width of the svg
-let svgHeight = 600 // set the width of the svg
+let svgWidth = svg.node().parentNode.clientWidth // relative to the parent container
+let svgHeight = 600
 const margins = {
     top: 25,
     right: 50,
@@ -19,37 +20,38 @@ let width = svgWidth - margins.left - margins.right
 let height = svgHeight - margins.top - margins.bottom
 svg.attr("width", width)
 svg.attr("height", height)
-let htmlG = ((width / 5) * 1.5) // placement of the first group of circles
-let cssG = ((width / 5) * 3) // placement of the second group of circles
-let jsG = ((width / 5) * 4) // placement of the third group of circles
+
+const xGroups = {
+    'html': ((width / 5) * 1.5), // x position
+    'css': ((width / 5) * 3),
+    'js': ((width / 5) * 4)
+}
+
 const dataGroups = {
     'html': cleanData.filter(d => d.group === 1),
     'css': cleanData.filter(d => d.group === 2),
     'js': cleanData.filter(d => d.group === 3)
 }
-
-const htmlData = cleanData.filter(d => d.group === 1)
-const cssData = cleanData.filter(d => d.group === 2)
-const jsData = cleanData.filter(d => d.group === 3)
 let allData = []
+
 // CREATE CONTAINERS AND ELEMENTS
-// SET SCALES
 // set an ordinal scale and set/divide (in)to 3 groups
 let x = d3.scaleOrdinal()
     .domain([1, 2, 3])
-    .range([htmlG, cssG, jsG]) // place the groups in the svg
+    .range([xGroups.html, xGroups.css, xGroups.js]) // place the groups in the svg
+
 // set the color scale
 const color = d3.scaleOrdinal()
     .domain([1, 2, 3]) // apply to the 3 groups
     .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"])
+
 let simulation = d3.forceSimulation() // create the force simulation
+
 function updateData(data) {
     svg.selectAll(`.group-${data[0].group}`).remove() //  remove all existing groups from the svg
     allData.push(...data) // add the new data to the allData array
-    return data
+    return data // we only return the new data to update the graph with
 }
-
-
 
 function renderGraph(data) {
     let t = d3.transition()
@@ -107,22 +109,6 @@ function renderGraph(data) {
     return circleContainer
 }
 
-function removeGraph() {
-    svg.selectAll('.circle-container').remove()
-    // let circlesAll = svg.selectAll(".circle-all")
-    // TODO : alles committen en nieuwe dingen in de svg proppeb
-    // let circles = svg.selectAll(".circle-container")
-    // console.log(circles)
-    // let t = d3.transition()
-    //     .duration(200);
-    //     circles.exit()
-    //     .attr("class", "exit")
-    //     .transition(t)
-    //     .attr("y", 60)
-    //     .style("fill-opacity", 1e-6)
-    //     .remove();
-}
-
 function removeFromGraph() {
     let t = d3.transition()
         .duration(200)
@@ -139,21 +125,18 @@ function removeFromGraph() {
     allData = []
 }
 
-function clearSVG() {
-    svg.selectAll('.circle-container').remove()
-}
-
 function addSimulation(svg) {
     const circleContainer__all = svg.selectAll(".circle-container")
     const circleContainer__circle_all = svg.selectAll(".circle-container__circle")
     const circleContainer__text_all = svg.selectAll(".circle-container__text")
-    const allDataWithoutDuplicates = [...new Set(allData)]
+
     // CREATE FORCE LAYOUT
     // reset/remove any existing force layout
     simulation.alphaTarget(.03) // if there is an active simulation, stop it (alpha < 1)
     simulation.alpha(0.5).restart() // set the alpha to 0.5 and restart the simulation
     circleContainer__all.fx = null // remove the fixed x position
     circleContainer__all.fy = null // set the node to fixed so that it doesn't move
+
     // create simulation that will be used to move the circles
     simulation
         .force("x", d3.forceX().strength(0.2).x((d) => x(d.group))) // set force to move circles horizontally
@@ -161,9 +144,11 @@ function addSimulation(svg) {
         .force("center", d3.forceCenter().x(svgWidth / 2).y(height / 2)) // set force to center the circles
         .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
         .force("collide", d3.forceCollide().strength(.9).radius(50).iterations(1)) // set force to prevent circles from overlapping
+
     simulation
-        .nodes(allDataWithoutDuplicates)
+        .nodes([...new Set(allData)])
         .on("tick", ticked) // this is called each time the simulation ticks (which is at each iteration)
+
     function ticked() {
         circleContainer__circle_all // select the circles
             .attr("cx", (d) => d.x) // set the x position to the current position of the node in the force layout simulation (which is the x position of the circleContainer in the svg)
@@ -173,6 +158,7 @@ function addSimulation(svg) {
             .attr("dy", (d) => d.y) // dy is the y position of the text
     }
 }
+
 // CREATE DRAG FUNCTIONALITY
 function startDrag(d) { // when a circle is dragged
     if (!d3.event.active) simulation.alphaTarget(.03).restart() // if the simulation isn't running, start it
@@ -191,11 +177,10 @@ function endDrag(d) { // if the circle is no longer being dragged
     d.fy = null // set the node to fixed so that it doesn't move
 }
 
-function showSection() {
+// CREATE SCROLL FUNCTIONALITY
+function showSection() { // when a section is visible to the user, show the graph and text
     let chapters = document.querySelectorAll(".chapter")
 
-
-    // when chapter section is >50% visible upon, add 'active' class to it. If it is <50% visible upon, remove 'active' class
     chapters.forEach((chapter) => {
         let chapterSectionRect = chapter.getBoundingClientRect()
         let chapterRect = chapter.getBoundingClientRect()
@@ -213,14 +198,7 @@ function showSection() {
         }
 
         if (chapterSectionRect.top < chapterRect.height * 1 && chapterSectionRect.bottom > chapterRect.height * .8) {
-            // console.log('chapterSectionRect: ')
-            // console.log(chapterSectionRect)
             let chapterName = chapter.id.split("__")[1]
-            // console.log(chapterName)
-            // console.log('als ' + chapterSectionRect.top + ' < ' + (chapterRect.height * 1) + ' en ook ' + chapterSectionRect.bottom + ' > ' + (chapterRect.height * 0.8))
-            // // split string of the id of the chapter from __ to get the name of the chapter
-            // console.log(' ')
-
             addToChart(chapterName)
         }
 
@@ -231,12 +209,7 @@ window.addEventListener("scroll", showSection)
 
 function addToChart(type) {
     if (type == 'html' || type == 'css' || type == 'js') {
-        if (type == 'html' && !tellGroup(allData).includes(type)) {
-            updateGraph(type)
-        } else if (type == 'css' && !tellGroup(allData).includes(type)) {
-            updateGraph(type)
-
-        } else if (type == 'js' && !tellGroup(allData).includes(type)) {
+        if (!tellGroup(allData).includes(type)) {
             updateGraph(type)
         } else {
             // console.log('graph is up-to-date')
