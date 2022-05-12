@@ -11,7 +11,7 @@ import {
 let svg = d3.select("#bubble_graph")
 let svgWidth = svg.node().parentNode.clientWidth // set the width of the svg
 let svgHeight = 600 // set the width of the svg
-let margins = {
+const margins = {
     top: 25,
     right: 50,
     bottom: 25,
@@ -19,7 +19,6 @@ let margins = {
 }
 let width = svgWidth - margins.left - margins.right
 let height = svgHeight - margins.top - margins.bottom
-// let height = svg.node().parentNode.clientHeight - margins.top - margins.bottom
 
 svg.attr("width", width)
 svg.attr("height", height)
@@ -57,10 +56,6 @@ function updateData(data) {
     return data
 }
 
-function clearSVG() {
-    // clear the svg
-    svg.selectAll('.circle-container').remove()
-}
 
 
 function updateGraph() {
@@ -194,6 +189,21 @@ function removeGraph() {
     //     .remove();
 }
 
+function removeFromGraph() {
+    // EXIT old elements not present in new data.
+    text.exit()
+        .attr("class", "exit")
+        .transition(t)
+        .attr("y", 60)
+        .style("fill-opacity", 1e-6)
+        .remove();
+}
+
+
+function clearSVG() {
+    svg.selectAll('.circle-container').remove()
+}
+
 function addSimulation(svg) {
     const circleContainer__all = svg.selectAll(".circle-container")
     const circleContainer__circle_all = svg.selectAll(".circle-container__circle")
@@ -258,9 +268,7 @@ function showSection() {
         var elementTop = chapters[i].getBoundingClientRect().top // get the top position of the element
         var elementBottom = chapters[i].getBoundingClientRect().bottom // get the top position of the element
         var elementVisible = 10 // the amount of pixels the element must be visible
-        // console.log('windowHeight: ' + windowHeight)
-        // console.log('elementTop: ' + elementTop)
-        // console.log(windowHeight - elementVisible)
+        
         if (elementTop < windowHeight - elementVisible) {
             chapters[i].classList.add("active")
 
@@ -303,16 +311,6 @@ function showSection() {
 
 window.addEventListener("scroll", showSection)
 
-
-function removeFromGraph() {
-    // EXIT old elements not present in new data.
-    text.exit()
-        .attr("class", "exit")
-        .transition(t)
-        .attr("y", 60)
-        .style("fill-opacity", 1e-6)
-        .remove();
-}
 
 async function addToChart(type) {
     if (type == 'html' && allData.length < HTMLData.length) {
