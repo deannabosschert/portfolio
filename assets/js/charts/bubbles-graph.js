@@ -22,9 +22,15 @@ svg.attr("height", height)
 let htmlG = ((width / 5) * 1.5) // placement of the first group of circles
 let cssG = ((width / 5) * 3) // placement of the second group of circles
 let jsG = ((width / 5) * 4) // placement of the third group of circles
-const HTMLData = cleanData.filter(d => d.group === 1)
-const CSSData = cleanData.filter(d => d.group === 2)
-const JSData = cleanData.filter(d => d.group === 3)
+const dataGroups = {
+    'html': cleanData.filter(d => d.group === 1),
+    'css': cleanData.filter(d => d.group === 2),
+    'js': cleanData.filter(d => d.group === 3)
+}
+
+const htmlData = cleanData.filter(d => d.group === 1)
+const cssData = cleanData.filter(d => d.group === 2)
+const jsData = cleanData.filter(d => d.group === 3)
 let allData = []
 // CREATE CONTAINERS AND ELEMENTS
 // SET SCALES
@@ -43,42 +49,11 @@ function updateData(data) {
     return data
 }
 
-function updateGraph() {
-    let t = d3.transition()
-        .duration(750);
-    // JOIN new data with old elements.
-    let circlesAll = svg.selectAll(".circle-all")
-    let circles = circlesAll.selectAll("circles")
-        .data(allData, function (d) {
-            return d;
-        });
-    // EXIT old elements not present in new data.
-    circles.exit()
-        .attr("class", "exit")
-        .transition(t)
-        .attr("y", 60)
-        .style("fill-opacity", 1e-6)
-        .remove();
-    // UPDATE old elements present in new data.
-    //   circles.attr("class", "update")
-    //       .attr("y", 0)
-    //       .style("fill-opacity", 1)
-    //     .transition(t)
-    //       .attr("x", function(d, i) { return i * 32; });
-    // ENTER new elements present in new data.
-    //   circles.enter().append("text")
-    //       .attr("class", "enter")
-    //       .attr("dy", ".35em")
-    //       .attr("y", -60)
-    //       .attr("x", function(d, i) { return i * 32; })
-    //       .style("fill-opacity", 1e-6)
-    //       .text(function(d) { return d; })
-    //     .transition(t)
-    //       .attr("y", 0)
-    //       .style("fill-opacity", 1);
-}
+
 
 function renderGraph(data) {
+    let t = d3.transition()
+        .duration(200)
     // CREATE ELEMENTS
     // append the container group for all circles to the svg
     let circlesAll = svg.append("g") // group for the circleContainers
@@ -88,8 +63,7 @@ function renderGraph(data) {
         .selectAll("circle") // select all circles
         .data(data) // bind the data to the circles
         .enter() // enter the data as elements 
-    let t = d3.transition()
-        .duration(200);
+
     circlesAll.exit()
         .attr("class", "exit")
         .transition(t)
@@ -150,13 +124,19 @@ function removeGraph() {
 }
 
 function removeFromGraph() {
-    // EXIT old elements not present in new data.
-    text.exit()
+    let t = d3.transition()
+        .duration(200)
+
+    svg.selectAll('.circle-container')
+        .remove()
+        .exit()
         .attr("class", "exit")
         .transition(t)
         .attr("y", 60)
         .style("fill-opacity", 1e-6)
         .remove();
+
+    allData = []
 }
 
 function clearSVG() {
@@ -213,54 +193,65 @@ function endDrag(d) { // if the circle is no longer being dragged
 
 function showSection() {
     let chapters = document.querySelectorAll(".chapter")
- 
+
 
     // when chapter section is >50% visible upon, add 'active' class to it. If it is <50% visible upon, remove 'active' class
-    chapters.forEach((chapter) => {        
+    chapters.forEach((chapter) => {
         let chapterSectionRect = chapter.getBoundingClientRect()
         let chapterRect = chapter.getBoundingClientRect()
-        console.log('chapter')
-        console.log(chapter)
-        console.log('chapterSectionRect.bottom')
-        console.log(chapterSectionRect.bottom)
-        console.log('')
-        console.log('chapterRect.height 0.25')
-        console.log(chapterRect.height * 0.25)
-        console.log('')
-        console.log('')
 
         if (chapterSectionRect.top < chapterRect.height * .9) {
             chapter.classList.add("active")
+        }
 
-        } else {
-            chapter.classList.remove("active")
-        } 
-
-        if (chapterSectionRect.bottom < chapterRect.height * .25) { // if the chapter is <50% visible upon
+        if (chapterSectionRect.top > chapterRect.height * .9) {
             chapter.classList.remove("active")
         }
+
+        if (chapterSectionRect.bottom < chapterRect.height * .4) {
+            chapter.classList.remove("active")
+        }
+
+        if (chapterSectionRect.top < chapterRect.height * 1 && chapterSectionRect.bottom > chapterRect.height * .8) {
+            // console.log('chapterSectionRect: ')
+            // console.log(chapterSectionRect)
+            let chapterName = chapter.id.split("__")[1]
+            // console.log(chapterName)
+            // console.log('als ' + chapterSectionRect.top + ' < ' + (chapterRect.height * 1) + ' en ook ' + chapterSectionRect.bottom + ' > ' + (chapterRect.height * 0.8))
+            // // split string of the id of the chapter from __ to get the name of the chapter
+            // console.log(' ')
+
+            addToChart(chapterName)
+        }
+
     })
-
-
 }
 
-
-
 window.addEventListener("scroll", showSection)
-async function addToChart(type) {
-    if (type == 'html' && allData.length < HTMLData.length) {
-        console.log('show html')
-        let htmldata = await updateData(HTMLData)
-        renderGraph(htmldata)
-    } else if (type == 'css' && allData.length < HTMLData.length + CSSData.length) {
-        console.log('show css')
-        let cssdata = await updateData(CSSData)
-        renderGraph(cssdata)
-    } else if (type == 'js' && allData.length < HTMLData.length + CSSData.length + JSData.length) {
-        console.log('show js')
-        let jsdata = await updateData(JSData)
-        renderGraph(jsdata)
-    } else {
-        // console.log('not changing graph')
+
+function addToChart(type) {
+    if (type == 'html' || type == 'css' || type == 'js') {
+        if (type == 'html' && !tellGroup(allData).includes(type)) {
+            updateGraph(type)
+        } else if (type == 'css' && !tellGroup(allData).includes(type)) {
+            updateGraph(type)
+
+        } else if (type == 'js' && !tellGroup(allData).includes(type)) {
+            updateGraph(type)
+        } else {
+            // console.log('graph is up-to-date')
+        }
+    } else if (type == 'skills-tools' || type == 'design' || type == 'collaboration' || type == 'documentation') {
+        console.log('remove graph')
+        removeFromGraph()
     }
+}
+
+async function updateGraph(tech) {
+    let data = await updateData(dataGroups[tech])
+    renderGraph(data)
+}
+
+function tellGroup(data) {
+    return [...new Set(data.map(d => d.tech))]
 }
