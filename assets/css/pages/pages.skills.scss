@@ -1,0 +1,77 @@
+body#skills {
+    background-color: #000;
+    color: white;
+
+    h1,
+    p,
+    a,
+    ul li {
+        color: #aaa;
+    }
+
+    h2 {
+        color: white;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    main>.left-text>header {
+        margin-bottom: $desktop-xxl
+    }
+
+    main {
+        .left-text {
+            width: 30%;
+            border: 1px solid red;
+            // scroll-snap-type: x proximity;
+            // scroll-snap-type: x mandatory;
+        }
+
+        .chapter {
+            margin-bottom: $desktop-xl;
+            opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .chapter.active {
+            opacity: 1;
+        }
+
+        #chapter__css,
+        #chapter__js {
+            height: 250px;
+        }
+
+        .right-graphs {
+            border: 1px solid red;
+            width: 60%;
+            position: relative;
+
+            svg {
+                border: 1px solid red;
+                max-width: 100%;
+                max-height: 100%;
+                overflow: visible;
+                position: fixed;
+
+                .circles-all {
+                    border: 1px solid yellow;
+                }
+
+                .group-1,
+                .group-2,
+                .group-3 {
+                    width: 100%;
+                    min-width: 100%;
+                    max-width: 100%;
+                    border: 1px solid blue;
+                }
+            }
+        }
+    }
+}
