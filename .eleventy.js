@@ -3,6 +3,7 @@ const fg = require('fast-glob')
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('assets/')
+  eleventyConfig.addPassthroughCopy('assets/img/logos/', 'assets/img/logos/')
   eleventyConfig.addPassthroughCopy('./src/favicon.ico')
   // eleventyConfig.addPassthroughCopy({'./assets/_data/storyblok': 'assets/js/storyblok'})
 
