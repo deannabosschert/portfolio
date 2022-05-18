@@ -1,0 +1,121 @@
+{
+    "collaboration": {
+        "GitHub": {
+            "logo": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "url": "url"
+        },
+        "GitLab": {
+            "logo": "https://gitlab.com/favicon.ico",
+            "url": "url"
+        },
+        "Bitbucket": {
+            "logo": "https://bitbucket.org/site/master/favicon.ico",
+            "url": "url"
+        },
+        "Trello": {
+            "logo": "https://jira.atlassian.com/images/icons/jira-logo-small.png",
+            "url": "url"
+        },
+        "Slack": {
+            "logo": "https://slack-imgs.com/?c=1&url=https%3A%2F%2Fslack-imgs.com%2Favatars%2F2016-07-07%2F5671809824_a9b9c9c8b8c8b9c9c9c9_48.png",
+            "url": "url"
+        },
+        "Teams": {
+            "logo": "https://teams.microsoft.com/l/meetup-logo/000-000/images/Teams_logo_RGB_transparent_background.png",
+            "url": "url"
+        },
+        "Project Boards": {
+            "logo": "https://project-board.com/images/logo.png",
+            "url": "url"
+        },
+        "Issues": {
+            "logo": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "url": "url"
+        },
+        "Pull Requests": {
+            "logo": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "url": "url"
+        }
+    },
+    "design": {
+        "Figma": {
+            "logo": "https://www.figma.com/favicon.ico",
+            "url": "url"
+        },
+        "Miro": {
+            "logo": "https://www.miro.com/favicon.ico",
+            "url": "url"
+        },
+        "Procreate": {
+            "logo": "https://www.procreate.com/favicon.ico",
+            "url": "url"
+        },
+        "Weebly": {
+            "logo": "https://www.weebly.com/favicon.ico",
+            "url": "url"
+        },
+        "Zeplin": {
+            "logo": "https://zeplin.io/favicon.ico",
+            "url": "url"
+        },
+        "Zeroheight": {
+            "logo": "https://www.zeroheight.com/favicon.ico",
+            "url": "url"
+        },
+        "Marvel": {
+            "logo": "https://www.marvel.com/favicon.ico",
+            "url": "url"
+        },
+        "Adobe Illustrator": {
+            "logo": "https://www.adobe.com/products/illustrator.html/images/logo.png",
+            "url": "url"
+        },
+        "Adobe Photoshop": {
+            "logo": "https://www.adobe.com/products/photoshop.html/images/logo.png",
+            "url": "url"
+        },
+        "Adobe Lightroom": {
+            "logo": "https://www.adobe.com/products/lightroom.html/images/logo.png",
+            "url": "url"
+        },
+        "Adobe Lightroom CC": {
+            "logo": "https://www.adobe.com/products/lightroom.html/images/logo.png",
+            "url": "url"
+        },
+        "Adobe After Effects": {
+            "logo": "https://www.adobe.com/products/aftereffects.html/images/logo.png",
+            "url": "url"
+        },
+        "Adobe Premiere Pro": {
+            "logo": "https://www.adobe.com/products/premierepro.html/images/logo.png",
+            "url": "url"
+        }
+    },
+    "teaching": ["Internet standards", "Introduction Programming", "Frontend Development", "Project Tech", "Backend", "Frontend 2", "Guest lecture", "Introduction course HTML/CSS"],
+    "documentation": {
+        "Notion": {
+            "logo": "https://notion.so/favicon.ico",
+            "url": "url"
+        },
+        "GitBook": {
+            "logo": "https://gitbook.com/favicon.ico",
+            "url": "url"
+        },
+        "Readme": {
+            "logo": "https://readme.io/favicon.ico",
+            "url": "url"
+        },
+        "GitHub Wiki": {
+            "logo": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "url": "url"
+        },
+        "Dropbox Paper": {
+            "logo": "https://www.dropbox.com/favicon.ico",
+            "url": "url"
+        },
+        "Google Docs": {
+            "logo": "https://www.google.com/images/branding/product/ico/googleg_lodp.ico",
+            "url": "url"
+        }
+    }
+}
