@@ -15,7 +15,9 @@ console.log(skillsData)
 // create the svg container
 let svg = d3.select("#bubble_graph")
 let svgWidth = svg.node().parentNode.clientWidth // relative to the parent container
-let svgHeight = 600
+let svgHeight = svg.node().parentNode.clientHeight // relative to the parent container
+// console.log(svgHeight2)
+// let svgHeight = 600
 const margins = {
     top: 25,
     right: 50,
@@ -47,6 +49,8 @@ const dataGroups = {
     'documentation': skillsData.documentation
 }
 
+const colorArray = ["hsl(300, 32%, 69%)", "hsl(351, 100%, 86%)", "hsl(240, 100%, 81%)"]
+
 let allData = []
 
 // CREATE CONTAINERS AND ELEMENTS
@@ -58,7 +62,7 @@ let x = d3.scaleOrdinal()
 // set the color scale
 const color = d3.scaleOrdinal()
     .domain([1, 2, 3]) // apply to the 3 groups
-    .range(["#ca97caff", "#ffb6c1ff", "#9e9effff"])
+    .range(colorArray)
 
 let simulation = d3.forceSimulation() // create the force simulation
 
@@ -69,6 +73,9 @@ function updateData(data) {
 }
 
 function renderGraph(data) {
+    const randoColor = colorArray[Math.floor(Math.random() * colorArray.length)]
+    // console.log(randoColor)
+
     let radius = 50
     let t = d3.transition()
         .duration(200)
@@ -142,108 +149,143 @@ function renderGraph(data) {
             .attr("fill", "white")
             .style("fill-opacity", 0.75) // set the opacity of the white overlay
 
-        // add the circle to the circleContainer(s)
-        circleContainer
-            .append("circle") 
-            .attr("class", "circle-container__circle")
-            .attr("r", radius) // set the radius
-            .style("fill", (d) => `url(#${d.slug})`) 
-            .transition(t) 
-
-    } else {
-        // just add the circle to the circleContainer(s)
-        radius = 50
 
         const linearGradient = circleContainer
             .append("linearGradient")
             .attr("class", "circle-container__gradient")
             .attr("id", (d) => ('lineargradient-' + d.slug))
 
+
+
         linearGradient
             .append("stop")
             .attr("class", "gradient-1")
-            .attr("offset", "0%") 
-            .attr("stop-color", (d) => color(d.group))  
+            .attr("offset", "0%")
+            .attr("stop-color", (d) => {
+                // get random color from colorArray
+                return color(randoColor)
+            })
             .style("stop-opacity", 0.1)
 
         linearGradient
             .append("stop")
             .attr("class", "gradient-2")
-            .attr("offset", "50%")   
-            .attr("stop-color", (d) => color(d.group))
+            .attr("offset", "50%")
+            .attr("stop-color", (d) => {
+                return color(randoColor)
+
+                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
+                return color(d.group)
+            })
             .style("stop-opacity", 0.8)
 
         linearGradient
             .append("stop")
             .attr("class", "gradient-3")
-            .attr("offset", "99%")   
-            .attr("stop-color", (d) => color(d.group))
+            .attr("offset", "99%")
+            .attr("stop-color", (d) => {
+                return color(randoColor)
+
+                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
+                return color(d.group)
+            })
             .style("stop-opacity", 0.1)
 
         linearGradient
             .append("stop")
             .attr("class", "gradient-4")
-            .attr("offset", "100%")  
-            .attr("stop-color", (d) => color(d.group)) 
+            .attr("offset", "100%")
+            .attr("stop-color", (d) => {
+                return color(randoColor)
+
+                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
+                return color(d.group)
+            })
             .style("stop-opacity", 0.05)
-  
+
+        // add the circle to the circleContainer(s)
+        circleContainer
+            .append("circle")
+            .attr("class", "circle-container__circle")
+            .attr("r", radius) // set the radius
+            .attr("stroke-width", 0.25) // set the outline width
+            .style("fill", (d) => (`url(#lineargradient-${d.slug})`)) // set the color
+            // .style("fill", (d) => `url(#${d.slug})`) 
+            .transition(t)
+
+    } else {
+        // just add the circle to the circleContainer(s)
+        radius = 52.5
+
+
         const radialGradient = circleContainer
             .append("radialGradient")
             .attr("class", "circle-container__radialgradient")
             .attr("id", (d) => ('radialgradient-' + d.slug))
             .attr("r", "100%")
-            .attr("fx", "20%")
-            .attr("fy", "50%")
+            .attr("fx", "18%")
+            .attr("fy", "40%")
 
 
         radialGradient
             .append("stop")
-            .attr("stop-color", "hsl(60,100%,50%)")
+            .attr("stop-color", (d) => {
+                const hsl1 = d3.hsl(color(d.group))
+                // return d3.hsl(hsl1.h - 10, 1, hsl1.l)
+                return d3.hsl(hsl1.h, hsl1.s, hsl1.l + 0.25)
+            })
             .attr("offset", "0%")
 
         radialGradient
             .append("stop")
-            .attr("stop-color", "hsl(70,70%,40%)")
-            .attr("offset", "25%")
+            .attr("stop-color", (d) => {
+                const hsl2 = d3.hsl(color(d.group))
+                // return d3.hsl(hsl2.h, 0.7, 0.4)
+                return d3.hsl(hsl2.h, hsl2.s, hsl2.l)
+
+            })
+            .attr("offset", "30%")
 
         radialGradient
             .append("stop")
-            .attr("stop-color", "hsl(80,100%,40%)")
+            .attr("stop-color", (d) => {
+                const hsl3 = d3.hsl(color(d.group))
+                // return d3.hsl(hsl3.h + 10, 1, 0.4)
+
+                return d3.hsl(hsl3.h, hsl3.s, hsl3.l)
+
+            })
+
             .attr("offset", "60%")
             .attr("stop-opacity", "0")
 
         radialGradient
             .append("animate")
             .attr("attributeName", "fx")
-            .attr("dur", "5s")
-            // .attr("values", "10%;80%;10%")
-            .attr("values", "20%;80%;20%")
+            .attr("dur", "7s")
+            .attr("values", "18%;79%;21%")
             .attr("repeatCount", "indefinite")
 
         radialGradient
             .append("animate")
             .attr("attributeName", "fy")
-            .attr("dur", "5s")
-            .attr("values", "50%;30%;20%;30%;50%;70%;80%;70%;50%")
-            // .attr("values", "80%;30%;20%;10%;50%;70%;80%;70%;10%")
+            .attr("dur", "7s")
+            .attr("values", "47%;31%;22%;31%;52%;71%;82%;69%;52%")
             .attr("repeatCount", "indefinite")
 
 
-       
-            
-           
+
+
+
 
         circleContainer
             .append("circle") // append a circle for each data element
             .attr("class", "circle-container__circle")
             .attr("r", radius) // set the radius
             // .attr("stroke", "#595959b3") // set the outline color
-            .attr("stroke-width", 3.3) // set the outline width
-            .style("stroke", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
-            // .style("fill", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
-            // .style("fill",  (d) => (`url(#gradient-${d.slug})`)) // set the color
-            // .style("fill", "white") // set the color
-            .style("fill", (d) => color(d.group)) // set the color
+            // .attr("stroke-width", 0.25) // set the outline width
+            // .style("stroke", (d) => (`url(#lineargradient-${d.slug})`)) // set the color
+            .style("fill", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
             .transition(t) // apply a transition
             .style("fill-opacity", 1) // set the opacity
     }
@@ -252,22 +294,28 @@ function renderGraph(data) {
     // add the text to the circleContainer(s)
     circleContainer
         .append("text")
-        .attr("class", "circle-container__text") 
+        .attr("class", "circle-container__text")
         .text((d) => {
-            if (d.displayName) { return d.displayName.split(' ')[0] }
-            else { return d.name }
+            if (d.displayName) {
+                return d.displayName.split(' ')[0]
+            } else {
+                return d.name
+            }
         })
         .attr('alignment-baseline', (d) => 'middle') // center vertically
         .attr('transform', (d) => 'translate(0, -5)') // move the text up a bit
 
     circleContainer
-        .append("text") 
+        .append("text")
         .attr("class", "circle-container__text")
         .text((d) => {
-            if (d.displayName) { return d.displayName.split(' ')[1] }
-            else { return d.name }
-        }) 
-        .attr('alignment-baseline', (d) => 'text-before-edge') 
+            if (d.displayName) {
+                return d.displayName.split(' ')[1]
+            } else {
+                return d.name
+            }
+        })
+        .attr('alignment-baseline', (d) => 'text-before-edge')
         .attr('transform', (d) => 'translate(0, 5)') // move the text down a bit
 
 
@@ -282,11 +330,11 @@ function renderGraph(data) {
                 } else if (d.displayName.split(' ').length > 1) {}
             }
             d3.select(this)
-                .attr('font-size', (d) => ((radius == '50') ? '16px' : '17px'))
-                .attr('fill', (d) => ((radius == '50') ? 'white' : '#202020'))
+                .attr('font-size', (d) => ((radius == '52.5') ? '16px' : '17px'))
+                .attr('fill', (d) => ((radius == '52.5') ? '#202020' : '#202020'))
                 .attr("fill-opacity", 1) // set the opacity
                 .attr('text-anchor', (d) => 'middle') // center horizontally
-                .attr('font-weight', (d) => ((radius == '50') ? '200' : '500'))
+                .attr('font-weight', (d) => ((radius == '52.5') ? '400' : '500'))
                 .style('user-select', 'none') // don't let the text be selectable
         })
 
@@ -321,7 +369,7 @@ function removeGroupFromGraph(group) {
         .attr("class", "exit")
         .transition(t)
         .attr("y", 60)
-        .style("fill-opacity", 1e-6)
+        .style("fill-opacity", 1e-6) // set the opacity to 0; due to a bug in Chrome, this needs to be set to 1e-6
         .remove();
 
 }
@@ -390,16 +438,18 @@ function showSection() { // when a section is visible to the user, show the grap
     chapters.forEach((chapter) => {
         let chapterSectionRect = chapter.getBoundingClientRect()
         let chapterRect = chapter.getBoundingClientRect()
+        // let parentHeight = chapterRect.node().parentNode.clientHeight // relative to the parent container
 
-        if (chapterSectionRect.top < chapterRect.height * .9) {
+
+        if (chapterSectionRect.top < chapterRect.height * 2) {
             chapter.classList.add("active")
         }
 
-        if (chapterSectionRect.top > chapterRect.height * .9) {
+        if (chapterSectionRect.top > chapterRect.height * 2) { // if the top of the section is greater than the height of the chapter
             chapter.classList.remove("active")
         }
 
-        if (chapterSectionRect.bottom < chapterRect.height * .4) {
+        if (chapterSectionRect.bottom < chapterRect.height * 1.2) {
             chapter.classList.remove("active")
         }
 
@@ -422,18 +472,24 @@ function addToChart(type) {
             // console.log('graph is up-to-date')
         }
     } else if (type == 'collaboration' || type == 'design' || type == 'documentation' || type == 'teaching') {
-        removeFromGraph()
-        updateGraph(type)
+        if (!tellGroup(allData).includes(type)) {
+
+            removeFromGraph()
+            updateGraph(type)
+        } else {
+            // console.log('graph is up-to-date')
+        }
+
     } else if (type == 'skills-tools') {
         removeFromGraph()
     }
 }
 
-async function updateGraph(tech) {
-    let data = await updateData(dataGroups[tech])
+async function updateGraph(type) {
+    let data = await updateData(dataGroups[type])
     renderGraph(data)
 }
 
 function tellGroup(data) {
-    return [...new Set(data.map(d => d.tech))]
+    return [...new Set(data.map(d => d.type))]
 }
