@@ -3,8 +3,14 @@
 /* eslint-disable no-undef */
 // source: https://d3-graph-gallery.com/graph/circularpacking_group.html
 import {
-    cleanData
-} from './techData.js'
+    techData
+} from './data/techData.js'
+
+import {
+    skillsData
+} from './data/skillsData.js'
+
+console.log(skillsData)
 
 // create the svg container
 let svg = d3.select("#bubble_graph")
@@ -24,14 +30,23 @@ svg.attr("height", height)
 const xGroups = {
     'html': ((width / 5) * 1.5), // x position
     'css': ((width / 5) * 3),
-    'js': ((width / 5) * 4)
+    'js': ((width / 5) * 4),
+    'collaboration': (width / 2),
+    'design': (width / 2),
+    'teaching': (width / 2),
+    'documentation': (width / 2)
 }
 
 const dataGroups = {
-    'html': cleanData.filter(d => d.group === 1),
-    'css': cleanData.filter(d => d.group === 2),
-    'js': cleanData.filter(d => d.group === 3)
+    'html': techData.filter(d => d.group === 1),
+    'css': techData.filter(d => d.group === 2),
+    'js': techData.filter(d => d.group === 3),
+    'collaboration': skillsData.collaboration,
+    'design': skillsData.design,
+    'teaching': skillsData.teaching,
+    'documentation': skillsData.documentation
 }
+
 let allData = []
 
 // CREATE CONTAINERS AND ELEMENTS
@@ -54,8 +69,10 @@ function updateData(data) {
 }
 
 function renderGraph(data) {
+    let radius = 50
     let t = d3.transition()
         .duration(200)
+
     // CREATE ELEMENTS
     // append the container group for all circles to the svg
     let circlesAll = svg.append("g") // group for the circleContainers
@@ -72,6 +89,7 @@ function renderGraph(data) {
         .attr("y", 60)
         .style("fill-opacity", 1e-6)
         .remove();
+
     // add a circle container element for each data element and apply drag behavior
     let circleContainer = circlesAll
         .append("g") // append a container for each data element
@@ -83,29 +101,197 @@ function renderGraph(data) {
             .on("start", startDrag) // on start of drag gesture
             .on("drag", currentDrag) // while dragging
             .on("end", endDrag)) // on end of drag gesture
-    // add the circle to the circleContainer(s)
-    circleContainer
-        .append("circle") // append a circle for each data element
-        .attr("class", "circle-container__circle")
-        .attr("r", 42) // set the radius
-        .attr("stroke", "#595959b3") // set the outline color
-        .attr("stroke-width", 0.8) // set the outline width
-        .style("fill", (d) => color(d.group)) // set the color
-        .transition(t) // apply a transition
-        .style("fill-opacity", 0.8) // set the opacity
+
+
+    if (data[0].logo) { // if a logo can be used as background, use it
+        radius = 60
+
+        let circleContainerDefs = circleContainer // add pattern to link to the circle
+            .append("defs")
+            .attr("class", "circle-container__defs")
+
+        let circleContainerDefsPattern = circleContainerDefs
+            .append("pattern")
+            .attr("class", "circle-container__defs__pattern")
+            .attr("id", (d) => d.slug)
+            .attr("patternUnits", "userSpaceOnUse")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+
+        circleContainerDefsPattern
+            .append("rect")
+            .attr("class", "circle-container__defs__pattern__rect")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+            .attr("fill", "white")
+            .style("fill-opacity", 1) // set the opacity of the background
+
+        circleContainerDefsPattern
+            .append("image")
+            .attr("class", "circle-container__defs__pattern__image")
+            .attr("height", radius)
+            .attr("width", radius)
+            .attr("xlink:href", (d) => d.logo)
+            .style("fill-opacity", 0.1) // set the opacity
+
+        circleContainerDefsPattern // add another white bg on top of the image to simulate transparency on the image
+            .append("rect")
+            .attr("class", "circle-container__defs__pattern__rect2")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+            .attr("fill", "white")
+            .style("fill-opacity", 0.75) // set the opacity of the white overlay
+
+        // add the circle to the circleContainer(s)
+        circleContainer
+            .append("circle") 
+            .attr("class", "circle-container__circle")
+            .attr("r", radius) // set the radius
+            .style("fill", (d) => `url(#${d.slug})`) 
+            .transition(t) 
+
+    } else {
+        // just add the circle to the circleContainer(s)
+        radius = 50
+
+        const linearGradient = circleContainer
+            .append("linearGradient")
+            .attr("class", "circle-container__gradient")
+            .attr("id", (d) => ('lineargradient-' + d.slug))
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-1")
+            .attr("offset", "0%") 
+            .attr("stop-color", (d) => color(d.group))  
+            .style("stop-opacity", 0.1)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-2")
+            .attr("offset", "50%")   
+            .attr("stop-color", (d) => color(d.group))
+            .style("stop-opacity", 0.8)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-3")
+            .attr("offset", "99%")   
+            .attr("stop-color", (d) => color(d.group))
+            .style("stop-opacity", 0.1)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-4")
+            .attr("offset", "100%")  
+            .attr("stop-color", (d) => color(d.group)) 
+            .style("stop-opacity", 0.05)
+  
+        const radialGradient = circleContainer
+            .append("radialGradient")
+            .attr("class", "circle-container__radialgradient")
+            .attr("id", (d) => ('radialgradient-' + d.slug))
+            .attr("r", "100%")
+            .attr("fx", "20%")
+            .attr("fy", "50%")
+
+
+        radialGradient
+            .append("stop")
+            .attr("stop-color", "hsl(60,100%,50%)")
+            .attr("offset", "0%")
+
+        radialGradient
+            .append("stop")
+            .attr("stop-color", "hsl(70,70%,40%)")
+            .attr("offset", "25%")
+
+        radialGradient
+            .append("stop")
+            .attr("stop-color", "hsl(80,100%,40%)")
+            .attr("offset", "60%")
+            .attr("stop-opacity", "0")
+
+        radialGradient
+            .append("animate")
+            .attr("attributeName", "fx")
+            .attr("dur", "5s")
+            // .attr("values", "10%;80%;10%")
+            .attr("values", "20%;80%;20%")
+            .attr("repeatCount", "indefinite")
+
+        radialGradient
+            .append("animate")
+            .attr("attributeName", "fy")
+            .attr("dur", "5s")
+            .attr("values", "50%;30%;20%;30%;50%;70%;80%;70%;50%")
+            // .attr("values", "80%;30%;20%;10%;50%;70%;80%;70%;10%")
+            .attr("repeatCount", "indefinite")
+
+
+       
+            
+           
+
+        circleContainer
+            .append("circle") // append a circle for each data element
+            .attr("class", "circle-container__circle")
+            .attr("r", radius) // set the radius
+            // .attr("stroke", "#595959b3") // set the outline color
+            .attr("stroke-width", 3.3) // set the outline width
+            .style("stroke", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
+            // .style("fill", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
+            // .style("fill",  (d) => (`url(#gradient-${d.slug})`)) // set the color
+            // .style("fill", "white") // set the color
+            .style("fill", (d) => color(d.group)) // set the color
+            .transition(t) // apply a transition
+            .style("fill-opacity", 1) // set the opacity
+    }
+
+
     // add the text to the circleContainer(s)
     circleContainer
-        .append("text") // append text for each data element
-        .attr("class", "circle-container__text") // give each dot a class called "circle-container__text"
-        .text((d) => d.name) // set the text to the name of the data element
-        .attr('font-size', (d) => '16px')
-        .attr('fill', (d) => '#595959b3')
-        .attr("fill-opacity", 1) // set the opacityåß
-        .attr('text-anchor', (d) => 'middle') // center horizontally
-        .attr('alignment-baseline', (d) => 'central') // center vertically
-        .attr('font-weight', (d) => 'bold')
-        .style('user-select', 'none') // don't let the text be selectable
-    addSimulation(svg)
+        .append("text")
+        .attr("class", "circle-container__text") 
+        .text((d) => {
+            if (d.displayName) { return d.displayName.split(' ')[0] }
+            else { return d.name }
+        })
+        .attr('alignment-baseline', (d) => 'middle') // center vertically
+        .attr('transform', (d) => 'translate(0, -5)') // move the text up a bit
+
+    circleContainer
+        .append("text") 
+        .attr("class", "circle-container__text")
+        .text((d) => {
+            if (d.displayName) { return d.displayName.split(' ')[1] }
+            else { return d.name }
+        }) 
+        .attr('alignment-baseline', (d) => 'text-before-edge') 
+        .attr('transform', (d) => 'translate(0, 5)') // move the text down a bit
+
+
+    // apply to both text elements
+    circleContainer
+        .selectAll('.circle-container__text')
+        .each(function (d) {
+            if (d.displayName) {
+                if (d.displayName.split(' ').length == 1) {
+                    d3.select(this).attr('alignment-baseline', 'middle')
+                    d3.select(this).attr('transform', 'translate(0, 3)')
+                } else if (d.displayName.split(' ').length > 1) {}
+            }
+            d3.select(this)
+                .attr('font-size', (d) => ((radius == '50') ? '16px' : '17px'))
+                .attr('fill', (d) => ((radius == '50') ? 'white' : '#202020'))
+                .attr("fill-opacity", 1) // set the opacity
+                .attr('text-anchor', (d) => 'middle') // center horizontally
+                .attr('font-weight', (d) => ((radius == '50') ? '200' : '500'))
+                .style('user-select', 'none') // don't let the text be selectable
+        })
+
+    addSimulation(svg, radius)
+
     return circleContainer
 }
 
@@ -125,9 +311,25 @@ function removeFromGraph() {
     allData = []
 }
 
-function addSimulation(svg) {
+function removeGroupFromGraph(group) {
+    let t = d3.transition()
+        .duration(200)
+
+    svg.selectAll(`.group-${group}`)
+        .remove()
+        .exit()
+        .attr("class", "exit")
+        .transition(t)
+        .attr("y", 60)
+        .style("fill-opacity", 1e-6)
+        .remove();
+
+}
+
+function addSimulation(svg, radius) {
     const circleContainer__all = svg.selectAll(".circle-container")
     const circleContainer__circle_all = svg.selectAll(".circle-container__circle")
+    const circleContainer__defs__pattern_all = svg.selectAll(".circle-container__defs__pattern")
     const circleContainer__text_all = svg.selectAll(".circle-container__text")
 
     // CREATE FORCE LAYOUT
@@ -143,7 +345,7 @@ function addSimulation(svg) {
         .force("y", d3.forceY().strength(0.1).y(height / 2)) // set force to move circles vertically
         .force("center", d3.forceCenter().x(svgWidth / 2).y(height / 2)) // set force to center the circles
         .force("charge", d3.forceManyBody().strength(1)) // set force to repel circles from each other
-        .force("collide", d3.forceCollide().strength(.9).radius(50).iterations(1)) // set force to prevent circles from overlapping
+        .force("collide", d3.forceCollide().strength(.9).radius((radius * 1.25)).iterations(1)) // set force to prevent circles from overlapping
 
     simulation
         .nodes([...new Set(allData)])
@@ -156,6 +358,10 @@ function addSimulation(svg) {
         circleContainer__text_all // select text in each circle
             .attr("dx", (d) => d.x) // dx is the x position of the text
             .attr("dy", (d) => d.y) // dy is the y position of the text
+
+        circleContainer__defs__pattern_all // select the pattern
+            .attr("x", (d) => (d.x - 30)) // set the x position to the current position of the node in the force layout simulation (which is the x position of the circleContainer in the svg)
+            .attr("y", (d) => (d.y - 30)) // set the y position to the current y position
     }
 }
 
@@ -209,13 +415,16 @@ window.addEventListener("scroll", showSection)
 
 function addToChart(type) {
     if (type == 'html' || type == 'css' || type == 'js') {
-        if (!tellGroup(allData).includes(type)) {
+        removeGroupFromGraph(4)
+        if (!tellGroup(allData).includes(type)) { // if the group is not already in the graph   
             updateGraph(type)
         } else {
             // console.log('graph is up-to-date')
         }
-    } else if (type == 'skills-tools' || type == 'design' || type == 'collaboration' || type == 'documentation') {
-        console.log('remove graph')
+    } else if (type == 'collaboration' || type == 'design' || type == 'documentation' || type == 'teaching') {
+        removeFromGraph()
+        updateGraph(type)
+    } else if (type == 'skills-tools') {
         removeFromGraph()
     }
 }
