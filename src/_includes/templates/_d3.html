@@ -1,0 +1,26 @@
+---
+pagePath: "{{parent}}/{{pageName}}"
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include "sections/_head.html" %}
+  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css"/> -->
+  <link rel="stylesheet" type="text/css" href="/bootstrap/style.css"/>
+</head>
+
+<body id="{{pageName}}">
+  {%- from "system/component.njk" import component -%}
+
+  {{ component('sections', '_header', {
+    title: 'Deanna Bosschert',
+    description: 'Webdeveloper.'
+    }) }}
+  <main>
+    {{ content | safe }}
+  </main>
+  {% include "sections/_footer.html" %}
+</body>
+
+</html>
