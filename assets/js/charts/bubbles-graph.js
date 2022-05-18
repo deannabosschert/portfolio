@@ -434,22 +434,23 @@ function endDrag(d) { // if the circle is no longer being dragged
 // CREATE SCROLL FUNCTIONALITY
 function showSection() { // when a section is visible to the user, show the graph and text
     let chapters = document.querySelectorAll(".chapter")
-
+    console.log('')
+    console.log('')
+    console.log('scroll')
     chapters.forEach((chapter) => {
         let chapterSectionRect = chapter.getBoundingClientRect()
         let chapterRect = chapter.getBoundingClientRect()
-        // let parentHeight = chapterRect.node().parentNode.clientHeight // relative to the parent container
+       
 
-
-        if (chapterSectionRect.top < chapterRect.height * 2) {
-            chapter.classList.add("active")
+        if (chapterSectionRect.bottom > 0 && chapterSectionRect.top < window.innerHeight) {
+                       chapter.classList.add("active")
         }
 
-        if (chapterSectionRect.top > chapterRect.height * 2) { // if the top of the section is greater than the height of the chapter
+        if (chapterSectionRect.bottom < window.innerHeight) { // every section that comes before the one that is visible
             chapter.classList.remove("active")
         }
 
-        if (chapterSectionRect.bottom < chapterRect.height * 1.2) {
+        if (chapterSectionRect.top > window.innerHeight) { // every section that comes after the one that is visible
             chapter.classList.remove("active")
         }
 
@@ -461,7 +462,9 @@ function showSection() { // when a section is visible to the user, show the grap
     })
 }
 
-window.addEventListener("scroll", showSection)
+let leftText = document.querySelector(".left-text")
+
+leftText.addEventListener("scroll", showSection)
 
 function addToChart(type) {
     if (type == 'html' || type == 'css' || type == 'js') {

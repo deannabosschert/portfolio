@@ -1,3 +1,6 @@
+html {
+    overflow-y: hidden;
+}
 body#skills {
     background-color: #000;
     color: white;
@@ -6,6 +9,10 @@ body#skills {
     background-position: center 0;
     animation: moveBackground 20s linear infinite;
 
+    width: 100%;
+    margin: 0;
+
+    overflow-y: hidden;
 
     @keyframes moveBackground {
         to {
@@ -44,30 +51,38 @@ body#skills {
             width: 40%;
             // height: 800px;
 
-            border: 1px solid red;
+
+            // border: 1px solid red;
             margin-bottom: $height-default;
             padding-left: $desktop-xxl;
             // overflow-y: scroll;
             scroll-snap-type: y mandatory;
             position: relative;
             // height: 100vh;
+            // width: 100vw;
+            height: 100vh;
+            scroll-snap-points-y: repeat(350px);
+            scroll-snap-type: y mandatory;
+            scroll-snap-type: mandatory;
+            overflow: auto;
+
         }
 
         .chapter {
-            min-height: 350px;
-            border: 1px solid blue;
-            margin-bottom: $desktop-innerpage;
-            margin-top: $desktop-innerpage;
-            
             opacity: 0;
             transition: 1s all ease;
 
 
-            scroll-margin: 10px;
+            scroll-margin: -50px;
+            // scroll-snap-align: start;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            max-height: 100vh;
             scroll-snap-align: start;
             scroll-snap-stop: normal;
-
-
         }
 
         .chapter.active {
@@ -75,10 +90,10 @@ body#skills {
 
         }
 
-        #chapter__css,
-        #chapter__js {
-            height: 350px;
-        }
+        // #chapter__css,
+        // #chapter__js {
+        //     height: 350px;
+        // }
 
         .right-graphs {
             // border: 1px solid red;
