@@ -6,8 +6,25 @@ permalink: "/{{pageName}}/"
 ---
 {%- from "system/component.njk" import component -%}
 
-<header>
-    <h1>Skills and tools</h1>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<!-- 
+    ideetjes:
+    - scroll animation thingy waarbij links de de summary staat en rechts de afbeeldingen enzo https://wattenberger.netlify.app/
+    - de afbeeldingen moeten op dezelfde hoogte staan
+
+
+
+    todo: alles onder development afmaken
+
+    thema:
+    - clouds?
+    - meta stuff kinda thing, VR? zie figma boards
+ -->
+
+<div class="left-text">
+    <!-- <header>
+    <h1>Skills, tech and tools</h1>
     <p>During my studies I learned a lot about different tech, tools and soft skills.</p>
     <p>I started learning HTML in high school, but I only really got into it at my bachelor's.
         In the first year of my studies, I learned how to create a simple webpage with HTML and CSS.
@@ -18,9 +35,8 @@ permalink: "/{{pageName}}/"
         front-end JS. Third year, I've followed both the semester project Emerging Technologies and Information Design.
         I realized I rather wanted to focus on developing datavisualizations with d3.js, learning a framework and
         writing code using functional programming principles.</p>
-</header>
-<section>
-    <section class="chapter">
+</header> -->
+    <section id="chapter__skills-tools" class="chapter chapter__skills-tools active">
         <h2>Skills and tools</h2>
         <p>During my studies I learned a lot about different tech, tools and soft skills.</p>
         <p>I started learning HTML in high school, but I only really got into it at my bachelor's.
@@ -37,7 +53,7 @@ permalink: "/{{pageName}}/"
             I realized I rather wanted to focus on developing datavisualizations with d3.js, learning a framework and
             writing code using functional programming principles.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__html" class="chapter chapter__html">
         <h2>HTML</h2>
         <p>During the first year of following the Minor Webdevelopment at the Amsterdam University of Applied Sciences,
             we took a deep dive into HTML and how the usage of correct semantics and structure helps to create a better
@@ -48,16 +64,16 @@ permalink: "/{{pageName}}/"
             teaching others how to write semantic HTML and to make sure it doesn't contain ye olde div-garbage belt for
             no reason.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__css" class="chapter chapter__css">
         <h2>CSS</h2>
         <p>As for CSS; I now mostly use SCSS as a pre-processor and make use of my personal folder-stucture for the
             different files, but I'm open to learn another way kind of structure or pre-processor.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__js" class="chapter chapter__js">
         <h2>JavaScript</h2>
         <p>tekst</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__collaboration" class="chapter chapter__collaboration">
         <h2>Collaboration</h2>
         <p>During my study and internships, collaboration was a key part of my learning. I've been working with other
             students, with teachers, other developers and in multidisciplinary teams.</p>
@@ -67,7 +83,7 @@ permalink: "/{{pageName}}/"
             mostly
             done via GitHub and making use of their tools like project boards, branches, issues, pull requests, etc.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__design" class="chapter chapter__design">
         <h2>Design</h2>
         <p>As Communication & Multimedia Design is mostly a design-focused study, I also have a degree in UX-design and
             am
@@ -82,7 +98,7 @@ permalink: "/{{pageName}}/"
             and
             am now very comfortable with the design process beginning to end.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__teaching" class="chapter chapter__teaching">
         <h2>Teaching</h2>
         <p>As mentioned before, I've gotten into teaching by working as a teaching assistent for the course Computer
             Science
@@ -103,7 +119,7 @@ permalink: "/{{pageName}}/"
         </p>
         <p>I've also given an introduction course for first-year's in HTML/CSS and set up the 2-week course myself.</p>
     </section>
-    <section class="chapter">
+    <section id="chapter__documentation" class="chapter chapter__documentation">
         <h2>Documentation</h2>
         <p>Whereas most people don't really like spending time writing documentation, I'm actually quite fond of it</p>
         <p>Once you've developed a few basic templates for different purposes, it's mostly just a checklist with gaps to
@@ -115,4 +131,15 @@ permalink: "/{{pageName}}/"
         <p>To top it off, my graduation project was also mainly focused on project documentation and its influence on
             efficiency and collaboration.</p>
     </section>
-</section>
+</div>
+<div class="right-graphs">
+    <svg id="bubble_graph" class="bubble_graph_svg">
+
+    </svg>
+    <!-- <svg id="line_graph" class="line_graph_svg u-hidden" width="1000" height="900"></svg> -->
+
+</div>
+
+
+
+<script type="module" src="/assets/js/charts/bubbles-graph.js"></script>
