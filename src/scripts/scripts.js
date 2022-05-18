@@ -5,5 +5,5 @@ executeAllScripts()
 
 function executeAllScripts() {
     // jsonToScss()
-    storyblokData()
+    // storyblokData()
 }

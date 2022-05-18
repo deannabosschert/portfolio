@@ -1,6 +1,6 @@
 const getStoryblokData = require('./get-storyblok-data.js')
 const cleanStoryblokData = require('./clean-storyblok-data.js')
-const writeJsonData = require('./write-json-data.js')
+const writeJsonData = require('./write-data.js')
 
 module.exports = function storyblokToData(folders) {
     return Promise.all(folders.map(folder => {

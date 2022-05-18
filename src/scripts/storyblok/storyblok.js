@@ -1,6 +1,6 @@
 const storyblokToData = require('./storyblok-to-data.js')
 const mergeData = require('./merge-data.js')
-const writeJsonData = require('./write-json-data.js')
+const writeData = require('./write-data.js')
 
 module.exports = function storyblokData() {
   writeStoryblokData(["projects", "links"], 'projectpages')
@@ -13,7 +13,7 @@ function writeStoryblokData(folders, mergedFilename) {
             return mergeData(res)
         })
         .then(data => {
-            writeJsonData(mergedFilename, data)
+            writeData(mergedFilename, data)
         })
         .catch(error => {
             console.log(error)

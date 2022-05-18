@@ -17,7 +17,6 @@ module.exports = function cleanStoryblokData(folder, data) {
                 }
             }
         } else if (folder == "links") {
-            console.log(item.full_slug)
             return {
                 "id": item.id,
                 "parent_id": item.parent_id,
