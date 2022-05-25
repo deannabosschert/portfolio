@@ -73,9 +73,6 @@ function updateData(data) {
 }
 
 function renderGraph(data) {
-    const randoColor = colorArray[Math.floor(Math.random() * colorArray.length)]
-    // console.log(randoColor)
-
     let radius = 50
     let t = d3.transition()
         .duration(200)
@@ -117,6 +114,46 @@ function renderGraph(data) {
             .append("defs")
             .attr("class", "circle-container__defs")
 
+
+        const linearGradient = circleContainer
+            .append("linearGradient")
+            .attr("class", "circle-container__gradient")
+            .attr("id", (d) => ('lineargradient-' + d.slug))
+
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-1")
+            .attr("offset", "0%")
+            .attr("stop-color", (d) => {
+                const colorthing = colorArray[Math.floor(Math.random() * colorArray.length)]
+                console.log()
+                return color(colorthing)
+            })
+            .style("stop-opacity", 0.1)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-2")
+            .attr("offset", "50%")
+            .attr("stop-color", (d) => color(colorArray[Math.floor(Math.random() * colorArray.length)]))
+            .style("stop-opacity", 0.8)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-3")
+            .attr("offset", "99%")
+            .attr("stop-color", (d) => color(colorArray[Math.floor(Math.random() * colorArray.length)]))
+            .style("stop-opacity", 0.1)
+
+        linearGradient
+            .append("stop")
+            .attr("class", "gradient-4")
+            .attr("offset", "100%")
+            .attr("stop-color", (d) => color(colorArray[Math.floor(Math.random() * colorArray.length)]))
+            .style("stop-opacity", 0.05)
+
+
         let circleContainerDefsPattern = circleContainerDefs
             .append("pattern")
             .attr("class", "circle-container__defs__pattern")
@@ -125,7 +162,7 @@ function renderGraph(data) {
             .attr("height", (radius * 2))
             .attr("width", (radius * 2))
 
-        circleContainerDefsPattern
+        circleContainerDefsPattern // background for the image
             .append("rect")
             .attr("class", "circle-container__defs__pattern__rect")
             .attr("height", (radius * 2))
@@ -133,7 +170,7 @@ function renderGraph(data) {
             .attr("fill", "white")
             .style("fill-opacity", 1) // set the opacity of the background
 
-        circleContainerDefsPattern
+            circleContainerDefsPattern // image in the sandwich
             .append("image")
             .attr("class", "circle-container__defs__pattern__image")
             .attr("height", radius)
@@ -141,76 +178,80 @@ function renderGraph(data) {
             .attr("xlink:href", (d) => d.logo)
             .style("fill-opacity", 0.1) // set the opacity
 
-        circleContainerDefsPattern // add another white bg on top of the image to simulate transparency on the image
+            circleContainerDefsPattern // background for the image
             .append("rect")
-            .attr("class", "circle-container__defs__pattern__rect2")
+            .attr("class", "circle-container__defs__pattern__rect")
             .attr("height", (radius * 2))
             .attr("width", (radius * 2))
             .attr("fill", "white")
-            .style("fill-opacity", 0.75) // set the opacity of the white overlay
+            .style("fill-opacity", 0.2) // set the opacity of the background
+
+        circleContainerDefsPattern // background for the image
+            .append("rect")
+            .attr("class", "circle-container__defs__pattern__rect")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+            .attr("fill", (d) => (`url(#lineargradient-${d.slug})`)) // set the color
+            .style("fill-opacity", 1) // set the opacity of the background
+
+        // circleContainerDefsPattern // background for the image
+        //     .append("rect")
+        //     .attr("class", "circle-container__defs__pattern__rect1")
+        //     .attr("height", radius)
+        //     .attr("width", radius)
+        //     .style("fill", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
+        //     .style("fill-opacity", 0.2) // set the opacity of the background
+
+ 
 
 
-        const linearGradient = circleContainer
-            .append("linearGradient")
-            .attr("class", "circle-container__gradient")
-            .attr("id", (d) => ('lineargradient-' + d.slug))
+        circleContainerDefsPattern
+            .append("rect")
+            .attr("class", "circle-container__defs__pattern__rect")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+            .attr("fill", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
+            .style("fill-opacity", 0.75) // set the opacity of the background
+
+
+        circleContainerDefsPattern 
+            .append("rect")
+            .attr("class", "circle-container__defs__pattern__rect")
+            .attr("height", (radius * 2))
+            .attr("width", (radius * 2))
+            .attr("fill", "white")
+            .style("fill-opacity", 0.4) // set the opacity of the background
+
+        // circleContainerDefsPattern // add another white bg on top of the image to simulate transparency on the image
+        //     .append("rect")
+        //     .attr("class", "circle-container__defs__pattern__rect2")
+        //     .attr("height", (radius * 2))
+        //     .attr("width", (radius * 2))
+        //     .style("fill", "white") // set the color
+        //     .style("fill-opacity", 0.33) // set the opacity of the white overlay
 
 
 
-        linearGradient
-            .append("stop")
-            .attr("class", "gradient-1")
-            .attr("offset", "0%")
-            .attr("stop-color", (d) => {
-                // get random color from colorArray
-                return color(randoColor)
-            })
-            .style("stop-opacity", 0.1)
+        // circleContainerDefsPattern // add another white bg on top of the image to simulate transparency on the image
+        //     .append("circle")
+        //     .attr("class", "circle-container__defs__pattern__rect2")
+        //     .attr("r", radius) // set the radius
+        //     // .attr("height", (radius * 2))
+        //     // .attr("width", (radius * 4))
+        //     // .style("fill", "white") // set the color
+        //     // .style("fill", (d) => (`url(#lineargradient-${d.slug})`)) // set the color
+        //     .style("fill-opacity", 0.75) // set the opacity of the white overlay
 
-        linearGradient
-            .append("stop")
-            .attr("class", "gradient-2")
-            .attr("offset", "50%")
-            .attr("stop-color", (d) => {
-                return color(randoColor)
 
-                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
-                return color(d.group)
-            })
-            .style("stop-opacity", 0.8)
-
-        linearGradient
-            .append("stop")
-            .attr("class", "gradient-3")
-            .attr("offset", "99%")
-            .attr("stop-color", (d) => {
-                return color(randoColor)
-
-                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
-                return color(d.group)
-            })
-            .style("stop-opacity", 0.1)
-
-        linearGradient
-            .append("stop")
-            .attr("class", "gradient-4")
-            .attr("offset", "100%")
-            .attr("stop-color", (d) => {
-                return color(randoColor)
-
-                return color(colorArray[Math.floor(Math.random() * colorArray.length)])
-                return color(d.group)
-            })
-            .style("stop-opacity", 0.05)
 
         // add the circle to the circleContainer(s)
         circleContainer
             .append("circle")
             .attr("class", "circle-container__circle")
             .attr("r", radius) // set the radius
-            .attr("stroke-width", 0.25) // set the outline width
-            .style("fill", (d) => (`url(#lineargradient-${d.slug})`)) // set the color
-            // .style("fill", (d) => `url(#${d.slug})`) 
+            .attr("stroke-width", 4) // set the outline width
+            // .style("stroke", (d) => (`url(#radialgradient-${d.slug})`)) // set the color
+            .style("fill", (d) => `url(#${d.slug})`)
             .transition(t)
 
     } else {
@@ -434,16 +475,14 @@ function endDrag(d) { // if the circle is no longer being dragged
 // CREATE SCROLL FUNCTIONALITY
 function showSection() { // when a section is visible to the user, show the graph and text
     let chapters = document.querySelectorAll(".chapter")
-    console.log('')
-    console.log('')
-    console.log('scroll')
+
     chapters.forEach((chapter) => {
         let chapterSectionRect = chapter.getBoundingClientRect()
         let chapterRect = chapter.getBoundingClientRect()
-       
+
 
         if (chapterSectionRect.bottom > 0 && chapterSectionRect.top < window.innerHeight) {
-                       chapter.classList.add("active")
+            chapter.classList.add("active")
         }
 
         if (chapterSectionRect.bottom < window.innerHeight) { // every section that comes before the one that is visible
