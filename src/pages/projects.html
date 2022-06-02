@@ -3,23 +3,56 @@ layout: templates/_base.html
 parent: "/"
 pageName: "projects"
 permalink: "/{{pageName}}/"
+filters: {
+html: ["HTML", "Semantics", "Accessibility"],
+css: ["CSS", "SCSS", "InuitCSS"],
+js: ["JavaScript", "Node.js", "Vue.js", "Nuxt.JS", "Eleventy SSG", "Server-side", "Client-side", "Express", "EJS",
+"Handlebars", "Nunjucks", "Liquid", "API", "MongoDB", "Headless CMS", "Sockets.js", "D3.js", "Chart.js"]
+}
 ---
-<section>
+<header>
+    <h1>Projects</h1>
+    <form class="project-filters">
+        <h2 class="u-text-invisible">Filter</h2>
+        {% for tech, array in filters %}
+        <!-- {% set techID = loop.index %} -->
+
+        <fieldset>
+            <legend>{{tech | upper }}</legend>
+            {% for item in array %}
+            <!-- {% set itemID = loop.index %} -->
+
+            <label for="{{item}}">{{item}}<input type="checkbox" name="{{item}}" value="{{item}}" id="{{item}}">
+            </label>
+            {% endfor %}
+        </fieldset>
+        {% endfor %}
+    </form>
+</header>
+<section class="projects-list">
     <h2>Projects list</h2>
     <ul>
         {% for project in storyblok.projectpages %}
-        <li>
+        <li class="{{project.slug}}">
             <a href="/{{project.full_slug}}/">
                 <article>
                     <h3>{{ project.name }}</h3>
                     <p>{{project.summary}}</p>
+                    <ul class="techList">
+                        {% for tech, array in project.technologies %}
+                        {% for item in array %}
+                        <li class="{{item | lower}}">{{item | lower}}</li>
+                        <!-- <li class="{{item}} u-hidden">{{item}}</li> -->
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
                 </article>
             </a>
         </li>
         {% endfor %}
     </ul>
 </section>
-<section>
+<section class="boilerplates-list">
     <h2>'Boilerplates'</h2>
     <p>As I explored different technologies and along the way also taught students (in) a certain techstack, I've
         created a few template projects to base a new project on. Most of them are not boilerplates but more like
@@ -39,4 +72,5 @@ permalink: "/{{pageName}}/"
         {% endfor %}
     </ul>
 </section>
-</section>
+
+<script src="/assets/js/filter.js"></script>

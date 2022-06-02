@@ -14,16 +14,11 @@ module.exports = async function toScssVariables(type, data) {
                     .then(data => {
                         return data
                     })
-                    .catch(error => {
-                        console.log(error)
+                    .catch(err => {
+                        console.log(err)
                     })
                 resolve(scssLine)
-                // let alleDIngen = scssLine
-                // // console.log(alleDIngen)
-                // variableArray += alleDIngen
-                // console.log(alleDIngen)
             })
-            // scssDing += scssLine + '\n'
         }
     })
 }

@@ -8,7 +8,7 @@ module.exports = function writeData(filename, data) {
 
 
     writeFile(filename, json, 'json')
-    jsonToJS(`${filename}`, data)
+    // jsonToJS(`${filename}`, data)
 }
 
 

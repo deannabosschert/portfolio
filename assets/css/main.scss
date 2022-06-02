@@ -8,6 +8,7 @@
 // @import "settings/settings.font";
 @import "settings/settings.layout";
 @import "settings/settings.spacing";
+@import "settings/_settings.spacing.scss";
 @import "settings/settings.tailwind";
 // @import "settings/settings.variables";
 
@@ -37,6 +38,7 @@
 @import "components/organisms/components.header-nav";
 @import "components/organisms/components.search-bar";
 @import "components/organisms/components.toggle";
+@import "components/organisms/components.project-filters";
 // @import "components/organisms/components.toggle-hb";
 
 // molecules
@@ -54,14 +56,15 @@
 // all that has to be moved to seperate modules later
 // @import "components/components.all";
 
-// UTILITIES
-@import "utilities/utilities.hide";
-
-
 // PAGE-SPECIFIC STYLING
 @import "pages/templates/pages.home";
 @import "pages/templates/pages.detail";
 @import "pages/pages.snippets";
+@import "pages/pages.projects";
 @import "pages/pages.skills";
 
 @import "elements/elements.mediaqueries";
+
+
+// UTILITIES
+@import "utilities/utilities.hide";

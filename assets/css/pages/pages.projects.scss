@@ -1,0 +1,20 @@
+#projects {
+
+    .projects-list,
+    .boilerplates-list {
+        >ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: $desktop-default;
+        }
+    }
+
+    .projects-list {}
+
+    .boilerplates-list {}
+
+    .techList {
+        display: none;
+        // grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
