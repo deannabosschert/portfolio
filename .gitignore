@@ -13,3 +13,9 @@ _site/assets/index.css.map
 _site
 /_site
 img/large
+_site
+/old
+src/_data/codecookbook
+.pem
+localhost-key.pem
+localhost.pem

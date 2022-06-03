@@ -1,0 +1,27 @@
+---
+layout: templates/_base.html
+parent: "/"
+pageName: "bubbles"
+permalink: "/{{pageName}}/"
+---
+
+<!-- d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<h1>bubbles</h1>
+<div width="1000" height="900">
+    <svg id="bubble_graph" class="bubble_graph_svg" width="1000" height="900">
+
+    </svg>
+</div>
+
+<article>
+    <button id="addCSSData">add css data</button>
+
+</article>
+<button id="addJSData">add js data</button>
+
+<script type="module" src="/assets/js/charts/bubbles-graph.js"></script>

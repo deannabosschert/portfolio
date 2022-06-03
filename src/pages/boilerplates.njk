@@ -1,0 +1,41 @@
+---
+layout: templates/_project.html
+pagination:
+  data: storyblok.boilerplatepages
+  size: 1
+  alias: storyblokJsonData
+---
+{%- for item in pagination.items %}
+
+    <header>
+        <h1 >{{ item.title }}</h1>
+        <p>{{ item.summary }}</p>
+    </header>
+    <section>
+        <article class="{{ 'u-hidden' if not item.descriptions }}">
+            <h2>Description</h2>
+            {% for description in item.descriptions %}
+                <p>{{ description }}</p>
+            {% endfor %}
+        </article>
+        <article class="{{ 'u-hidden' if not item.technologies }}">
+            <h2>Technologies</h2>
+            <p>Used technologies</p>
+            <ul>
+                {% for technology in item.technologies %}
+                    <li>{{ technology }}</li>
+                {% endfor %}
+            </ul>
+        </article>
+    </section>
+    <section>
+        <h2>Links</h2>
+        <ul>
+           <li><a class="{{ 'u-hidden' if not item.links.site }}" href="{{ item.links.site }}">site</a></li>
+           {# <li><a class="{{ 'u-hidden' if not item.links.detail  }}" href="{{ item.links.detail }}">detail</a></li> #}
+           <li><a class="{{ 'u-hidden' if not item.links.repository }}" href="{{ item.links.repository }}">repo</a></li>
+           <li><a class="{{ 'u-hidden' if not item.links.documentation }}" href="{{ item.links.documentation }}">documentation</a></li>
+        </ul>
+    </section>
+
+{% endfor -%}

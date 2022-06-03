@@ -1,0 +1,13 @@
+{% set case = params.case %}
+
+<a href="/cases/{{case.shortcode}}">
+    <h3>{{case.title}}</h3>
+    <p>{{case.summary}}</p>
+
+    {{ component('atoms', '_image', {
+        src: img.src,
+        alt: img.alt,
+        width: img.width,
+        height: img.height
+    }) }}
+</a>

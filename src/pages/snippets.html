@@ -1,0 +1,255 @@
+---
+layout: templates/_base.html
+parent: "/"
+pageName: "snippets"
+permalink: "/{{pageName}}/"
+---
+{%- from "system/component.njk" import component -%}
+<header class="page-header">
+    <h1>Snippets</h1>
+    <p>I've been working as a (student) teaching assistent at CMD Amsterdam for 2 years now and in this period of time,
+        I've created a lot of code snippets.</p>
+    <p>Why? Because I wanted to help and teach students by using small, simple examples. Most examples you'll find on
+        the web are filled with side stuff that's only confusing for beginners.</p>
+    <p>Even though they're fairly simple, I think that making those snippets has contributed lots towards my view on
+        coding and skills</p>
+    <p>Normally, I wouldn't use iFrames but for embedding these snippets.. well, it's in terms of UX the better
+        solution.</p>
+    <p>Of course, I could've just included a link to my codepen but who's gonna click on that..</p>
+</header>
+<section class="snippets">
+    <h2>API usage</h2>
+    <p>I've tested out a few different API's. Some are overly explained in comments; this is done for teaching purposes.
+    </p>
+    <input class="switch_input" type="checkbox" id="view-1" name="view-1">
+    <label class="switch_label" for="view-1"><span class="switch_label_grid">grid</span><span class="switch_label_row">row</span> view</label>
+    <div class="snippets_row">
+        <div class="carousel-indicator">></div> <!-- en JS actie van onclick scroll to end -->
+        <article>
+            <h3>OpenWeatherMap</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'bGajyQX'
+        }) }}
+        </article>
+        <article>
+            <h3>GitHub</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'XWevaJr'
+        }) }}
+        </article>
+        <article>
+            <h3>Country-State-City</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'KKZooaB'
+        }) }}
+        </article>
+        <article>
+            <h3>Youtube</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'yLzbodM'
+        }) }}
+        </article>
+        <article>
+            <h3>Colors</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'abJNybL'
+        }) }}
+        </article>
+        <article>
+            <h3>Unsplash gallery</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'ExWKvxv'
+        }) }}
+        </article>
+        <article>
+            <h3>Unsplash by keyword</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'XWjeYLQ'
+        }) }}
+        </article>
+        <article>
+            <h3>Flickr</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'BaLwVEd'
+        }) }}
+        </article>
+    </div>
+</section>
+<section class="snippets">
+    <input class="switch_input" type="checkbox" id="view-2" name="view-2">
+    <label class="switch_label" for="view-2"><span class="switch_label_grid">grid</span><span class="switch_label_row">row</span> view</label>
+    <h2>Components</h2>
+    <div class="snippets_row">
+        <div class="carousel-indicator">></div>        <article>
+            <h3>Accessible search form</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'YzrXGeO'
+        }) }}
+        </article>
+        <article>
+            <h3>Navigation</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'qBPEYmx'
+        }) }}
+        </article>
+        <article>
+            <h3>JS multi-toggle</h3>
+            {{ component('atoms', '_codepenEmbed', {
+               username: 'deannabosschert',
+               penID: 'qBrjrqw'
+            }) }}
+        </article>
+        <article>
+            <h3>Toggles JS + CSS</h3>
+            {{ component('atoms', '_codepenEmbed', {
+               username: 'deannabosschert',
+               penID: 'PopGXJx'
+            }) }}
+        </article>
+        <article>
+            <h3>(Hamburger) menu toggles</h3>
+            {{ component('atoms', '_codepenEmbed', {
+               username: 'deannabosschert',
+               penID: 'MWpjBLd'
+            }) }}
+        </article>
+        <article>
+            <h3>CSS Submenu toggle</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'xxqrEYN'
+        }) }}
+        </article>
+        <article>
+            <h3>Bottom navigation</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'OJRdxRG'
+        }) }}
+        </article>
+        <article>
+            <h3>Sticky bottom navigation</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'RwGvZOy'
+        }) }}
+        </article>
+        <article>
+            <h3>Custom list-style</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'WNGPErK'
+        }) }}
+        </article>
+        <article>
+            <h3></h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: ''
+        }) }}
+        </article>
+    </div>
+</section>
+<section class="snippets">
+    <h2>Site parts</h2>
+    <input class="switch_input" type="checkbox" id="view-3" name="view-3">
+    <label class="switch_label" for="view-3"><span class="switch_label_grid">grid</span><span class="switch_label_row">row</span> view</label>
+    <div class="snippets_row">
+        <div class="carousel-indicator">></div>        <article>
+            <h3>NOS Header Part</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'NWbGqoG'
+        }) }}
+        </article>
+        <article>
+            <h3>NOS Feature Grid</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'oNYYxzK'
+        }) }}
+        </article>
+        <article>
+            <h3>NOS Aside</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'ExgdZzZ'
+        }) }}
+        </article>
+        <article>
+            <h3>Instagram grid</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'oNzYgpW'
+        }) }}
+        </article>
+    </div>
+</section>
+<section class="snippets">
+    <h2>Other</h2>
+    <input class="switch_input" type="checkbox" id="view-4" name="view-4">
+    <label class="switch_label" for="view-4"><span class="switch_label_grid">grid</span><span class="switch_label_row">row</span> view</label>
+    <div class="snippets_row">
+        <div class="carousel-indicator">></div>        <article>
+            <h3>Colored SVG Circles</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'eYGZymb'
+        }) }}
+        </article>
+    
+        <article>
+            <h3>Icons 3 ways</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'qBPEYmx'
+        }) }}
+        </article>
+        <article>
+            <h3>Select specific href</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'MWvroax'
+        }) }}
+        </article>
+        <article>
+            <h3>BW split background</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'JjJGbYe'
+        }) }}
+        </article>
+        <article>
+            <h3>Font stretch test</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'KKNLmdd'
+        }) }}
+        </article>
+        <article>
+            <h3>Bubbles animation</h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: 'xxZZdZQ'
+        }) }}
+        </article>
+        <article>
+            <h3></h3>
+            {{ component('atoms', '_codepenEmbed', {
+           username: 'deannabosschert',
+           penID: ''
+        }) }}
+        </article>
+    </div>
+</section>
+<script defer src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>

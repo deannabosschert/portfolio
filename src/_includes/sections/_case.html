@@ -1,0 +1,55 @@
+{% set case = params.case %}
+
+  <!-- <header> -->
+     <h2>{{case.title}}</h2>
+     <p>{{case.summary}}</p>
+     <blockquote>
+         <p>{{case.challenge}}</p>
+     </blockquote>
+     <!-- </header> -->
+     <article>
+         <!-- parent project info (e.g. dataviz under parent Code Cookbook)-->
+         <h3>{{case.project.name}}</h3>
+         <p>{{case.project.summary}}</p>
+         <p>{{case.project.description}}</p>
+     </article>
+     <article>
+         <h3>Case description</h3>
+         {% for paragraph in case.description %}
+         <p>{{paragraph}}</p>
+         {% endfor %}
+     </article>
+     <div>
+         <a href="{{case.link.repo}}">Link to repository</a>
+         <a href="{{case.link.site}}">{{case.link.text}}</a>
+     </div>
+     <aside>
+         <h3>Evaluation</h3>
+         <p>Wat is er top of matig binnen dit project?</p>
+         {% for evaluation in case.evaluation %}
+         <article>
+             <h3>{{evaluation.name}}</h3>
+             <p>{{evaluation.paragraph}}</p>
+         </article>
+         {% endfor %}
+     </aside>
+     <article>
+         <h3 class="u-text-invisible">Images</h3>
+         <ul>
+             {% for img in case.images %}
+             <li>
+                 <figure>
+                     {{ component('atoms', '_image', {
+                        src: img.src,
+                        alt: img.alt,
+                        width: img.width,
+                        height: img.height
+                        }) }}
+                     <figcaption>{{img.description}}</figcaption>
+                 </figure>
+             </li>
+             {% endfor %}
+         </ul>
+     </article>
+
+     <script src="//app.storyblok.com/f/storyblok-v2-latest.js" type="text/javascript">
