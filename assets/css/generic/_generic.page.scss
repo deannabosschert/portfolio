@@ -69,7 +69,9 @@ section {
   margin-bottom: $desktop-m;
 }
 
-article, section, iframe {
+article,
+section,
+iframe {
   max-width: 100%;
 }
 
@@ -80,4 +82,57 @@ article, section, iframe {
 
 .pageActive {
   display: block;
+}
+
+
+
+// background space theme
+body {
+  background-color: #000;
+  color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle opacity="0.4" fill="%239e9effff" cx="27.34" cy="21.338" r="0.632" /><circle opacity="0.3" fill="%239e9effff" cx="25.31" cy="78.242" r="0.414" /><circle opacity="0.4" fill="%239e9effff" cx="53" cy="43.575" r="0.201" /><circle fill="%239e9effff" cx="12.883" cy="40.46" r="0.367" /><circle opacity="0.3" fill="%239e9effff" cx="79.1" cy="73.357" r="0.414" /><circle opacity="0.2" fill="%239e9effff" cx="52.975" cy="11.375" r="0.299" /><circle opacity="0.4" fill="%239e9effff" cx="76.532" cy="90.375" r="0.312" /><circle opacity="0.2" fill="%239e9effff" cx="74" cy="51.446" r="0.333" /><circle opacity="0.3" fill="%239e9effff" cx="39.523" cy="88.321" r="0.401" /></svg>');
+  background-size: 18rem 18rem;
+  background-position: center 0;
+  animation: moveBackground 20s linear infinite;
+  width: 100%;
+
+  p,
+  a,
+  ul li {
+    color: white;
+  }
+
+  h1,
+  h2 {
+    color: rgb(191, 191, 207);
+  }
+
+  h2 {
+    font-weight: 200;
+  }
+
+  h3 {
+    font-weight: 400;
+    color: rgb(213, 213, 238);
+  }
+
+
+  p,
+  a {
+    line-height: 1.5;
+    font-size: 18px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    scroll-behavior: smooth;
+  }
+
+  @keyframes moveBackground {
+    to {
+      background-position: center 18rem;
+    }
+  }
 }

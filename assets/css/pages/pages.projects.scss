@@ -6,6 +6,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: $desktop-default;
+            // grid-auto-flow: dense;
+            // direction: rtl;
         }
     }
 
@@ -16,5 +18,54 @@
     .techList {
         display: none;
         // grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+  
+}
+
+#projectDetail {
+    .project__tech {
+        max-width: 400px;
+
+    }
+    .project__tech, .project__links, .project__links ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        h2, p {
+            min-width: 100%;
+        }
+    }
+
+    .project__links {
+        max-width: 700px;
+
+        ul {
+            min-width: 100%;
+
+            li {
+                max-width: 100px;
+                margin-bottom: $desktop-xxs;
+                background-color: $brand-transparent;
+                color: $dark;
+                padding: $desktop-xxxs $desktop-xxs;
+                background-image: linear-gradient(to right, $brand -10%, $brand 60%, $lavender 99%, $dark-purple 155%);
+                background-size: 200% auto;
+                border-radius: 5px;
+                box-shadow: 0 0 0 2px $dark-purple-30;
+                transition: 0.5s;
+                min-width: min-content;
+                color: white;
+                font-weight: 900;
+                letter-spacing: 0.25px;
+                text-transform: uppercase;
+                text-align: center;
+                justify-self: start;
+                font-weight: 400;
+            }
+        }
+
     }
 }
