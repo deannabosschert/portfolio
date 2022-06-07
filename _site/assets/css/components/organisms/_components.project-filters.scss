@@ -1,0 +1,97 @@
+.project-filters {
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    justify-items: start;
+
+    h2 {
+        min-width: 100%;
+        grid-row: -1/-1;
+    }
+
+    fieldset {
+        margin-bottom: $desktop-default;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        max-width: 600px;
+    }
+
+    legend {
+        grid-row: 1;
+        margin-bottom: $desktop-xxs;
+        background-color: $brand-transparent;
+        color: $dark;
+        padding: $desktop-xxxs $desktop-xxs;
+        background-image: linear-gradient(to right, $brand -10%, $brand 60%, $lavender 99%, $dark-purple 155%);
+        background-size: 200% auto;
+        border-radius: 5px;
+        box-shadow: 0 0 0 2px $dark-purple-30;
+        transition: 0.5s;
+        min-width: min-content;
+        color: white;
+        font-weight: 900;
+        letter-spacing: 0.25px;
+        text-transform: uppercase;
+        text-align: center;
+        justify-self: start;
+    }
+
+    label {
+        // grid-row: 2;
+        display: flex;
+        flex-direction: row-reverse;
+        text-align: left;
+        justify-content: left;
+        margin-bottom: $desktop-xxxs;
+        margin-bottom: 15px;
+    line-height: 1.4;
+    }
+
+    input {
+        margin-right: $desktop-xxxs;
+    }
+
+    
+
+  
+// trying to make a css-only filtering system å
+    // @for $techID from 1 through 3 {
+    //     @for $itemID from 1 through 20 {
+    //         // .filter-#{$techID}-#{$itemID}:checked+label {
+    //         //     color: red;
+    //         //     // .dropdown-options-#{$techID}-#{$itemID} {
+    //         //     //     display: none;
+    //         //     // }
+
+    //         //     // .dropdown-toggle-button-#{$techID}-#{$itemID} {
+    //         //     //     display: none;
+    //         //     // }
+
+    //         //     // .dropdown-toggle-button-#{$techID}-#{$itemID}:checked~.dropdown-options-#{$techID}-#{$itemID} {
+    //         //     //     display: block;
+    //         //     // }
+    //         // }
+
+
+            
+
+
+    //     }
+    // }
+}
+
+// input:checked+label {
+//     color: red;
+// }
+
+// .Semantics:checked {
+//     background-color: red;
+// }
+
+// [value="Semantics"]:checked ~ ul [data-category] {
+//     display: block;
+//   }

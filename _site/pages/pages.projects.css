@@ -1,0 +1,50 @@
+#projects .projects-list > ul,
+#projects .boilerplates-list > ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 32px;
+}
+#projects .techList {
+  display: none;
+}
+
+#projectDetail .project__tech {
+  max-width: 400px;
+}
+#projectDetail .project__tech, #projectDetail .project__links, #projectDetail .project__links ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#projectDetail .project__tech h2, #projectDetail .project__tech p, #projectDetail .project__links h2, #projectDetail .project__links p, #projectDetail .project__links ul h2, #projectDetail .project__links ul p {
+  min-width: 100%;
+}
+#projectDetail .project__links {
+  max-width: 700px;
+}
+#projectDetail .project__links ul {
+  min-width: 100%;
+}
+#projectDetail .project__links ul li {
+  max-width: 100px;
+  margin-bottom: 16px;
+  background-color: #9e9eff99;
+  color: #433a4bff;
+  padding: 8px 16px;
+  background-image: linear-gradient(to right, #9e9effff -10%, #9e9effff 60%, #e6e6faff 99%, #493378ff 155%);
+  background-size: 200% auto;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px #4933784d;
+  transition: 0.5s;
+  min-width: min-content;
+  color: white;
+  font-weight: 900;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  text-align: center;
+  justify-self: start;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=pages.projects.css.map */

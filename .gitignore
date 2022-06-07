@@ -1,19 +1,19 @@
 node_modules
 .DS_Store
 .env
-_site/assets/fonts.css
-_site/assets/reset.css
-_site/assets/examples.css
-_site/assets/fonts.css.map
-_site/assets/reset.css.map
-_site/assets/style.css.map
-_site/assets/index.css.map
+# _site/assets/fonts.css
+# _site/assets/reset.css
+# _site/assets/examples.css
+# _site/assets/fonts.css.map
+# _site/assets/reset.css.map
+# _site/assets/style.css.map
+# _site/assets/index.css.map
 *.pdf
 
-_site
-/_site
+# _site
+# /_site
 img/large
-_site
+# _site
 /old
 src/_data/codecookbook
 .pem

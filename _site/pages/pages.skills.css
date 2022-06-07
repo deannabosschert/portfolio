@@ -1,0 +1,85 @@
+body#skills {
+  background-color: #000;
+  color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle opacity="0.4" fill="%239e9effff" cx="27.34" cy="21.338" r="0.632" /><circle opacity="0.3" fill="%239e9effff" cx="25.31" cy="78.242" r="0.414" /><circle opacity="0.4" fill="%239e9effff" cx="53" cy="43.575" r="0.201" /><circle fill="%239e9effff" cx="12.883" cy="40.46" r="0.367" /><circle opacity="0.3" fill="%239e9effff" cx="79.1" cy="73.357" r="0.414" /><circle opacity="0.2" fill="%239e9effff" cx="52.975" cy="11.375" r="0.299" /><circle opacity="0.4" fill="%239e9effff" cx="76.532" cy="90.375" r="0.312" /><circle opacity="0.2" fill="%239e9effff" cx="74" cy="51.446" r="0.333" /><circle opacity="0.3" fill="%239e9effff" cx="39.523" cy="88.321" r="0.401" /></svg>');
+  background-size: 18rem 18rem;
+  background-position: center 0;
+  animation: moveBackground 20s linear infinite;
+  width: 100%;
+  margin: 0;
+  overflow-y: hidden;
+}
+@keyframes moveBackground {
+  to {
+    background-position: center 18rem;
+  }
+}
+body#skills main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  scroll-behavior: smooth;
+}
+body#skills main > .left-text > header {
+  margin-bottom: 70px;
+}
+body#skills main .left-text {
+  width: 40%;
+  margin-bottom: 161px;
+  padding-left: 70px;
+  scroll-snap-type: y mandatory;
+  position: relative;
+  height: 100vh;
+  scroll-snap-points-y: repeat(350px);
+  scroll-snap-type: y mandatory;
+  scroll-snap-type: mandatory;
+  overflow: auto;
+}
+body#skills main .chapter {
+  opacity: 0;
+  transition: 1s all ease;
+  scroll-margin: -50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  max-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+body#skills main .chapter.active {
+  opacity: 1;
+}
+body#skills main .right-graphs {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+}
+body#skills main .right-graphs svg {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: visible;
+  position: fixed;
+}
+body#skills main .right-graphs svg .group-1,
+body#skills main .right-graphs svg .group-2,
+body#skills main .right-graphs svg .group-3 {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  }
+  80% {
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(30deg);
+  }
+}
+
+/*# sourceMappingURL=pages.skills.css.map */

@@ -28,7 +28,7 @@ module.exports = (eleventyConfig) => {
 
   // Minify HTML
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
-    if (outputPath.endsWith(".html") && !outputPath.includes("posts")) { //  only for .html files outside of the `posts` directory
+    if (outputPath.endsWith(".html") && !outputPath.includes("posts") && !outputPath.includes("skillstrolls") && !outputPath.includes("scroll")) { //  only for .html files outside of the `posts` directory
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
