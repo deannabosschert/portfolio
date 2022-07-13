@@ -5,4 +5,62 @@
         }
     }
 
+    header section {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr;
+        // gap: 0px 16px;
+        grid-template-areas:
+            "title about"
+            "title description";
+
+        h1 {
+            grid-area: title;
+            margin: 0;
+            max-width: fit-content;
+       
+        }
+
+        p {
+            justify-self: flex-start; 
+
+            &:first-of-type {
+                grid-area: about;
+                align-self: flex-end;
+            }
+
+            &:last-of-type {
+                grid-area: description;
+                align-self: flex-start;
+            }
+        }
+    }
+
+    #maintenance {
+        margin: 10rem auto 10rem auto;
+        justify-self: center;
+        width: 50%;
+        border: 0.5px solid #9e9eff99;
+        padding: 4rem 1rem;
+
+
+        h2 {
+            font-size: 45px;
+            text-align: center;
+            justify-self: center;
+            width: 100%;
+            align-self: center;
+        }
+    }
+
+    #aboutme {
+        justify-self: end;
+        align-self: flex-end;
+        max-width: 600px;
+
+        h2,
+        p {
+            text-align: right;
+        }
+    }
 }

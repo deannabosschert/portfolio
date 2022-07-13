@@ -550,11 +550,20 @@ table td:first-of-type {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #9e9eff99;
-  padding: 20px 40px 8px 40px;
+  padding: 20px 40px 20px 40px;
 }
 .c-header > div {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.c-header > div h1 {
+  border-right: 0.5px solid #9e9eff99;
+  padding-right: 20px;
+}
+.c-header > div p {
+  padding-left: 20px;
 }
 .c-header h1, .c-header p {
   margin-bottom: 0;
@@ -8204,6 +8213,51 @@ body.contact a.contact:link {
 }
 #Home #contact a {
   border-bottom: 2px solid #9e9eff99;
+}
+#Home header section {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "title about" "title description";
+}
+#Home header section h1 {
+  grid-area: title;
+  margin: 0;
+  max-width: fit-content;
+}
+#Home header section p {
+  justify-self: flex-start;
+}
+#Home header section p:first-of-type {
+  grid-area: about;
+  align-self: flex-end;
+}
+#Home header section p:last-of-type {
+  grid-area: description;
+  align-self: flex-start;
+}
+#Home #maintenance {
+  margin: 10rem auto 10rem auto;
+  justify-self: center;
+  width: 50%;
+  border: 0.5px solid #9e9eff99;
+  padding: 4rem 1rem;
+}
+#Home #maintenance h2 {
+  font-size: 45px;
+  text-align: center;
+  justify-self: center;
+  width: 100%;
+  align-self: center;
+}
+#Home #aboutme {
+  justify-self: end;
+  align-self: flex-end;
+  max-width: 600px;
+}
+#Home #aboutme h2,
+#Home #aboutme p {
+  text-align: right;
 }
 
 .snippets {

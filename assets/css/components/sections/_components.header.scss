@@ -4,12 +4,23 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $brand-transparent;
-    padding: $desktop-xs 40px $desktop-xxxs 40px;
+    padding: $desktop-xs 40px $desktop-xs 40px;
 
      
     >div {
       display: flex;
       flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        border-right: 0.5px solid $brand-transparent;
+        padding-right: 20px;
+      }
+
+      p {
+        padding-left: 20px;
+      }
     }
     h1, p {
       margin-bottom: 0;
